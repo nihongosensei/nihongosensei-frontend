@@ -2,20 +2,21 @@ import { EntryContextProvider, EntryFull } from "@components/Dict";
 import { useScrollHeightPostMessage } from "@components/hooks";
 import { addCachingHeader } from "@helper";
 import { SITE_NAME } from "@services/constants";
-import { EntryWrapperModel, findById } from "@services/VocabularyService";
+import type { EntryWrapperModel } from "@services/VocabularyService";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
+import { vocabularyService } from "@services/VocabularyService/instance";
 
 type EmbedByIdPage = {
   entry: EntryWrapperModel;
 };
 
 export default function EmbedByIdPage({
-  entry: { entry_json },
+  entry: { entryJson },
 }: EmbedByIdPage): JSX.Element {
   useScrollHeightPostMessage();
 
-  const title = `${entry_json.form.orth[0]?.value} - ${SITE_NAME}`;
+  const title = `${entryJson.form.orth[0]?.value} - ${SITE_NAME}`;
 
   return (
     <>
@@ -23,7 +24,7 @@ export default function EmbedByIdPage({
         <title>{title}</title>
       </Head>
       <EntryContextProvider detailBasePath="/embed/entry/byId">
-        <EntryFull entry={entry_json} />
+        <EntryFull entry={entryJson} />
       </EntryContextProvider>
     </>
   );
@@ -40,7 +41,7 @@ export const getServerSideProps: GetServerSideProps<EmbedByIdPage> = async ({
     };
   }
 
-  const entry = await findById(idNumber);
+  const entry = await vocabularyService.findById(idNumber);
 
   if (!entry) {
     return {

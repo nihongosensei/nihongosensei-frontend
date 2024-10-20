@@ -8,54 +8,12 @@ This project provides a collection of useful tools for learning japanese.
 
 Live:
 
-A simple generator for adding furigana to japanese text via [kuroshiro](https://www.npmjs.com/package/kuroshiro) is available
+A simple generator for adding furigana to japanese text is available
 under [nihongosensei.app/furigana](https://nihongosensei.app/furigana).
 
 ## Dictionary
 
 A dictionary is available based on [wadoku.de](https://wadoku.de) xml data.
-
-### Schema
-
-The dictionary uses a single table for now which holds the converted xml entry in json and additional fields ot enable
-text search.
-
-```sql
-create table entry
-(
-    id         int unsigned                        not null
-        primary key,
-    entry_json json                                null,
-    lastchange timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
-    jlpt       tinyint unsigned                    null
-)
-    charset = utf8;
-
-create table entry_map
-(
-    entry_id int                          not null,
-    text     varchar(255) charset utf8mb4 not null,
-    primary key (entry_id, text)
-);
-
-create fulltext index entry_map__text
-    on entry_map (text);
-
-create index entry_map__text_index
-    on entry_map (text);
-
-create table entry_ref
-(
-    target_id    int          not null,
-    source_id    int          not null,
-    type         varchar(255) not null,
-    subentrytype varchar(255) null,
-    primary key (target_id, source_id)
-);
-
-create index entry_ref__target_id
-    on entry_ref (target_id);
-```
 
 ### Import Data
 

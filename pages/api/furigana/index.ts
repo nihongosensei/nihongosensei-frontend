@@ -1,12 +1,11 @@
 import { parseError } from "@helper";
-import { FuriganaModel, FuriganaService } from "@services/FuriganaService";
-import { NextApiRequest, NextApiResponse } from "next";
+import type { FuriganaModel } from "@services/FuriganaService";
+import type { NextApiRequest, NextApiResponse } from "next";
+import { furiganaService } from "@services/FuriganaService/instance";
 
 export type FuriganaResponse = {
   furigana: FuriganaModel[];
 };
-
-const furiganaService = FuriganaService.getInstance();
 
 async function handleFurigana(
   req: NextApiRequest,

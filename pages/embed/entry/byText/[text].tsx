@@ -3,17 +3,16 @@ import { useScrollHeightPostMessage } from "@components/hooks";
 import { addCachingHeader } from "@helper";
 import { SITE_NAME } from "@services/constants";
 import type { EntryWrapperModel } from "@services/VocabularyService";
-import { findByText } from "@services/VocabularyService";
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import Head from "next/head";
-import React from "react";
+import { vocabularyService } from "@services/VocabularyService/instance";
 
 type EmbedByTextPage = {
   entry: EntryWrapperModel;
 };
 
 export default function EmbedByTextPage({
-  entry: { entry_json },
+  entry: { entryJson },
 }: EmbedByTextPage): JSX.Element {
   useScrollHeightPostMessage();
 
@@ -21,11 +20,11 @@ export default function EmbedByTextPage({
     <>
       <Head>
         <title>
-          {entry_json.form.orth[0]?.value} - {SITE_NAME}
+          {entryJson.form.orth[0]?.value} - {SITE_NAME}
         </title>
       </Head>
       <EntryContextProvider detailBasePath="/embed/entry/byId">
-        <EntryFull entry={entry_json} />
+        <EntryFull entry={entryJson} />
       </EntryContextProvider>
     </>
   );
@@ -42,7 +41,7 @@ export const getServerSideProps: GetServerSideProps<EmbedByTextPage> = async ({
   }
   const singleText = Array.isArray(text) ? text[0] : text;
 
-  const entry = await findByText(singleText);
+  const entry = await vocabularyService.findByText(singleText);
 
   if (!entry) {
     return {

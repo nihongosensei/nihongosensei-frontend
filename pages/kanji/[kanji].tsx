@@ -3,15 +3,14 @@ import Head from "next/head";
 import { ContentWrapper } from "@components/Dict";
 import { addCachingHeader } from "@helper";
 import { SITE_NAME } from "@services/constants";
-import {
+import type {
   EntryWrapperModel,
-  findByQuery,
   KanjiModel,
 } from "@services/VocabularyService";
-import { findKanjiByKanji } from "@services/VocabularyService/findKanjiByKanji";
 import { KanjiFull } from "@components/Dict/EntryKanjis/KanjiFull";
 import { Heading } from "@components/ui";
 import { RelatedEntry } from "@components/Dict/Entry/RelatedEntry";
+import { vocabularyService } from "@services/VocabularyService/instance";
 
 type KanjiDetailPageProps = {
   kanji: KanjiModel;
@@ -36,8 +35,8 @@ export default function KanjiDetailPage({
             Beispiele
           </Heading>
           <ol className="list-decimal list-inside">
-            {entries.map(({ entry_json }) => (
-              <RelatedEntry key={entry_json.id} entry={entry_json} />
+            {entries.map(({ entryJson }) => (
+              <RelatedEntry key={entryJson.id} entry={entryJson} />
             ))}
           </ol>
         </div>
@@ -56,7 +55,7 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  const kanjiModel = await findKanjiByKanji(kanjiString);
+  const kanjiModel = await vocabularyService.findKanji(kanjiString);
 
   if (!kanjiModel) {
     return {
@@ -64,8 +63,10 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  const entries = await findByQuery(`*${kanjiModel.kanji}*`, {
+  const { entries } = await vocabularyService.findBy({
     limit: 15,
+    offset: 0,
+    kanjis: [kanjiModel.kanji],
   });
 
   addCachingHeader(res);

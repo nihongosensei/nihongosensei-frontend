@@ -1,5 +1,5 @@
-import { findByText } from "@services/VocabularyService";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { vocabularyService } from "@services/VocabularyService/instance";
 
 export default async function handleEntryByText(
   req: NextApiRequest,
@@ -20,5 +20,5 @@ export default async function handleEntryByText(
 
   res.setHeader("Content-Type", "application/json");
 
-  res.status(200).json(await findByText(text));
+  res.status(200).json(await vocabularyService.findByText(text));
 }

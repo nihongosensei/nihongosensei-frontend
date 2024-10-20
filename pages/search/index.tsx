@@ -5,11 +5,10 @@ import {
 } from "@components/Dict";
 import { addCachingHeader, parseError } from "@helper";
 import { SITE_NAME } from "@services/constants";
-import { parsePaginationParams } from "@services/DatabaseService";
-import { findByQuery, findByQueryCount } from "@services/VocabularyService";
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import Head from "next/head";
-import React from "react";
+import { vocabularyService } from "@services/VocabularyService/instance";
+import { parsePaginationParams } from "@services/VocabularyService/helper/parsePaginationParams";
 
 type SearchPageProps = {
   query: string;
@@ -45,10 +44,12 @@ export const getServerSideProps: GetServerSideProps<SearchPageProps> = async ({
   let error = null;
 
   try {
-    [results, count] = await Promise.all([
-      findByQuery(query, options),
-      findByQueryCount(query),
-    ]);
+    const response = await vocabularyService.findBy({
+      ...options,
+      query,
+    });
+    results = response.entries;
+    count = response.count;
   } catch (e) {
     console.log(e);
     error = parseError(e);

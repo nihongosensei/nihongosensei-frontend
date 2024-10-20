@@ -5,12 +5,11 @@ import {
 } from "@components/Dict";
 import { addCachingHeader, parseError } from "@helper";
 import { SITE_NAME } from "@services/constants";
-import { parsePaginationParams } from "@services/DatabaseService";
-import { VocabularyFindOptions } from "@services/VocabularyService";
-import { findBy, findByCount } from "@services/VocabularyService/findBy";
-import { GetServerSideProps } from "next";
+import type { VocabularyFindOptions } from "@services/VocabularyService";
+import type { GetServerSideProps } from "next";
 import Head from "next/head";
-import React from "react";
+import { vocabularyService } from "@services/VocabularyService/instance";
+import { parsePaginationParams } from "@services/VocabularyService/helper/parsePaginationParams";
 
 type JlptPageProps = {
   level: number;
@@ -39,9 +38,9 @@ export const getServerSideProps: GetServerSideProps<JlptPageProps> = async ({
   res,
 }) => {
   const levelNumber = Number(Array.isArray(level) ? level[0] : level) || 5;
-  const options = parsePaginationParams(params);
-  const vocabularyOptions: VocabularyFindOptions = {
+  const options: VocabularyFindOptions = {
     jlpt: levelNumber,
+    ...parsePaginationParams(params),
   };
 
   let results = null;
@@ -49,13 +48,9 @@ export const getServerSideProps: GetServerSideProps<JlptPageProps> = async ({
   let error = null;
 
   try {
-    [results, count] = await Promise.all([
-      findBy({
-        ...options,
-        ...vocabularyOptions,
-      }),
-      findByCount(vocabularyOptions),
-    ]);
+    const response = await vocabularyService.findBy(options);
+    results = response.entries;
+    count = response.count;
   } catch (e) {
     console.log(e);
     error = parseError(e);

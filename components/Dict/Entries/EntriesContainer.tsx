@@ -1,9 +1,10 @@
 import { EntryListItem } from "@components/Dict";
 import { Pagination } from "@components/Pagination";
 import { Alert, MinorText } from "@components/ui";
-import { FindOptions } from "@services/DatabaseService";
-import { EntryWrapperModel } from "@services/VocabularyService";
-import React from "react";
+import type {
+  EntryWrapperModel,
+  FindOptions,
+} from "@services/VocabularyService";
 
 export type EntriesContainerProps = {
   options: FindOptions;
@@ -33,10 +34,10 @@ export function EntriesContainer({
             <b>{count}</b> Ergebnisse.
           </MinorText>
           <div>
-            {results.map(({ entry_json }) => (
+            {results.map(({ entryJson }) => (
               <EntryListItem
-                key={entry_json.id}
-                entry={entry_json}
+                key={entryJson.id}
+                entry={entryJson}
                 className="mb-3"
               />
             ))}

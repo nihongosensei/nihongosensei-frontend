@@ -25,7 +25,7 @@ export function VocabularyProvider({
       const perform = async () => {
         const response = await fetch(`/api/entry/byText?text=${text}`);
         const entryJson = (await response.json()) as EntryWrapperModel;
-        setEntry(entryJson.entry_json);
+        setEntry(entryJson.entryJson);
         setError(null);
       };
 

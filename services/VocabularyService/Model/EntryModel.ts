@@ -1,7 +1,15 @@
-import { IDProviderModel } from "@services/DatabaseService";
+import type { KanjiModel } from "./KanjiModel";
 
-export type EntryWrapperModel = IDProviderModel & {
-  entry_json: EntryModel;
+export type ResolvedEntryModel = {
+  entry: EntryWrapperModel;
+  synonyms: EntryWrapperModel[];
+  relatedEntries: ResolvedEntryRefModel[];
+  kanjis: KanjiModel[];
+};
+
+export type EntryWrapperModel = {
+  id: string;
+  entryJson: EntryModel;
   jlpt: number | null;
   lastchange: Date;
 };

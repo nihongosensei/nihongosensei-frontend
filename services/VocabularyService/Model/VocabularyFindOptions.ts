@@ -1,4 +1,8 @@
-export type VocabularyFindOptions = {
+import type { FindOptions } from "./FindOptions";
+
+export type VocabularyFindOptions = FindOptions & {
   jlpt?: number;
-  ids?: ReadonlyArray<number>;
+  query?: string;
+  ids?: ReadonlyArray<string>;
+  kanjis?: ReadonlyArray<string>;
 };

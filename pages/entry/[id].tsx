@@ -9,32 +9,28 @@ import { addCachingHeader } from "@helper";
 import { SITE_NAME } from "@services/constants";
 import {
   EntryWrapperModel,
-  findById,
-  findByIds,
-  findMainRefsByTargetId,
   KanjiModel,
   ResolvedEntryRefModel,
 } from "@services/VocabularyService";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { EntryKanjis } from "@components/Dict/EntryKanjis/EntryKanjis";
-import { getKanjisFromOrth } from "@services/VocabularyService/helper/getKanjisFromOrth";
-import { findKanjis } from "@services/VocabularyService/findKanjis";
+import { vocabularyService } from "@services/VocabularyService/instance";
 
 type EntryDetailPageProps = {
   entry: EntryWrapperModel;
-  synonyms: EntryWrapperModel[];
-  relatedEntries: ResolvedEntryRefModel[];
-  kanjis: KanjiModel[];
+  synonyms: EntryWrapperModel[] | null;
+  relatedEntries: ResolvedEntryRefModel[] | null;
+  kanjis: KanjiModel[] | null;
 };
 
 export default function EntryDetailPage({
-  entry: { entry_json, jlpt },
-  synonyms,
-  relatedEntries,
-  kanjis,
+  entry: { entryJson, jlpt },
+  synonyms = [],
+  relatedEntries = [],
+  kanjis = [],
 }: EntryDetailPageProps): JSX.Element {
-  const title = `${entry_json.form.orth[0]?.value} - ${SITE_NAME}`;
+  const title = `${entryJson.form.orth[0]?.value} - ${SITE_NAME}`;
 
   return (
     <>
@@ -42,7 +38,7 @@ export default function EntryDetailPage({
         <title>{title}</title>
       </Head>
       <ContentWrapper>
-        <EntryFull entry={entry_json} />
+        <EntryFull entry={entryJson} />
         {jlpt && (
           <div className="my-2">
             <JlptBadge level={jlpt} />
@@ -50,15 +46,15 @@ export default function EntryDetailPage({
         )}
         <Synonyms
           className="pt-4 mt-4 border-t border-gray-300 dark:border-gray-700"
-          entries={synonyms.map((entry) => entry.entry_json)}
+          entries={synonyms?.map((entry) => entry.entryJson) ?? []}
         />
         <EntryKanjis
           className="mt-4 pt-4 border-t border-gray-300 dark:border-gray-700"
-          kanjis={kanjis}
+          kanjis={kanjis ?? []}
         />
         <RelatedEntries
           className="pt-4 mt-4 border-t border-gray-300 dark:border-gray-700"
-          entries={relatedEntries}
+          entries={relatedEntries ?? []}
         />
       </ContentWrapper>
     </>
@@ -68,9 +64,7 @@ export default function EntryDetailPage({
 export const getServerSideProps: GetServerSideProps<
   EntryDetailPageProps
 > = async ({ params: { id } = {}, res }) => {
-  const idNumber = Number(Array.isArray(id) ? id[0] : id);
-
-  const entry = await findById(idNumber);
+  const entry = await vocabularyService.findById(String(id));
 
   if (!entry) {
     return {
@@ -78,31 +72,9 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  // resolve refs
-
-  // resolve relations
-  const relationIds = entry.entry_json.ruigos?.ruigo
-    .map((related) => related.id)
-    .filter((id) => id !== entry.id);
-
-  // resolve kanjis
-
-  const kanjiSet = getKanjisFromOrth(entry.entry_json.form.orth);
-
-  const [synonyms = [], relatedEntries = [], kanjis = []] = await Promise.all([
-    relationIds?.length ? await findByIds(relationIds) : undefined,
-    await findMainRefsByTargetId(entry.id),
-    kanjiSet.size ? findKanjis(Array.from(kanjiSet)) : undefined,
-  ]);
-
   addCachingHeader(res);
 
   return {
-    props: {
-      entry,
-      synonyms,
-      relatedEntries,
-      kanjis,
-    },
+    props: entry,
   };
 };

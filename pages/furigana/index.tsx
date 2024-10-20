@@ -4,10 +4,11 @@ import {
 } from "@components/FuriganaGenerator";
 import { Grid, Link, Logo } from "@components/ui";
 import { SITE_NAME } from "@services/constants";
-import { FuriganaModel, FuriganaService } from "@services/FuriganaService";
+import { FuriganaModel } from "@services/FuriganaService";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useCallback, useState } from "react";
+import { furiganaService } from "@services/FuriganaService/instance";
 
 type FuriganaIndexProps = {
   text: string | null;
@@ -16,8 +17,6 @@ type FuriganaIndexProps = {
 };
 
 const DEFAULT_TEXT = process.env.DEFAULT_FURIGANA_INPUT_VALUE;
-
-const furiganaService = FuriganaService.getInstance();
 
 export default function FuriganaIndex({
   text,

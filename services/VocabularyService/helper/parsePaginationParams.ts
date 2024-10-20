@@ -1,6 +1,6 @@
-import { DEFAULT_LIMIT } from "@services/constants";
-import { ParsedUrlQuery } from "querystring";
-import type { FindOptions } from "../Model";
+import { DEFAULT_LIMIT, MAX_LIMIT } from "@services/constants";
+import type { ParsedUrlQuery } from "querystring";
+import type { FindOptions } from "@services/VocabularyService";
 
 const DEFAULT_OPTIONS: FindOptions = {
   offset: 0,
@@ -26,7 +26,7 @@ export function parsePaginationParams(
     paginationParams.offset = offset;
   }
   const limit = Number(limitString);
-  if (!isNaN(limit) && limit <= 100) {
+  if (!isNaN(limit) && limit <= MAX_LIMIT) {
     paginationParams.limit = limit;
   }
 
