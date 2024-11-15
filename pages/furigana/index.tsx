@@ -62,7 +62,7 @@ export const getServerSideProps: GetServerSideProps<
   let error = null;
   let furigana = null;
   try {
-    furigana = text ? await furiganaService.getFurigana(text) : [];
+    furigana = text ? await furiganaService().getFurigana(text) : [];
   } catch (e) {
     console.error(e);
     error = "Could not convert to furigana.";

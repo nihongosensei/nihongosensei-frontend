@@ -26,7 +26,7 @@ async function handleFurigana(
 
   try {
     const furigana = trimmedInput
-      ? await furiganaService.getFurigana(trimmedInput)
+      ? await furiganaService().getFurigana(trimmedInput)
       : null;
 
     res.setHeader("Content-Type", "application/json");

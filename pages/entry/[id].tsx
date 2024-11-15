@@ -64,7 +64,7 @@ export default function EntryDetailPage({
 export const getServerSideProps: GetServerSideProps<
   EntryDetailPageProps
 > = async ({ params: { id } = {}, res }) => {
-  const entry = await vocabularyService.findById(String(id));
+  const entry = await vocabularyService().findById(String(id));
 
   if (!entry) {
     return {

@@ -55,7 +55,7 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  const kanjiModel = await vocabularyService.findKanji(kanjiString);
+  const kanjiModel = await vocabularyService().findKanji(kanjiString);
 
   if (!kanjiModel) {
     return {
@@ -63,7 +63,7 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  const { entries } = await vocabularyService.findBy({
+  const { entries } = await vocabularyService().findBy({
     limit: 15,
     offset: 0,
     kanjis: [kanjiModel.kanji],

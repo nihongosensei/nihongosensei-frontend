@@ -4,11 +4,15 @@ import { ExternalFuriganaService } from "./ExternalFuriganaService";
 
 const BACKEND_URL = process.env.BACKEND_URL;
 
-assert(
-  BACKEND_URL != null && BACKEND_URL != "",
-  "BACKEND_URL must not be empty",
-);
+let instance: FuriganaService | null;
 
-export const furiganaService: FuriganaService = new ExternalFuriganaService(
-  BACKEND_URL,
-);
+export const furiganaService: () => FuriganaService = () => {
+  assert(
+    BACKEND_URL != null && BACKEND_URL != "",
+    "BACKEND_URL must not be empty",
+  );
+
+  instance ??= new ExternalFuriganaService(BACKEND_URL);
+
+  return instance;
+};

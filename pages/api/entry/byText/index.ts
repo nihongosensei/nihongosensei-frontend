@@ -20,5 +20,5 @@ export default async function handleEntryByText(
 
   res.setHeader("Content-Type", "application/json");
 
-  res.status(200).json(await vocabularyService.findByText(text));
+  res.status(200).json(await vocabularyService().findByText(text));
 }

@@ -36,7 +36,7 @@ export const getServerSideProps: GetServerSideProps<EmbedByIdPage> = async ({
   params: { id } = {},
   res,
 }) => {
-  const data = await vocabularyService.findById(String(id));
+  const data = await vocabularyService().findById(String(id));
 
   if (!data) {
     return {

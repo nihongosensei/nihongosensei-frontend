@@ -4,10 +4,14 @@ import { ExternalVocabularyService } from "./ExternalVocabularyService";
 
 const BACKEND_URL = process.env.BACKEND_URL;
 
-assert(
-  BACKEND_URL != null && BACKEND_URL != "",
-  "BACKEND_URL must not be empty",
-);
+let instance: VocabularyService | null;
 
-export const vocabularyService: VocabularyService =
-  new ExternalVocabularyService(BACKEND_URL);
+export const vocabularyService: () => VocabularyService = () => {
+  assert(
+    BACKEND_URL != null && BACKEND_URL != "",
+    "BACKEND_URL must not be empty",
+  );
+  instance ??= new ExternalVocabularyService(BACKEND_URL);
+
+  return instance;
+};

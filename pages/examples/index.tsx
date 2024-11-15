@@ -38,7 +38,7 @@ const EXAMPLE_IDS = [
 export const getServerSideProps: GetServerSideProps<
   ExamplePageProps
 > = async () => {
-  const { entries } = await vocabularyService.findBy({
+  const { entries } = await vocabularyService().findBy({
     ids: EXAMPLE_IDS,
     offset: 0,
     limit: EXAMPLE_IDS.length,

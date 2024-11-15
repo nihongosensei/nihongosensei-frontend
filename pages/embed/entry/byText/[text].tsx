@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps<EmbedByTextPage> = async ({
   }
   const singleText = Array.isArray(text) ? text[0] : text;
 
-  const entry = await vocabularyService.findByText(singleText);
+  const entry = await vocabularyService().findByText(singleText);
 
   if (!entry) {
     return {

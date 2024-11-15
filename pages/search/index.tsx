@@ -44,7 +44,7 @@ export const getServerSideProps: GetServerSideProps<SearchPageProps> = async ({
   let error = null;
 
   try {
-    const response = await vocabularyService.findBy({
+    const response = await vocabularyService().findBy({
       ...options,
       query,
     });

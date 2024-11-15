@@ -48,7 +48,7 @@ export const getServerSideProps: GetServerSideProps<JlptPageProps> = async ({
   let error = null;
 
   try {
-    const response = await vocabularyService.findBy(options);
+    const response = await vocabularyService().findBy(options);
     results = response.entries;
     count = response.count;
   } catch (e) {
