@@ -6,66 +6,88 @@ import type {
   KanjiModel,
 } from "./Model";
 import type { VocabularyService } from "./VocabularyService";
+import { context, propagation } from "@opentelemetry/api";
+
+class HttpError extends Error {
+  public constructor(
+    public readonly status: number,
+    message: string,
+  ) {
+    super(message);
+  }
+}
+
+interface Carrier {
+  traceparent?: string;
+}
+
+function getTraceParent(): string | undefined {
+  const output: Carrier = {};
+  propagation.inject(context.active(), output);
+
+  return output.traceparent;
+}
 
 export class ExternalVocabularyService implements VocabularyService {
   public constructor(private readonly endpoint: string) {}
 
   async findById(id: string): Promise<ResolvedEntryModel | null> {
-    const response = await fetch(
-      `${this.endpoint}/api/entry/id/${id}/resolved`,
-    );
-    if (response.status === 404) {
-      return null;
-    }
-    if (!response.ok) {
-      throw new Error(
-        `got invalid response from vocabulary service: ${response.status}`,
+    try {
+      return await this.performRequest<ResolvedEntryModel>(
+        `entry/id/${id}/resolved`,
       );
-    }
+    } catch (e) {
+      if (e instanceof HttpError && e.status === 404) {
+        return null;
+      }
 
-    return (await response.json()) as ResolvedEntryModel;
+      throw e;
+    }
   }
 
-  async findBy(options: VocabularyFindOptions): Promise<FindByResponseModel> {
-    const response = await fetch(`${this.endpoint}/api/entries`, {
-      method: "POST",
-      body: JSON.stringify(options),
-    });
-    if (!response.ok) {
-      throw new Error(`got invalid response: ${response.status}`);
-    }
-
-    return (await response.json()) as {
+  public findBy(options: VocabularyFindOptions): Promise<FindByResponseModel> {
+    return this.performRequest<{
       entries: EntryWrapperModel[];
       count: number;
-    };
+    }>("entries", options);
   }
 
   async findByText(text: string): Promise<EntryWrapperModel | null> {
-    const response = await fetch(`${this.endpoint}/api/entry/text/${text}`);
-    if (response.status === 404) {
-      return null;
-    }
-    if (!response.ok) {
-      throw new Error(
-        `got invalid response from furigana service: ${response.status}`,
-      );
-    }
+    try {
+      return await this.performRequest<EntryWrapperModel>(`entry/text/${text}`);
+    } catch (e) {
+      if (e instanceof HttpError && e.status === 404) {
+        return null;
+      }
 
-    return (await response.json()) as EntryWrapperModel;
+      throw e;
+    }
   }
 
-  async findKanji(kanji: string): Promise<KanjiModel | null> {
-    const response = await fetch(`${this.endpoint}/api/kanji/${kanji}`);
-    if (response.status === 404) {
-      return null;
+  public findKanji(kanji: string): Promise<KanjiModel | null> {
+    return this.performRequest<KanjiModel>(`kanji/${kanji}`);
+  }
+
+  private async performRequest<T>(resource: string, data?: any): Promise<T> {
+    const headers: Record<string, string> = {};
+    const traceParent = getTraceParent();
+    if (traceParent) {
+      headers.traceparent = traceParent;
     }
+
+    const response = await fetch(`${this.endpoint}/api/${resource}`, {
+      headers,
+      method: data ? "POST" : "GET",
+      body: data ? JSON.stringify(data) : undefined,
+    });
+
     if (!response.ok) {
-      throw new Error(
+      throw new HttpError(
+        response.status,
         `got invalid response from vocabulary service: ${response.status}`,
       );
     }
 
-    return (await response.json()) as KanjiModel;
+    return (await response.json()) as T;
   }
 }
