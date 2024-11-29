@@ -9,6 +9,7 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useCallback, useState } from "react";
 import { furiganaService } from "@services/FuriganaService/instance";
+import { ApiClientProvider } from "@components/Api";
 
 type FuriganaIndexProps = {
   text: string | null;
@@ -35,20 +36,22 @@ export default function FuriganaIndex({
         <meta name="description" content="Einfacher Generator für Furigana." />
       </Head>
       <Grid>
-        <Link href="/" color="text" style={{ gridArea: "header" }}>
-          <Logo text="Furigana Generator" />
-        </Link>
-        <JapaneseTextContainer
-          onRubyClick={handleRubyClick}
-          defaultValue={text}
-          defaultFurigana={furigana}
-          defaultError={error}
-        />
-        <VocabularyContainer
-          onChange={setVocabulary}
-          vocabulary={vocabulary}
-          className="sticky top-3"
-        />
+        <ApiClientProvider>
+          <Link href="/" color="text" style={{ gridArea: "header" }}>
+            <Logo text="Furigana Generator" />
+          </Link>
+          <JapaneseTextContainer
+            onRubyClick={handleRubyClick}
+            defaultValue={text}
+            defaultFurigana={furigana}
+            defaultError={error}
+          />
+          <VocabularyContainer
+            onChange={setVocabulary}
+            vocabulary={vocabulary}
+            className="sticky top-3"
+          />
+        </ApiClientProvider>
       </Grid>
     </>
   );

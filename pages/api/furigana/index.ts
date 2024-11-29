@@ -3,7 +3,7 @@ import type { FuriganaModel } from "@services/FuriganaService";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { furiganaService } from "@services/FuriganaService/instance";
 
-export type FuriganaResponse = {
+export type FuriganaResponseModel = {
   furigana: FuriganaModel[];
 };
 
@@ -32,7 +32,7 @@ async function handleFurigana(
     res.setHeader("Content-Type", "application/json");
     res.status(200).json({
       furigana,
-    } as FuriganaResponse);
+    } as FuriganaResponseModel);
   } catch (e) {
     console.error(e);
 

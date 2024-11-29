@@ -3,8 +3,6 @@ import { vocabularyService } from "@services/VocabularyService/instance";
 import type { FindByResponseModel } from "@services/VocabularyService";
 import { z } from "zod";
 
-export type ByTextResponseModel = FindByResponseModel;
-
 const castToNumber = z.preprocess((val) => Number(val), z.number());
 
 const queryStringSchema = z.object({
@@ -12,6 +10,10 @@ const queryStringSchema = z.object({
   limit: castToNumber.optional().default(3),
   offset: castToNumber.optional().default(0),
 });
+
+export type ByTextQueryModel = z.infer<typeof queryStringSchema>;
+
+export type ByTextResponseModel = FindByResponseModel;
 
 export default async function handleEntryByText(
   req: NextApiRequest,

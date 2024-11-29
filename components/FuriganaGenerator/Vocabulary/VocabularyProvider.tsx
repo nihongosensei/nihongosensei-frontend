@@ -4,6 +4,7 @@ import { Alert, Button, Link, LoadingProgress } from "@components/ui";
 import ExternalIcon from "@heroicons/react/24/solid/ArrowTopRightOnSquareIcon";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ByTextResponseModel } from "../../../pages/api/entry/byText";
+import { useApi } from "@components/Api";
 
 type VocabularyProps = {
   text: string;
@@ -11,18 +12,6 @@ type VocabularyProps = {
 };
 
 const ENTRY_LIMIT = 3;
-
-/**
- * TODO: add api client class and add caching.
- */
-async function getByText(queryString?: string): Promise<ByTextResponseModel> {
-  const response = await fetch(`/api/entry/byText?${queryString}`);
-  if (!response.ok) {
-    throw new Error(`failed to fetch - ${response.statusText}`);
-  }
-
-  return (await response.json()) as ByTextResponseModel;
-}
 
 export function VocabularyProvider({
   text,
@@ -33,6 +22,7 @@ export function VocabularyProvider({
   const [error, setError] = useState<string | null>(null);
   const offsetRef = useRef(0);
   const textRef = useRef(text);
+  const api = useApi();
 
   useEffect(() => {
     if (!text) {
@@ -40,11 +30,13 @@ export function VocabularyProvider({
     }
 
     const perform = async () => {
-      const params = new URLSearchParams();
-      params.set("text", text);
-      params.set("limit", ENTRY_LIMIT.toString());
-
-      setResponse(await getByText(params.toString()));
+      setResponse(
+        await api.getByText({
+          text,
+          limit: ENTRY_LIMIT,
+          offset: 0,
+        }),
+      );
       setError(null);
       offsetRef.current = 0;
     };
@@ -56,7 +48,7 @@ export function VocabularyProvider({
         setError("Failed to fetch vocabulary information");
       })
       .finally(() => setLoading(false));
-  }, [text]);
+  }, [text, api]);
 
   const loadMoreHandler = useCallback(() => {
     if (!textRef.current) {
@@ -71,7 +63,11 @@ export function VocabularyProvider({
       params.set("limit", ENTRY_LIMIT.toString());
       params.set("offset", offsetRef.current.toString());
 
-      const data = await getByText(params.toString());
+      const data = await api.getByText({
+        text: textRef.current,
+        limit: ENTRY_LIMIT,
+        offset: offsetRef.current,
+      });
       setResponse((initialResponse) => {
         return {
           entries: [...(initialResponse?.entries ?? []), ...data.entries],
@@ -88,7 +84,7 @@ export function VocabularyProvider({
         setError("Failed to fetch more vocabulary information");
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [api]);
 
   const hasMoreEntries =
     response != null && response.entries.length < response.count;

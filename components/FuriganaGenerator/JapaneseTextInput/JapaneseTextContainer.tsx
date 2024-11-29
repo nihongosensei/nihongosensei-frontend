@@ -4,9 +4,10 @@ import { parseError } from "@helper";
 import type { FuriganaModel } from "@services/FuriganaService";
 import { memo, useCallback, useRef, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
-import type { FuriganaResponse } from "../../../pages/api/furigana";
+import type { FuriganaResponseModel } from "../../../pages/api/furigana";
 import { JapaneseTextControls } from "./JapaneseTextControls";
 import { JapaneseTextInput, JapaneseTextInputProps } from "./JapaneseTextInput";
+import { useApi } from "@components/Api";
 
 type JapaneseTextContainerProps = {
   defaultError: string | null;
@@ -16,18 +17,6 @@ type JapaneseTextContainerProps = {
   debounceDelayInMs?: number;
 };
 
-async function fetchFurigana(text: string): Promise<FuriganaResponse> {
-  const response = await fetch("/api/furigana", {
-    method: "post",
-    body: text,
-  });
-  if (!response.ok) {
-    throw new Error();
-  }
-
-  return response.json() as Promise<FuriganaResponse>;
-}
-
 export const JapaneseTextContainer = memo(function JapaneseTextContainer({
   onRubyClick,
   debounceDelayInMs = 300,
@@ -35,6 +24,7 @@ export const JapaneseTextContainer = memo(function JapaneseTextContainer({
   defaultValue,
   defaultError,
 }: JapaneseTextContainerProps): JSX.Element {
+  const api = useApi();
   const [textSize, setTextSize] = useTextSize();
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState(defaultValue);
@@ -46,8 +36,9 @@ export const JapaneseTextContainer = memo(function JapaneseTextContainer({
 
   const convertHandler = useDebouncedCallback((value: string) => {
     setLoading(true);
-    fetchFurigana(value)
-      .then((furiganaResponse: FuriganaResponse) => {
+    api
+      .getFurigana(value)
+      .then((furiganaResponse: FuriganaResponseModel) => {
         setFurigana(furiganaResponse.furigana);
         setError(null);
       })
