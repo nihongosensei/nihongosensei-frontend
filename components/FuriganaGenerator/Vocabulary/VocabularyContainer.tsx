@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { VocabularyProvider } from "./VocabularyProvider";
@@ -29,7 +30,7 @@ export function VocabularyContainer({
   }, [vocabulary]);
 
   return (
-    <div className={className}>
+    <div className={clsx(className, "flex flex-col overflow-hidden")}>
       <input
         value={inputValue}
         onChange={inputChangeHandler}

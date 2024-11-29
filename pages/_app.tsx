@@ -5,7 +5,6 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useEffect } from "react";
 import "tailwindcss/tailwind.css";
-import "./scrollbar.css";
 
 const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL;
 const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;

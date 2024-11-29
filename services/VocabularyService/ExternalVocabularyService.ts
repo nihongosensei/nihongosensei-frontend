@@ -68,7 +68,10 @@ export class ExternalVocabularyService implements VocabularyService {
     return this.performRequest<KanjiModel>(`kanji/${kanji}`);
   }
 
-  private async performRequest<T>(resource: string, data?: any): Promise<T> {
+  private async performRequest<T>(
+    resource: string,
+    data?: unknown,
+  ): Promise<T> {
     const headers: Record<string, string> = {};
     const traceParent = getTraceParent();
     if (traceParent) {

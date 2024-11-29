@@ -1,5 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { vocabularyService } from "@services/VocabularyService/instance";
+import type { FindByResponseModel } from "@services/VocabularyService";
+import { z } from "zod";
+
+export type ByTextResponseModel = FindByResponseModel;
+
+const castToNumber = z.preprocess((val) => Number(val), z.number());
+
+const queryStringSchema = z.object({
+  text: z.string(),
+  limit: castToNumber.optional().default(3),
+  offset: castToNumber.optional().default(0),
+});
 
 export default async function handleEntryByText(
   req: NextApiRequest,
@@ -10,15 +22,17 @@ export default async function handleEntryByText(
 
     return;
   }
-  const textOrArray = req.query.text;
-  const text = Array.isArray(textOrArray) ? textOrArray[0] : textOrArray;
-  if (!text) {
-    res.status(400).end();
+
+  const data = queryStringSchema.safeParse(req.query);
+  if (data.error) {
+    res.status(400).send(data.error);
 
     return;
   }
 
   res.setHeader("Content-Type", "application/json");
 
-  res.status(200).json(await vocabularyService().findByText(text));
+  const response = await vocabularyService().findBy(data.data);
+
+  res.status(200).json(response);
 }

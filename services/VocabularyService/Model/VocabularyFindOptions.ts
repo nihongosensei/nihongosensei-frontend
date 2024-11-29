@@ -5,4 +5,5 @@ export type VocabularyFindOptions = FindOptions & {
   query?: string;
   ids?: ReadonlyArray<number>;
   kanjis?: ReadonlyArray<string>;
+  text?: string;
 };

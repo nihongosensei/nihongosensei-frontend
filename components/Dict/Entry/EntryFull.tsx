@@ -1,7 +1,7 @@
 import { MinorText } from "@components/ui";
 import type { EntryModel } from "@services/VocabularyService";
 import clsx from "clsx";
-import React, { memo } from "react";
+import { memo, ReactNode } from "react";
 import { createElements, GramGrp, Refs } from "../Elements";
 import { EntryText } from "./EntryText";
 import { OtherReadings } from "./OtherReadings";
@@ -12,11 +12,13 @@ import { UsgEntries } from "./UsgEntries";
 type EntryFullProps = {
   entry: EntryModel;
   className?: string;
+  children?: ReactNode | ReactNode[];
 };
 
 export const EntryFull = memo(function EntryFull({
   entry,
   className,
+  children,
 }: EntryFullProps): JSX.Element {
   const {
     form: { orth, reading },
@@ -49,6 +51,7 @@ export const EntryFull = memo(function EntryFull({
       )}
       <Refs className="mt-2" refs={ref ?? []} />
       <OtherReadings orth={orth} />
+      {children}
     </div>
   );
 });
