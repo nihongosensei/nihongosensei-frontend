@@ -1,5 +1,5 @@
-import { FuriganaModel } from "@services/FuriganaService";
-import React, { useCallback } from "react";
+import type { FuriganaModel } from "@services/FuriganaService";
+import { useCallback } from "react";
 import { Ruby } from "../Ruby";
 
 export type JapaneseTextInputProps = {

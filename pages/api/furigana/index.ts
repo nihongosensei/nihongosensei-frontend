@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { furiganaService } from "@services/FuriganaService/instance";
 
 export type FuriganaResponseModel = {
-  furigana: FuriganaModel[];
+  furigana: (string | FuriganaModel)[];
 };
 
 async function handleFurigana(

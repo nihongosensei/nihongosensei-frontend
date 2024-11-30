@@ -4,7 +4,6 @@ import { parseError } from "@helper";
 import type { FuriganaModel } from "@services/FuriganaService";
 import { memo, useCallback, useRef, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
-import type { FuriganaResponseModel } from "../../../pages/api/furigana";
 import { JapaneseTextControls } from "./JapaneseTextControls";
 import { JapaneseTextInput, JapaneseTextInputProps } from "./JapaneseTextInput";
 import { useApi } from "@components/Api";
@@ -35,10 +34,16 @@ export const JapaneseTextContainer = memo(function JapaneseTextContainer({
   const lastValue = useRef(defaultValue);
 
   const convertHandler = useDebouncedCallback((value: string) => {
+    if (!value.trim()) {
+      setFurigana(null);
+
+      return;
+    }
+
     setLoading(true);
     api
       .getFurigana(value)
-      .then((furiganaResponse: FuriganaResponseModel) => {
+      .then((furiganaResponse) => {
         setFurigana(furiganaResponse.furigana);
         setError(null);
       })

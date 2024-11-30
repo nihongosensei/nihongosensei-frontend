@@ -1,6 +1,6 @@
 import { ApiContext } from "./ApiContext";
 import { ReactNode, useRef } from "react";
-import { DefaultApiClient } from "./client";
+import { DefaultApiClient } from "./DefaultApiClient";
 
 export function ApiClientProvider({
   children,
