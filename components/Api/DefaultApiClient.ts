@@ -6,11 +6,13 @@ import type { FuriganaResponseModel } from "../../pages/api/furigana";
 import type { ApiClient } from "./ApiClient";
 import type { Cache } from "./Cache";
 import { MemoryCache } from "./MemoryCache";
+import { DefaultFetcher } from "./DefaultFetcher";
+import type { Fetcher } from "./Fetcher";
 
 export class DefaultApiClient implements ApiClient {
   public constructor(
     private readonly cache: Cache = new MemoryCache(),
-    private readonly fetchApi = fetch,
+    private readonly fetcher: Fetcher = new DefaultFetcher(),
   ) {}
 
   public async getByText(
@@ -42,7 +44,7 @@ export class DefaultApiClient implements ApiClient {
       return cached;
     }
 
-    const response = await this.fetchApi(path, {
+    const response = await this.fetcher.fetch(path, {
       method: data ? "POST" : "GET",
       body: this.createBody(data),
     });

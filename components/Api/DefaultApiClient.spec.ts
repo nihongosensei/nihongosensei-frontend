@@ -1,11 +1,15 @@
 import { NullCache } from "./NullCache";
 import { DefaultApiClient } from "./DefaultApiClient";
-import { FuriganaResponseModel } from "../../pages/api/furigana";
-import { MemoryCache } from "@components/Api/MemoryCache";
+import type { FuriganaResponseModel } from "../../pages/api/furigana";
+import { MemoryCache } from "./MemoryCache";
+import type { Fetcher } from "./Fetcher";
 
 describe("DefaultApiClient", () => {
   it("should make a furigana api call correctly", async () => {
     const fetchMock = jest.fn();
+    const fetcher: Fetcher = {
+      fetch: fetchMock,
+    };
     const responseJson = {
       furigana: [
         "すべての",
@@ -21,7 +25,7 @@ describe("DefaultApiClient", () => {
       json: () => Promise.resolve(responseJson),
     });
     const cache = new NullCache();
-    const api = new DefaultApiClient(cache, fetchMock);
+    const api = new DefaultApiClient(cache, fetcher);
     const text = "すべての人間は";
 
     const response = await api.getFurigana(text);
@@ -37,6 +41,9 @@ describe("DefaultApiClient", () => {
 
   it("should cache a response correctly", async () => {
     const fetchMock = jest.fn();
+    const fetcher: Fetcher = {
+      fetch: fetchMock,
+    };
     const responseJson = {
       furigana: [
         "すべての",
@@ -52,7 +59,7 @@ describe("DefaultApiClient", () => {
       json: () => Promise.resolve(responseJson),
     });
     const cache = new MemoryCache();
-    const api = new DefaultApiClient(cache, fetchMock);
+    const api = new DefaultApiClient(cache, fetcher);
     const text = "すべての人間は";
 
     const response = await api.getFurigana(text);
