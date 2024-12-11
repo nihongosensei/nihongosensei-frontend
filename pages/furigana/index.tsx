@@ -32,7 +32,7 @@ export default function FuriganaIndex({
   return (
     <>
       <Head>
-        <title>Furigana Generator - {SITE_NAME}</title>
+        <title>{`Furigana Generator - ${SITE_NAME}`}</title>
         <meta name="description" content="Einfacher Generator für Furigana." />
       </Head>
       <Grid>

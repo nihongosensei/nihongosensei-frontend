@@ -16,7 +16,7 @@ export default function ExamplePage({
   return (
     <>
       <Head>
-        <title>Beispiele - {SITE_NAME}</title>
+        <title>{`Beispiele - ${SITE_NAME}`}</title>
       </Head>
       <ContentWrapper>
         <div>

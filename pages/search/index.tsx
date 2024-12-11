@@ -21,9 +21,7 @@ export default function SearchPage({
   return (
     <>
       <Head>
-        <title>
-          Suche {query} - {SITE_NAME}
-        </title>
+        <title>{`Suche ${query} - ${SITE_NAME}`}</title>
       </Head>
       <ContentWrapper>
         <EntriesContainer {...rest} />

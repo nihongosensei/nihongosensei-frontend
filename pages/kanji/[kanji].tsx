@@ -21,12 +21,10 @@ export default function KanjiDetailPage({
   kanji,
   entries,
 }: KanjiDetailPageProps): JSX.Element {
-  const title = `${kanji.kanji} - ${SITE_NAME}`;
-
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{`${kanji.kanji} - ${SITE_NAME}`}</title>
       </Head>
       <ContentWrapper>
         <KanjiFull kanji={kanji} />
