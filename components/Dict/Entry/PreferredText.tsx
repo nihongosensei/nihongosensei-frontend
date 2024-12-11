@@ -1,5 +1,5 @@
 import { MinorText, MinorTextProps } from "@components/ui";
-import React, { cloneElement, ReactNode } from "react";
+import { cloneElement, ReactNode, JSX } from "react";
 
 const PreferredTextSign = (props: MinorTextProps) => (
   <MinorText className="select-none" {...props} />
@@ -34,14 +34,43 @@ const PIECE_MAP: Record<string, JSX.Element> = {
 };
 
 export function PreferredText({ text }: PreferredTextProps): JSX.Element {
-  const pieces = text.split("").map((piece, key) => {
+  return <>{mapPieces(text)}</>;
+}
+
+/**
+ * Maps defined elements to the given string if they exist.
+ * Returns a list of mapped elements and strings, which are not mapped.
+ * This function should keep strings together instead of returned every
+ * character as entry of the array (there are many utf8 chracters which must
+ * be used combined - if each character is returned react will create an
+ * own text node for each character which might lead to hyradtion errors,
+ * e.g. with 167612 (棟)).
+ *
+ * @param text The text to use.
+ */
+function mapPieces(text: string): (JSX.Element | string)[] {
+  const strings: string[] = [];
+  const combined: (JSX.Element | string)[] = [];
+  const pieces = text.split("");
+
+  for (let i = 0; i < pieces.length; i++) {
+    const piece = pieces[i];
     const mapped = PIECE_MAP[piece];
     if (mapped) {
-      return cloneElement(mapped, { key });
+      if (strings.length) {
+        combined.push(strings.join(""));
+        strings.splice(0);
+      }
+
+      combined.push(cloneElement(mapped, { key: i }));
+    } else {
+      strings.push(piece);
     }
+  }
 
-    return piece;
-  });
+  if (strings.length) {
+    combined.push(strings.join(""));
+  }
 
-  return <>{pieces}</>;
+  return combined;
 }
