@@ -1,8 +1,11 @@
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import type { JSX } from "react";
+import type { UrlObject } from "node:url";
 import { useCallback } from "react";
-import ReactPaginate, { ReactPaginateProps } from "react-paginate";
+import PaginationBoxView, {
+  PaginationBoxViewProps,
+} from "@components/Pagination/PaginationBoxView";
 
 type PaginationProps = {
   offset: number;
@@ -20,41 +23,46 @@ export function Pagination({
   const router = useRouter();
   const currentPage = offset / limit;
   const pageCount = Math.ceil(count / limit);
-  const handlePageChange: NonNullable<ReactPaginateProps["onPageChange"]> =
-    useCallback(
-      ({ selected }) => {
-        router
-          .push({
-            query: {
-              ...router.query,
-              offset: selected * limit,
-              limit,
-            },
-          })
-          .catch(console.error);
+  const hrefBuilder: PaginationBoxViewProps["hrefBuilder"] = useCallback(
+    (page: number): UrlObject => ({
+      query: {
+        ...router.query,
+        offset: (page - 1) * limit,
+        limit,
       },
-      [router, limit],
-    );
+    }),
+    [limit, router.query],
+  );
+  const ariaLabelBuilder: PaginationBoxViewProps["ariaLabelBuilder"] =
+    useCallback((page: number, selected: boolean) => {
+      if (selected) {
+        return `Seite ${page} ist die aktuelle Seite`;
+      }
+
+      return `Seite ${page}`;
+    }, []);
 
   return (
-    <ReactPaginate
-      disableInitialCallback={true}
+    <PaginationBoxView
+      hrefBuilder={hrefBuilder}
       previousLabel="«"
       nextLabel="»"
       breakLabel="..."
       pageCount={pageCount}
-      forcePage={currentPage}
+      initialPage={currentPage}
       marginPagesDisplayed={3}
       pageRangeDisplayed={3}
-      onPageChange={handlePageChange}
       activeLinkClassName="font-bold"
-      containerClassName={clsx("flex justify-center items-center", className)}
-      pageClassName=""
-      pageLinkClassName="inline-flex px-3 py-1 underline underline-offset-4 text-primary-700 dark:text-primary-300"
-      previousLinkClassName="inline-flex px-3 py-1 underline underline-offset-4 text-primary-700 dark:text-primary-300"
-      nextLinkClassName="inline-flex px-3 py-1 underline underline-offset-4 text-primary-700 dark:text-primary-300"
-      disabledClassName="opacity-50 pointer-events-none"
-      breakClassName="opacity-50 pointer-events-none"
+      className={clsx("flex justify-center items-center", className)}
+      pageClassName="inline-flex"
+      pageLinkClassName="px-3 py-1"
+      previousLinkClassName="px-3 py-1"
+      nextLinkClassName="px-3 py-1"
+      disabledClassName="inline-flex px-3 py-1 text-gray-300 dark:text-gray-700"
+      breakClassName="px-1 py-1 text-gray-300 dark:text-gray-700"
+      ariaLabelBuilder={ariaLabelBuilder}
+      nextAriaLabel="Nächste Seite"
+      previousAriaLabel="Vorherige Seite"
     />
   );
 }
