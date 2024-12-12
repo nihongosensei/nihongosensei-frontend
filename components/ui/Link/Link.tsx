@@ -1,6 +1,6 @@
 import clsx from "clsx";
+import { forwardRef, type JSX } from "react";
 import RouterLink, { LinkProps as RouterLinkProps } from "next/link";
-import React, { forwardRef } from "react";
 
 const COLOR_MAP = {
   primary:

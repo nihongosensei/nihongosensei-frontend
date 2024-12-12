@@ -1,5 +1,12 @@
 import { useRouter } from "next/router";
-import { FormEvent, HTMLProps, useCallback, useEffect, useState } from "react";
+import {
+  FormEvent,
+  HTMLProps,
+  useCallback,
+  useEffect,
+  useState,
+  type JSX,
+} from "react";
 
 type SearchProps = Pick<HTMLProps<HTMLFormElement>, "className" | "style"> &
   Pick<HTMLProps<HTMLInputElement>, "autoFocus">;

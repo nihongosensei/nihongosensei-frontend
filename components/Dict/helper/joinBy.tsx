@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment, type JSX } from "react";
 
 /**
  * Returns a function which joins elements with the given glue.

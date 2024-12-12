@@ -1,4 +1,4 @@
-import React, { HTMLProps } from "react";
+import type { HTMLProps, JSX } from "react";
 import styles from "./Grid.module.css";
 
 type GridProps = HTMLProps<HTMLDivElement>;

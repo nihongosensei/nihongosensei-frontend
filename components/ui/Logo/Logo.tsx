@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { HTMLProps } from "react";
+import type { HTMLProps, JSX } from "react";
 
 export type LogoProps = {
   text?: string | null;

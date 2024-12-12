@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React from "react";
+import type { JSX } from "react";
 import styles from "./LoadingProgress.module.css";
 
 export function LoadingProgress(): JSX.Element | null {

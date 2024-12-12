@@ -1,6 +1,6 @@
 import { LoadingProgress } from "@components/ui";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, type JSX } from "react";
 
 export function AbsoluteLoadingProgress(): JSX.Element | null {
   const router = useRouter();

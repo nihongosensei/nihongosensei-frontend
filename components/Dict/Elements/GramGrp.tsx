@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import type { GramGrpModel } from "@services/VocabularyService";
 import { joinBy, setKeyProperty } from "../helper";
 import { Doushi } from "./Doushi";

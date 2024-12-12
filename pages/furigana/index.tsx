@@ -7,7 +7,7 @@ import { SITE_NAME } from "@services/constants";
 import { FuriganaModel } from "@services/FuriganaService";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import { useCallback, useState } from "react";
+import { useCallback, useState, type JSX } from "react";
 import { furiganaService } from "@services/FuriganaService/instance";
 import { ApiClientProvider } from "@components/Api";
 

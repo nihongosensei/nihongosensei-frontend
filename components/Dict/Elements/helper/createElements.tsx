@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { MinorText } from "@components/ui";
 import { setKeyProperty } from "../../helper";
 import { isDef, isExpl, isTrans } from "./guards";

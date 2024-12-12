@@ -1,5 +1,5 @@
+import type { JSX } from "react";
 import type { SeasonEnum, SeasonModel } from "@services/VocabularyService";
-import React from "react";
 
 const SEASON_TYPE_MAPPING: Record<SeasonEnum, string> = {
   SPRING: "Frühling",

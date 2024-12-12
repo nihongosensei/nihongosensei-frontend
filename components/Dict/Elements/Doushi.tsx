@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { isDefined } from "@components/Dict/Elements/helper/guards";
 import { joinBy, setKeyProperty } from "@components/Dict/helper";
 import type {

@@ -1,5 +1,6 @@
 import MinusIcon from "@heroicons/react/24/solid/MinusIcon";
 import PlusIcon from "@heroicons/react/24/solid/PlusIcon";
+import type { JSX } from "react";
 
 export type JapaneseTextControlsProps = {
   textSize?: number;

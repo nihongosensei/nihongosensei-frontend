@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { SITE_NAME } from "@services/constants";
 import Document, { Head, Html, Main, NextScript } from "next/document";
 

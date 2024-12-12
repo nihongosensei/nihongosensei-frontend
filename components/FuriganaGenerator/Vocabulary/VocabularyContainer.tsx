@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState, type JSX } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { VocabularyProvider } from "./VocabularyProvider";
 

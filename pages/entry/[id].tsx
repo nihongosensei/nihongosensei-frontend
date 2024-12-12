@@ -14,6 +14,7 @@ import {
 } from "@services/VocabularyService";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
+import type { JSX } from "react";
 import { EntryKanjis } from "@components/Dict/EntryKanjis/EntryKanjis";
 import { vocabularyService } from "@services/VocabularyService/instance";
 

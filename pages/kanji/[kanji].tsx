@@ -1,5 +1,6 @@
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
+import type { JSX } from "react";
 import { ContentWrapper } from "@components/Dict";
 import { addCachingHeader } from "@helper";
 import { SITE_NAME } from "@services/constants";

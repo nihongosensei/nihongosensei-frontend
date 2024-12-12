@@ -42,7 +42,12 @@ export function EntriesContainer({
               />
             ))}
           </div>
-          <Pagination offset={offset} limit={limit} count={count} />
+          <Pagination
+            offset={offset}
+            limit={limit}
+            count={count}
+            className="pt-4"
+          />
         </>
       )}
     </>

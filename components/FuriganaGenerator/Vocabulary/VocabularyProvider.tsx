@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { EntryFull } from "@components/Dict";
 import { Alert, Button, Link, LoadingProgress } from "@components/ui";
 import ExternalIcon from "@heroicons/react/24/solid/ArrowTopRightOnSquareIcon";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type JSX } from "react";
 import type { ByTextResponseModel } from "../../../pages/api/entry/byText";
 import { useApi } from "@components/Api";
 

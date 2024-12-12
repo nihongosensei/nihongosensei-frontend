@@ -2,7 +2,7 @@ import { Link, MinorText } from "@components/ui";
 import type { EntryModel } from "@services/VocabularyService";
 import clsx from "clsx";
 import { useRouter } from "next/router";
-import { memo } from "react";
+import { memo, type JSX } from "react";
 import { useEntryContext } from "../Context";
 import { Refs, createElements } from "../Elements";
 import { EntryText } from "./EntryText";

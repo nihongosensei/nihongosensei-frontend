@@ -3,7 +3,7 @@ import { SEO_DESCRIPTION, SITE_NAME } from "@services/constants";
 import { init } from "@socialgouv/matomo-next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { useEffect } from "react";
+import { useEffect, type JSX } from "react";
 import "tailwindcss/tailwind.css";
 
 const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL;

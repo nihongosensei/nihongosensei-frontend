@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import Link from "next/link";
+import type { JSX } from "react";
 
 type JlptBadgeProps = {
   level: number;

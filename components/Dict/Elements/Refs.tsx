@@ -1,5 +1,5 @@
 import type { RefModel, RefTypeEnum } from "@services/VocabularyService";
-import React from "react";
+import { createElement, JSX } from "react";
 import { Ref } from "./Ref";
 
 type RefsProps = {
@@ -29,7 +29,7 @@ export function Refs({
     />
   ));
 
-  return React.createElement(
+  return createElement(
     component,
     {
       className,

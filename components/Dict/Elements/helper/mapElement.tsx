@@ -1,5 +1,5 @@
-import { Literal } from "@components/Dict/Elements/Literal";
-import React, { Fragment } from "react";
+import { Literal } from "../Literal";
+import { Fragment, isValidElement, type JSX } from "react";
 import { Bracket } from "../Bracket";
 import { Def } from "../Def";
 import { Emph } from "../Emph";
@@ -115,7 +115,7 @@ export function mapElement(element: unknown): JSX.Element | null {
     return <Fragment>{element}</Fragment>;
   }
 
-  if (typeof element === "object" && React.isValidElement(element)) {
+  if (typeof element === "object" && isValidElement(element)) {
     return element;
   }
 

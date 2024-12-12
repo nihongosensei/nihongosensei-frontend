@@ -1,6 +1,7 @@
 import { Footer, Link, Logo, Search } from "@components/ui";
 import type { GetStaticProps } from "next";
 import Head from "next/head";
+import type { JSX } from "react";
 
 export default function Home(): JSX.Element | null {
   return (

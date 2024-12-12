@@ -1,5 +1,5 @@
 import { Footer, Header } from "@components/ui";
-import { ReactNode } from "react";
+import { ReactNode, type JSX } from "react";
 
 type ContentWrapperProps = {
   children: ReactNode | ReactNode[];

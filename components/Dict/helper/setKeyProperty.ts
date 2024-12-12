@@ -1,4 +1,4 @@
-import { cloneElement } from "react";
+import { cloneElement, type JSX } from "react";
 
 type KeyRetriever = (index: number) => string;
 

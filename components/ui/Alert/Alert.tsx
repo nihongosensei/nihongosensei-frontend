@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { HTMLProps } from "react";
+import type { HTMLProps, JSX } from "react";
 
 type AlertType = "warning" | "error" | "info";
 

@@ -1,4 +1,4 @@
-import React from "react";
+import type { JSX } from "react";
 
 const READING_REG_EXP = /([/<>]|\[.*?]|\s)/g;
 

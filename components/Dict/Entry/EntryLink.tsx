@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { Link, LinkProps } from "@components/ui";
 import type { EntryModel } from "@services/VocabularyService";
 import { useRouter } from "next/router";

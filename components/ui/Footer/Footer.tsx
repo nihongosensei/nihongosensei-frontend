@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import type { JSX } from "react";
 import { Link } from "../Link";
 import { MinorText } from "../Typography";
 

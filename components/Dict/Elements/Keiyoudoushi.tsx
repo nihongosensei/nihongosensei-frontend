@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import type { KeiyoudoushiModel } from "@services/VocabularyService";
 
 export function Keiyoudoushi({ no, nari }: KeiyoudoushiModel): JSX.Element {

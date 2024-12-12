@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 import { Link } from "@components/ui";
 import type { RefModel, RefTypeEnum } from "@services/VocabularyService";
 import { useEntryContext } from "../Context";

@@ -5,6 +5,7 @@ import { SITE_NAME } from "@services/constants";
 import type { ResolvedEntryModel } from "@services/VocabularyService";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
+import type { JSX } from "react";
 import { vocabularyService } from "@services/VocabularyService/instance";
 
 type EmbedByIdPage = {
