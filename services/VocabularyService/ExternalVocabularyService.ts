@@ -52,18 +52,6 @@ export class ExternalVocabularyService implements VocabularyService {
     }>("entries", options);
   }
 
-  async findByText(text: string): Promise<EntryWrapperModel | null> {
-    try {
-      return await this.performRequest<EntryWrapperModel>(`entry/text/${text}`);
-    } catch (e) {
-      if (e instanceof HttpError && e.status === 404) {
-        return null;
-      }
-
-      throw e;
-    }
-  }
-
   public findKanji(kanji: string): Promise<KanjiModel | null> {
     return this.performRequest<KanjiModel>(`kanji/${kanji}`);
   }
