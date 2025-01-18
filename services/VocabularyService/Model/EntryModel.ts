@@ -10,8 +10,16 @@ export type ResolvedEntryModel = {
 export type EntryWrapperModel = {
   id: string;
   entryJson: EntryModel;
+  /**
+   * JLPT Level (1 to 5)
+   */
   jlpt: number | null;
-  lastchange: Date;
+  /**
+   * A set of kanjis in this entry
+   *
+   * @example ["一", "十", "四"]
+   */
+  kanjis: string[];
 };
 
 export type OrthTypes =
@@ -472,13 +480,6 @@ export type SubentryTypeEnum =
 export type LiteralModel = {
   _element: "LiteralType";
   textAndToken: (TextModel | TokenModel)[];
-};
-
-export type EntryRefModel = {
-  target_id: number;
-  source_id: number;
-  type: RefTypeEnum;
-  subentrytype?: SubentryTypeEnum;
 };
 
 export type ResolvedEntryRefModel = {
