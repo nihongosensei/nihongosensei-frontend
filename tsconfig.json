@@ -19,8 +19,13 @@
       "@components/*": ["components/*"],
       "@helper": ["helper/index.ts"],
       "@services/*": ["services/*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", "build/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
