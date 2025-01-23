@@ -31,7 +31,7 @@ export function JapaneseTextInput({
         value={value ?? ""}
         onChange={changeHandler}
         className="outline-none bg-transparent resize-none overflow-hidden absolute inset-0"
-        placeholder="Type in some Japanese text..."
+        placeholder="Tippen Sie japanischen Text ein..."
         lang="ja"
         autoFocus={true}
       />

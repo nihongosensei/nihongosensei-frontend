@@ -89,8 +89,9 @@ export const JapaneseTextContainer = memo(function JapaneseTextContainer({
           type="info"
           className="border-b border-gray-300 dark:border-gray-700 overflow-hidden"
         >
-          Furigana is currently not supported if the kanji expands over two
-          lines. Please add a manual line break before the kanji.
+          Furigana wird derzeit nicht korrekt angezeigt, wenn das Kanji über
+          mehrere Zeilen geht. Bitte fügen Sie manuell einen Zeilenumbruch vor
+          dem Kanji hinzu.
         </Alert>
       )}
       <div className="p-4 overflow-y-scroll overflow-x-hidden">

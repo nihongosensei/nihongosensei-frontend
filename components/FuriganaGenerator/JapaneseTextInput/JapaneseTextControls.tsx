@@ -32,7 +32,7 @@ export function JapaneseTextControls({
           onClick={decreaseTextSizeHandler}
           disabled={textSize - textSizeStep < minTextSize}
           className="py-2 px-3"
-          aria-label="Decrease Font Size"
+          aria-label="Schriftgröße verkleinern"
           data-testid="text-controls-decrease-text-size"
         >
           <MinusIcon className="w-4 h-4" />
@@ -42,7 +42,7 @@ export function JapaneseTextControls({
           onClick={increaseTextSizeHandler}
           disabled={textSize + textSizeStep > maxTextSize}
           className="py-2 px-3"
-          aria-label="Increase Font Size"
+          aria-label="Schriftgröße vergrößern"
           data-testid="text-controls-increase-text-size"
         >
           <PlusIcon className="w-4 h-4" />

@@ -35,7 +35,7 @@ export function VocabularyContainer({
         value={inputValue}
         onChange={inputChangeHandler}
         className="w-full p-3 py-4 bg-transparent border-t border-b md:border border-gray-300 dark:border-gray-700 md:rounded"
-        placeholder="Vocabulary Search"
+        placeholder="Einträge suchen..."
       />
       {vocabulary && (
         <VocabularyProvider text={vocabulary} className="md:mt-4 w-full" />
