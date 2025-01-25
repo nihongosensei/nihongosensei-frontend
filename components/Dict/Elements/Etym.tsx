@@ -1,8 +1,8 @@
 import type { JSX } from "react";
 import { MinorText } from "@components/ui";
-import { EtymModel } from "@services/VocabularyService";
+import type { EtymModel } from "@services/VocabularyService";
 import { createElements } from "./helper/createElements";
-import { Ref } from "./Ref";
+import { Abbrev } from "./Abbrev";
 
 type EtymProps = EtymModel & {
   className?: string;
@@ -15,7 +15,7 @@ export function Etym({
 }: EtymProps): JSX.Element {
   return (
     <MinorText className={className}>
-      {abbrev && <>(Abk. von {abbrev.ref && <Ref {...abbrev.ref} />}) </>}
+      {abbrev && <Abbrev {...abbrev} />}
       {textAndRefAndLiteral && <>({createElements(textAndRefAndLiteral)})</>}
     </MinorText>
   );

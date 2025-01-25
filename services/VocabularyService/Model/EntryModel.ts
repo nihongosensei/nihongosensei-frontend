@@ -75,7 +75,7 @@ export type ForeignModel = {
 };
 
 export type AbbrevModel = {
-  ref?: RefModel;
+  ref?: RefModel[];
   _element: "AbbrevType";
 };
 
@@ -85,7 +85,7 @@ export type DescrModel = {
 };
 
 export type BracketModel = {
-  defAndExplAndBirthdeath: (DefModel | ExplModel)[];
+  defAndExplAndBirthdeath: (DefModel | ExplModel | BirthDeathModel)[];
   _element: "BracketType";
 };
 
@@ -213,6 +213,11 @@ export type ExplModel = {
   _element: "ExplType";
 };
 
+export type BirthDeathModel = {
+  _element: "BirthDeathType";
+  value: string;
+};
+
 export type IronModel = {
   textAndToken: (TextModel | TokenModel)[];
   _element: "IronType";
@@ -247,9 +252,14 @@ export type RefTypeEnum =
   // einfache Referenz
   | "OTHER";
 
+export type JapTypeModel = {
+  _element: "JapType";
+  value: string;
+};
+
 export type RefModel = {
   id: number;
-  jap: string;
+  jap: JapTypeModel;
   transcr: {
     content: string[];
   };
@@ -318,6 +328,10 @@ export type GramGrpModel = {
    */
   jodoushi?: { _element: "Jodoushi" };
   /**
+   * Hilfsadjektiv/補助形容詞
+   */
+  hojokeiyoushi?: { _element: "Hojokeiyoushi" };
+  /**
    * Partikel/助詞
    */
   joshi?: { _element: "Joshi" };
@@ -382,6 +396,10 @@ export type GramGrpModel = {
    */
   fukujoshi?: { _element: "Fukujoshi" };
   /**
+   * Aufzählungs-/Koordinationspartikel/並立助詞/並列助詞
+   */
+  heiritsujoshi?: { _element: "Heiritsujoshi" };
+  /**
    * Wortkomponente/造
    */
   wordcomponent?: { _element: "Wordcomponent" };
@@ -401,6 +419,7 @@ export type GramGrpModel = {
    * Verb/動詞
    */
   doushi?: DoushiModel[];
+
   _element: "GramGrpType";
 };
 

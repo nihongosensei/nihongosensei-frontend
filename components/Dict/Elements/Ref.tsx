@@ -27,7 +27,8 @@ export function Ref({
 
   return (
     <Link href={`${detailBasePath}/${id}`} className={className}>
-      {TYPE_MAP[type]} {transcr && <i>{transcr.content.join(", ")}</i>} {jap}
+      {TYPE_MAP[type]} {transcr && <i>{transcr.content.join(", ")}</i>}{" "}
+      {jap.value}
     </Link>
   );
 }

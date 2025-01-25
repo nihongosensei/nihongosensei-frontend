@@ -1,4 +1,5 @@
 import type {
+  BirthDeathModel,
   BracketModel,
   DefModel,
   ElementProvider,
@@ -98,4 +99,8 @@ export function isDefined<T>(input: T): input is NonNullable<T> {
 
 export function isLiteral(input: unknown): input is LiteralModel {
   return isElementProvider(input) && input._element === "LiteralType";
+}
+
+export function isBirthDeath(input: unknown): input is BirthDeathModel {
+  return isElementProvider(input) && input._element === "BirthDeathType";
 }

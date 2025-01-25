@@ -17,7 +17,9 @@ import { TrEntry } from "../TrEntry";
 import { Trans } from "../Trans";
 import { Transcr } from "../Transcr";
 import { Transl } from "../Transl";
+import { BirthDeath } from "../BirthDeath";
 import {
+  isBirthDeath,
   isBracket,
   isDef,
   isEmph,
@@ -111,10 +113,13 @@ export function mapElement(element: unknown): JSX.Element | null {
     return <Literal {...element} />;
   }
 
+  if (isBirthDeath(element)) {
+    return <BirthDeath {...element} />;
+  }
+
   if (typeof element === "string") {
     return <Fragment>{element}</Fragment>;
   }
-
   if (typeof element === "object" && isValidElement(element)) {
     return element;
   }

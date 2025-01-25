@@ -1,15 +1,15 @@
 import type { JSX } from "react";
 import { MinorText } from "@components/ui";
 import { setKeyProperty } from "../../helper";
-import { isDef, isExpl, isTrans } from "./guards";
+import { isBirthDeath, isDef, isExpl, isTrans } from "./guards";
 import { mapElement } from "./mapElement";
 
 type ElementType<T> = T | null | JSX.Element;
 
 const WHITESPACE = <> </>;
 
-function isExplOrDef(input: unknown) {
-  return isExpl(input) || isDef(input);
+function isExplOrDefOrBirthDeath(input: unknown) {
+  return isExpl(input) || isDef(input) || isBirthDeath(input);
 }
 
 export function createElements<T>(
@@ -25,12 +25,15 @@ export function createElements<T>(
 
   for (let index = 0; index < elements.length; index++) {
     const element = elements[index];
-    const currentElementIsExplOrDef = isExplOrDef(element);
+    const currentElementIsExplOrDef = isExplOrDefOrBirthDeath(element);
 
     if (isTrans(element) && isTrans(elements[index - 1])) {
       created.push(<MinorText>;</MinorText>);
     }
-    if (currentElementIsExplOrDef && isExplOrDef(elements[index - 1])) {
+    if (
+      currentElementIsExplOrDef &&
+      isExplOrDefOrBirthDeath(elements[index - 1])
+    ) {
       (carry ?? created).push(<>;</>);
     }
 
