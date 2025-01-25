@@ -3,7 +3,7 @@ import type { JSX } from "react";
 import type { UsgModel, UsgTypeEnum } from "@services/VocabularyService";
 
 const USG_MAP: Record<string, string> = {
-  coll: "usg.",
+  coll: "ugs.",
   lit: "schriftspr.",
 };
 
