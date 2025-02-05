@@ -8,6 +8,7 @@ import type {
   FamnModel,
   ForeignModel,
   IronModel,
+  JapTypeModel,
   LiteralModel,
   RefModel,
   SpeccharModel,
@@ -103,4 +104,8 @@ export function isLiteral(input: unknown): input is LiteralModel {
 
 export function isBirthDeath(input: unknown): input is BirthDeathModel {
   return isElementProvider(input) && input._element === "BirthDeathType";
+}
+
+export function isJapType(input: unknown): input is JapTypeModel {
+  return isElementProvider(input) && input._element === "JapType";
 }

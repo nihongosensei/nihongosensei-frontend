@@ -2,6 +2,7 @@ import type { JSX } from "react";
 import { Link } from "~components/ui";
 import type { RefModel, RefTypeEnum } from "~services/VocabularyService";
 import { useEntryContext } from "../Context";
+import { JapType } from "./JapType";
 
 const TYPE_MAP: Record<RefTypeEnum, string> = {
   ALTREAD: "→",
@@ -28,7 +29,7 @@ export function Ref({
   return (
     <Link href={`${detailBasePath}/${id}`} className={className}>
       {TYPE_MAP[type]} {transcr && <i>{transcr.content.join(", ")}</i>}{" "}
-      {jap.value}
+      {jap && <JapType {...jap} />}
     </Link>
   );
 }

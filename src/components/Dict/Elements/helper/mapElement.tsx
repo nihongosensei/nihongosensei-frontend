@@ -1,4 +1,5 @@
 import { Fragment, isValidElement, type JSX } from "react";
+import { JapType } from "~components/Dict/Elements/JapType";
 import { BirthDeath } from "../BirthDeath";
 import { Bracket } from "../Bracket";
 import { Def } from "../Def";
@@ -27,6 +28,7 @@ import {
   isFamnModel,
   isForeign,
   isIron,
+  isJapType,
   isLiteral,
   isRef,
   isSpecchar,
@@ -115,6 +117,10 @@ export function mapElement(element: unknown): JSX.Element | null {
 
   if (isBirthDeath(element)) {
     return <BirthDeath {...element} />;
+  }
+
+  if (isJapType(element)) {
+    return <JapType {...element} />;
   }
 
   if (typeof element === "string") {
