@@ -1,6 +1,6 @@
-import clsx from "clsx";
-import type { JSX } from "react";
 import type { UsgModel, UsgTypeEnum } from "@services/VocabularyService";
+import clsx from "clsx";
+import type { CSSProperties, JSX } from "react";
 
 const USG_MAP: Record<string, string> = {
   coll: "ugs.",
@@ -13,10 +13,10 @@ const COLOR_MAP: Partial<Record<UsgTypeEnum, string>> = {
 };
 const DEFAULT_COLOR = "text-green-700 dark:text-green-300";
 
-const STYLE_MAP: Partial<Record<UsgTypeEnum, React.CSSProperties>> = {
+const STYLE_MAP: Partial<Record<UsgTypeEnum, CSSProperties>> = {
   TIME: {},
 };
-const DEFAULT_STYLE: React.CSSProperties = { fontVariant: "small-caps" };
+const DEFAULT_STYLE: CSSProperties = { fontVariant: "small-caps" };
 
 export function Usg({
   reg,

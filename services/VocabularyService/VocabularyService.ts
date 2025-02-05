@@ -1,9 +1,8 @@
 import type {
-  EntryWrapperModel,
-  ResolvedEntryModel,
-  VocabularyFindOptions,
   FindByResponseModel,
   KanjiModel,
+  ResolvedEntryModel,
+  VocabularyFindOptions,
 } from "./Model";
 
 export interface VocabularyService {
