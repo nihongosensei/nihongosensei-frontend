@@ -52,14 +52,14 @@ export function Pagination({
       initialPage={currentPage}
       marginPagesDisplayed={3}
       pageRangeDisplayed={3}
-      activeLinkClassName="font-bold"
+      activeLinkClassName="font-semibold"
       className={clsx("flex justify-center items-center", className)}
       pageClassName="inline-flex"
       pageLinkClassName="px-3 py-1"
       previousLinkClassName="px-3 py-1"
       nextLinkClassName="px-3 py-1"
-      disabledClassName="inline-flex px-3 py-1 text-gray-300 dark:text-gray-700"
-      breakClassName="px-1 py-1 text-gray-300 dark:text-gray-700"
+      disabledClassName="inline-flex px-3 py-1 text-neutral-300 dark:text-neutral-700"
+      breakClassName="px-1 py-1 text-neutral-300 dark:text-neutral-700"
       ariaLabelBuilder={ariaLabelBuilder}
       nextAriaLabel="Nächste Seite"
       previousAriaLabel="Vorherige Seite"

@@ -43,7 +43,7 @@ export function Search({ autoFocus, ...formProps }: SearchProps): JSX.Element {
         value={value}
         placeholder="Einträge suchen..."
         onChange={handleChange}
-        className="w-full px-3 py-2 bg-transparent text-black dark:text-white border border-gray-300 dark:border-gray-700 rounded outline-none focus:border-gray-500"
+        className="w-full px-3 py-2 bg-transparent text-black dark:text-white border border-neutral-300 dark:border-neutral-700 rounded-sm outline-hidden focus:border-neutral-500"
         autoFocus={autoFocus}
       />
     </form>

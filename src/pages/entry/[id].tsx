@@ -46,15 +46,15 @@ export default function EntryDetailPage({
           </div>
         )}
         <Synonyms
-          className="pt-4 mt-4 border-t border-gray-300 dark:border-gray-700"
+          className="pt-4 mt-4 border-t border-neutral-300 dark:border-neutral-700"
           entries={synonyms?.map((entry) => entry.entryJson) ?? []}
         />
         <EntryKanjis
-          className="mt-4 pt-4 border-t border-gray-300 dark:border-gray-700"
+          className="mt-4 pt-4 border-t border-neutral-300 dark:border-neutral-700"
           kanjis={kanjis ?? []}
         />
         <RelatedEntries
-          className="pt-4 mt-4 border-t border-gray-300 dark:border-gray-700"
+          className="pt-4 mt-4 border-t border-neutral-300 dark:border-neutral-700"
           entries={relatedEntries ?? []}
         />
       </ContentWrapper>

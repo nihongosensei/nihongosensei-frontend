@@ -1,13 +1,14 @@
 import clsx from "clsx";
 import type { JSX } from "react";
 import type { SenseModel } from "~services/VocabularyService";
-import styles from "./SenseEntries.module.css";
 import { SenseGroup } from "./SenseGroup";
+
+type ListType = "decimal" | "alphabetic";
 
 type SenseEntriesProps = {
   sense: SenseModel[];
   className?: string;
-  listType?: "decimal" | "alphabetic";
+  listType?: ListType;
   display?: "block" | "inline";
 };
 
@@ -35,6 +36,11 @@ function groupByRelated(senseEntries: ReadonlyArray<SenseModel>) {
   return groupedByRelated;
 }
 
+const LIST_STYLES: Record<ListType, string> = {
+  decimal: "list-decimal",
+  alphabetic: "list-[lower-alpha]",
+};
+
 export function SenseEntries({
   sense,
   className,
@@ -51,7 +57,7 @@ export function SenseEntries({
     <ol
       className={clsx(
         "list-inside",
-        styles[listType],
+        LIST_STYLES[listType],
         display === "inline" && "inline",
         className,
       )}

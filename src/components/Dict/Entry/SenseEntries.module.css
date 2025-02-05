@@ -1,7 +1,0 @@
-.alphabetic {
-  list-style-type: lower-alpha;
-}
-
-.decimal {
-  @apply list-decimal;
-}

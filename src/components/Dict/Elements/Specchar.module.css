@@ -1,7 +1,0 @@
-.specchar::before {
-  content: "»";
-}
-
-.specchar::after {
-  content: "«";
-}

@@ -98,7 +98,7 @@ export function VocabularyProvider({
             <EntryFull
               key={entry.id}
               entry={entry.entryJson}
-              className="mb-4 p-4 border border-gray-300 dark:border-gray-700 rounded"
+              className="mb-4 p-4 border border-neutral-300 dark:border-neutral-700 rounded-sm"
             >
               <Link
                 href={`/entry/${entry.id}`}

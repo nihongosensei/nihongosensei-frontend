@@ -12,7 +12,7 @@ export function ContentWrapper({ children }: ContentWrapperProps): JSX.Element {
       style={{ maxWidth: 680 }}
     >
       <Header className="mt-4 mb-8" />
-      <main className="flex-grow pb-8 border-b border-gray-300 dark:border-gray-700">
+      <main className="grow pb-8 border-b border-neutral-300 dark:border-neutral-700">
         {children}
       </main>
       <Footer className="py-4 text-center" />

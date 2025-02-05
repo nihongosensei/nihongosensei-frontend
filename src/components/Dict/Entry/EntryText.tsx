@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import type { JSX } from "react";
 import type { OrthModel } from "~services/VocabularyService";
-import styles from "./EntryText.module.css";
 import { PreferredText } from "./PreferredText";
 
 type EntryTextProps = {
@@ -13,7 +12,13 @@ export function EntryText({ orth, className }: EntryTextProps): JSX.Element {
   const preferredReadings = orth.filter((orth) => orth.midashigo);
   if (!preferredReadings.length) {
     return (
-      <span className={clsx(styles.reading, className)} lang="ja">
+      <span
+        className={clsx(
+          'font-serif after:text-neutral-700 after:dark:text-neutral-300 after:content-[";_"] last:after:content-none',
+          className,
+        )}
+        lang="ja"
+      >
         <PreferredText text={orth[0].value} />
       </span>
     );
@@ -24,7 +29,10 @@ export function EntryText({ orth, className }: EntryTextProps): JSX.Element {
       {preferredReadings.map((reading) => (
         <span
           key={reading.value}
-          className={clsx(styles.reading, className)}
+          className={clsx(
+            'font-serif after:text-neutral-700 after:dark:text-neutral-300 after:content-[";_"] last:after:content-none',
+            className,
+          )}
           lang="ja"
         >
           <PreferredText text={reading.value} />

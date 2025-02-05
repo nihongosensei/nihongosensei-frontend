@@ -24,10 +24,10 @@ export function JapaneseTextControls({
 
   return (
     <div
-      className="sticky border-b border-gray-300 dark:border-gray-700 p-3"
+      className="sticky border-b border-neutral-300 dark:border-neutral-700 p-3"
       data-testid="text-controls"
     >
-      <div className="border border-gray-300 dark:border-gray-700 rounded inline-block">
+      <div className="border border-neutral-300 dark:border-neutral-700 rounded-sm inline-block">
         <button
           onClick={decreaseTextSizeHandler}
           disabled={textSize - textSizeStep < minTextSize}

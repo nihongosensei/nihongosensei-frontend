@@ -2,7 +2,8 @@ import { init } from "@socialgouv/matomo-next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useEffect, type JSX } from "react";
-import "tailwindcss/tailwind.css";
+// organize-imports-ignore
+import "./style.css";
 import { AbsoluteLoadingProgress } from "~components/ui";
 import { SEO_DESCRIPTION, SITE_NAME } from "~services/constants";
 

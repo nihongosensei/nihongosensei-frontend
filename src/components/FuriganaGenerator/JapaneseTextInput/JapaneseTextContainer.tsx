@@ -69,7 +69,7 @@ export const JapaneseTextContainer = memo(function JapaneseTextContainer({
 
   return (
     <div
-      className="border border-b-0 border-gray-300 dark:border-gray-700 rounded grid overflow-hidden"
+      className="border border-b-0 border-neutral-300 dark:border-neutral-700 rounded-sm grid overflow-hidden"
       style={{ gridTemplateRows: "auto auto 1fr" }}
     >
       {loading && <LoadingProgress />}
@@ -80,14 +80,14 @@ export const JapaneseTextContainer = memo(function JapaneseTextContainer({
       {error ? (
         <Alert
           type="error"
-          className="border-b border-gray-300 dark:border-gray-700 overflow-hidden"
+          className="border-b border-neutral-300 dark:border-neutral-700 overflow-hidden"
         >
           {error}
         </Alert>
       ) : (
         <Alert
           type="info"
-          className="border-b border-gray-300 dark:border-gray-700 overflow-hidden"
+          className="border-b border-neutral-300 dark:border-neutral-700 overflow-hidden"
         >
           Furigana wird derzeit nicht korrekt angezeigt, wenn das Kanji über
           mehrere Zeilen geht. Bitte fügen Sie manuell einen Zeilenumbruch vor

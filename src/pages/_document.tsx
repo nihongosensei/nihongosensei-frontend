@@ -14,7 +14,7 @@ export default class MyDocument extends Document {
             href="/opensearch.xml"
           />
         </Head>
-        <body className="bg-white text-black dark:bg-gray-900 dark:text-white font-sans">
+        <body className="bg-white text-black dark:bg-neutral-900 dark:text-white font-sans">
           <Main />
           <NextScript />
         </body>

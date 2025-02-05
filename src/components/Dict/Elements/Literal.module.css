@@ -1,7 +1,0 @@
-.literal::before {
-  content: "»";
-}
-
-.literal::after {
-  content: "«";
-}

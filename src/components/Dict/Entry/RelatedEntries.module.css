@@ -1,9 +1,0 @@
-.relatedEntry::after {
-  @apply text-gray-700 dark:text-gray-300;
-
-  content: "・";
-}
-
-.relatedEntry:last-child::after {
-  content: "";
-}

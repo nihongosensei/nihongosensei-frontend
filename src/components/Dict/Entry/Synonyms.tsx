@@ -2,7 +2,6 @@ import type { JSX } from "react";
 import { RelatedEntry } from "~components/Dict/Entry/RelatedEntry";
 import { Heading } from "~components/ui";
 import type { EntryModel } from "~services/VocabularyService";
-// import styles from "./RelatedEntries.module.css";
 
 type SynonymsProps = {
   entries: ReadonlyArray<EntryModel>;

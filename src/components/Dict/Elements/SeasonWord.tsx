@@ -12,7 +12,7 @@ const SEASON_TYPE_MAPPING: Record<SeasonEnum, string> = {
 export function SeasonWord({ type }: SeasonModel): JSX.Element {
   return (
     <span
-      className="ml-2 inline-block text-base border border-gray-300 dark:border-gray-700 px-1"
+      className="ml-2 inline-block text-base border border-neutral-300 dark:border-neutral-700 px-1"
       title="Jahreszeitenwort"
     >
       {SEASON_TYPE_MAPPING[type]}

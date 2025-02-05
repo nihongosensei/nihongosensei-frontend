@@ -1,7 +1,0 @@
-.topic::before {
-  content: "»";
-}
-
-.topic::after {
-  content: "«";
-}

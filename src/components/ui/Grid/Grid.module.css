@@ -1,6 +1,7 @@
-.grid {
-  @apply h-screen pb-0 m-auto gap-4;
+@import "tailwindcss/theme" layer(theme);
+@reference "../../../pages/style.css";
 
+.grid {
   display: grid;
   max-width: 1210px;
   grid-template-rows: auto 1fr auto;
@@ -10,10 +11,8 @@
     "right";
 }
 
-@screen sm {
+@media (width >= theme(--breakpoint-sm)) {
   .grid {
-    @apply p-6;
-
     grid-template-columns: 1fr minmax(200px, 30%);
     grid-template-rows: auto 1fr;
     grid-template-areas:

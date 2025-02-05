@@ -26,7 +26,7 @@ export function Ruby({
   return (
     <div
       {...rest}
-      className={clsx("text-white dark:text-gray-900", className)}
+      className={clsx("text-white dark:text-neutral-900", className)}
       lang="ja"
       data-testid="ruby"
     >

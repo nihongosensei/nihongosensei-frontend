@@ -3,7 +3,6 @@ import type { JSX } from "react";
 import type { SenseModel } from "~services/VocabularyService";
 import { createElements, Descr, Etym, Refs, SeasonWord } from "../Elements";
 import { SenseEntries } from "./SenseEntries";
-import styles from "./SenseEntry.module.css";
 import { UsgEntries } from "./UsgEntries";
 
 type SenseEntryProps = {
@@ -22,7 +21,12 @@ export function SenseEntry({ senseEntry }: SenseEntryProps): JSX.Element {
   } = senseEntry;
 
   return (
-    <li className={clsx(styles.senseEntry, !sense && styles.senseEntryWithDot)}>
+    <li
+      className={clsx(
+        'inline before:text-neutral-700 before:dark:text-neutral-300 before:content-["_||_"] first:before:content-none',
+        !sense && 'after:content-["."]',
+      )}
+    >
       {etym?.map((etymEntry, index) => (
         <Etym key={`etym-${index}`} className="mr-1" {...etymEntry} />
       ))}

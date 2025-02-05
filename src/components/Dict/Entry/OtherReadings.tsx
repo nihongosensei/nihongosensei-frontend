@@ -1,7 +1,6 @@
 import type { JSX } from "react";
 import { MinorText } from "~components/ui";
 import type { OrthModel, OrthTypes } from "~services/VocabularyService";
-import styles from "./OtherReadings.module.css";
 import { PreferredText } from "./PreferredText";
 
 type OtherReadingsProps = {
@@ -30,7 +29,13 @@ export function OtherReadings({
       Andere Lesungen:{" "}
       <ul className="inline">
         {otherReadings.map((orthEntry, index) => (
-          <li key={index} lang="ja" className={styles.otherReading}>
+          <li
+            key={index}
+            lang="ja"
+            className={
+              'inline after:text-neutral-700 after:dark:text-neutral-300 after:content-["・"] last:after:content-none'
+            }
+          >
             <PreferredText text={orthEntry.value} />
             {orthEntry.midashigo && <MinorText> (見出し語)</MinorText>}
             {orthEntry.type && READING_MAP[orthEntry.type] && (

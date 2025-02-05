@@ -1,3 +1,5 @@
+@reference "../../../pages/style.css";
+
 .desc + span {
   @apply ml-1;
 }

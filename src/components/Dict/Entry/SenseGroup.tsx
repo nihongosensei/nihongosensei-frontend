@@ -2,7 +2,6 @@ import clsx from "clsx";
 import type { JSX } from "react";
 import type { SenseModel } from "~services/VocabularyService";
 import { SenseEntry } from "./SenseEntry";
-import styles from "./SenseGroup.module.css";
 
 type SenseGroupProps = {
   senses: SenseModel[];
@@ -15,7 +14,10 @@ export function SenseGroup({
 }: SenseGroupProps): JSX.Element {
   return (
     <li
-      className={clsx(styles.senseGroupEntry, display == "inline" && "inline")}
+      className={clsx(
+        "marker:text-neutral-700 marker:dark:text-neutral-300",
+        display == "inline" && "inline",
+      )}
     >
       <ul className="inline">
         {senses.map((sense, index) => (

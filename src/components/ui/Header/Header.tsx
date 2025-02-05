@@ -14,7 +14,7 @@ export function Header({ className }: HeaderProps): JSX.Element {
       <Link href="/" color="plain" className="flex items-center mr-8">
         <Logo className="shrink-0" />
       </Link>
-      <Search className="mx-auto flex-grow" />
+      <Search className="mx-auto grow" />
     </header>
   );
 }

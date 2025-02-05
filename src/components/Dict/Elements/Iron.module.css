@@ -1,7 +1,0 @@
-.iron::before {
-  content: "»";
-}
-
-.iron::after {
-  content: "«";
-}

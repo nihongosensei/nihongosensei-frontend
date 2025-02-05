@@ -12,7 +12,7 @@ export function MinorText({
   ...rest
 }: MinorTextProps): JSX.Element {
   return createElement(component, {
-    className: clsx("text-gray-700 dark:text-gray-300", className),
+    className: clsx("text-neutral-700 dark:text-neutral-300", className),
     ...rest,
   });
 }
