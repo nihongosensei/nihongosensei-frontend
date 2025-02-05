@@ -366,7 +366,7 @@ export type GramGrpModel = {
   /**
    * Adnomen/連体詞
    */
-  rentaishi: { _element: "Rentaishi" };
+  rentaishi?: { _element: "Rentaishi" };
   /**
    * Konjunktion/接続詞
    */
