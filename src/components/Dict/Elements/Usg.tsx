@@ -1,0 +1,46 @@
+import clsx from "clsx";
+import type { CSSProperties, JSX } from "react";
+import type { UsgModel, UsgTypeEnum } from "~services/VocabularyService";
+
+const USG_MAP: Record<string, string> = {
+  coll: "ugs.",
+  lit: "schriftspr.",
+};
+
+const COLOR_MAP: Partial<Record<UsgTypeEnum, string>> = {
+  TIME: "text-violet-700 dark:text-violet-300",
+  HINT: "text-red-700 dark:text-red-300",
+};
+const DEFAULT_COLOR = "text-green-700 dark:text-green-300";
+
+const STYLE_MAP: Partial<Record<UsgTypeEnum, CSSProperties>> = {
+  TIME: {},
+};
+const DEFAULT_STYLE: CSSProperties = { fontVariant: "small-caps" };
+
+export function Usg({
+  reg,
+  type = "UNKNOWN",
+  content,
+}: UsgModel): JSX.Element | null {
+  if (reg) {
+    return (
+      <span className="text-violet-700 dark:text-violet-300 italic">
+        {USG_MAP[reg] ?? [reg]}
+      </span>
+    );
+  }
+
+  if (content) {
+    return (
+      <span
+        className={clsx(COLOR_MAP[type] ?? DEFAULT_COLOR, "italic")}
+        style={STYLE_MAP[type] ?? DEFAULT_STYLE}
+      >
+        {content}
+      </span>
+    );
+  }
+
+  return null;
+}

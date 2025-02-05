@@ -16,9 +16,9 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
-      "@helper": ["helper/index.ts"],
-      "@services/*": ["services/*"]
+      "~components/*": ["src/components/*"],
+      "~helper": ["src/helper/index.ts"],
+      "~services/*": ["src/services/*"]
     },
     "plugins": [
       {
