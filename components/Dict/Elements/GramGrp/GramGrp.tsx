@@ -1,10 +1,10 @@
-import type { JSX } from "react";
 import type { GramGrpModel } from "@services/VocabularyService";
-import { joinBy, setKeyProperty } from "../helper";
+import type { JSX } from "react";
+import { joinBy, setKeyProperty } from "../../helper";
+import { isDefined } from "../helper/guards";
 import { Doushi } from "./Doushi";
 import { Fukushi } from "./Fukushi";
 import { Keiyoudoushi } from "./Keiyoudoushi";
-import { isDefined } from "./helper/guards";
 
 export function GramGrp({
   doushi,

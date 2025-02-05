@@ -1,6 +1,9 @@
-import type { JSX } from "react";
 import type { KeiyoudoushiModel } from "@services/VocabularyService";
+import type { JSX } from "react";
 
+/**
+ * na-Adjektiv/Nominaladjektiv/形容動詞
+ */
 export function Keiyoudoushi({ no, nari }: KeiyoudoushiModel): JSX.Element {
   if (nari) {
     return (

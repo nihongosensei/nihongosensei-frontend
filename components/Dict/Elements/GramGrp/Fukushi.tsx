@@ -1,16 +1,10 @@
+import type { FukushiModel } from "@services/VocabularyService";
 import type { JSX } from "react";
-import type {
-  FukushiModel,
-  TransitivityEnum,
-} from "@services/VocabularyService";
+import { TRANSITIVITY_MAP } from "./constants";
 
-// XXX: resolve duplicated code with Doushi
-const TRANSITIVITY_MAP: Record<TransitivityEnum, string> = {
-  TRANS: "trans.",
-  INTRANS: "intransitiv",
-  BOTH: "intransitiv oder transitiv",
-};
-
+/**
+ * Adverb
+ */
 export function Fukushi({ suru, ni, to, taru }: FukushiModel): JSX.Element {
   return (
     <>

@@ -1,12 +1,12 @@
-import type { JSX } from "react";
-import { isDefined } from "@components/Dict/Elements/helper/guards";
-import { joinBy, setKeyProperty } from "@components/Dict/helper";
 import type {
   DoushiModel,
   GodanrowEnum,
   LevelEnum,
-  TransitivityEnum,
 } from "@services/VocabularyService";
+import type { JSX } from "react";
+import { joinBy, setKeyProperty } from "../../helper";
+import { isDefined } from "../helper/guards";
+import { TRANSITIVITY_MAP } from "./constants";
 
 const GOUDAN_MAP: Record<GodanrowEnum, JSX.Element> = {
   ka_i_yu: (
@@ -115,13 +115,9 @@ const LEVEL_CONJUNCTION_MAP: Partial<Record<LevelEnum, JSX.Element | null>> = {
   ),
 };
 
-// XXX: resolve duplicated code with Doushi
-const TRANSITIVITY_MAP: Record<TransitivityEnum, JSX.Element> = {
-  TRANS: <>trans.</>,
-  INTRANS: <>intransitiv</>,
-  BOTH: <>intransitiv oder transitiv</>,
-};
-
+/**
+ * Verb/動詞
+ */
 export function Doushi({
   godanrow,
   level,
