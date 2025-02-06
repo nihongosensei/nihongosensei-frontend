@@ -1,5 +1,4 @@
 import { Fragment, isValidElement, type JSX } from "react";
-import { JapType } from "~components/Dict/Elements/JapType";
 import { BirthDeath } from "../BirthDeath";
 import { Bracket } from "../Bracket";
 import { Def } from "../Def";
@@ -8,6 +7,7 @@ import { Expl } from "../Expl";
 import { Famn } from "../Famn";
 import { Foreign } from "../Foreign";
 import { Iron } from "../Iron";
+import { JapType } from "../JapType";
 import { Literal } from "../Literal";
 import { Ref } from "../Ref";
 import { Specchar } from "../Specchar";
