@@ -21,7 +21,7 @@ export function parsePaginationParams(
     ...defaultOptions,
   };
   const { offset: offsetString, limit: limitString } = params;
-  const offset = Number(offsetString) ?? 0;
+  const offset = Number(offsetString) || 0;
   if (!isNaN(offset)) {
     paginationParams.offset = offset;
   }
