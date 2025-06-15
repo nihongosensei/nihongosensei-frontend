@@ -37,6 +37,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         />
         <meta key="og:type" property="og:type" content="website" />
         <meta key="robots" name="robots" content="noindex" />
+        <link href="/logo-48.png" rel="icon" type="image/svg+xml" />
       </Head>
       <AbsoluteLoadingProgress />
       <Component {...pageProps} />
