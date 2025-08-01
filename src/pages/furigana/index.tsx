@@ -37,7 +37,7 @@ export default function FuriganaIndex({
       </Head>
       <Grid>
         <ApiClientProvider>
-          <Link href="/" color="text" style={{ gridArea: "header" }}>
+          <Link href="/" color="plain" style={{ gridArea: "header" }}>
             <Logo text="Furigana Generator" />
           </Link>
           <JapaneseTextContainer
