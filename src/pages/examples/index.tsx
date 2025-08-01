@@ -1,6 +1,5 @@
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import Head from "next/head";
-import type { JSX } from "react";
 import { ContentWrapper, EntryFull } from "~components/Dict";
 import { SITE_NAME } from "~services/constants";
 import type { EntryWrapperModel } from "~services/VocabularyService";
@@ -10,9 +9,7 @@ type ExamplePageProps = {
   results: EntryWrapperModel[];
 };
 
-export default function ExamplePage({
-  results,
-}: ExamplePageProps): JSX.Element {
+export default function ExamplePage({ results }: ExamplePageProps) {
   return (
     <>
       <Head>

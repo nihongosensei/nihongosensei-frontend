@@ -1,11 +1,10 @@
-import type { JSX } from "react";
 import type { FukushiModel } from "~services/VocabularyService";
 import { TRANSITIVITY_MAP } from "./constants";
 
 /**
  * Adverb
  */
-export function Fukushi({ suru, ni, to, taru }: FukushiModel): JSX.Element {
+export function Fukushi({ suru, ni, to, taru }: FukushiModel) {
   return (
     <>
       Adverb

@@ -1,9 +1,8 @@
 import Document, { Head, Html, Main, NextScript } from "next/document";
-import type { JSX } from "react";
 import { SITE_NAME } from "~services/constants";
 
 export default class MyDocument extends Document {
-  render(): JSX.Element {
+  render() {
     return (
       <Html lang="de">
         <Head>

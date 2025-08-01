@@ -1,10 +1,9 @@
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import type { UrlObject } from "node:url";
-import type { JSX } from "react";
 import { useCallback } from "react";
 import PaginationBoxView, {
-  PaginationBoxViewProps,
+  type PaginationBoxViewProps,
 } from "~components/Pagination/PaginationBoxView";
 
 type PaginationProps = {
@@ -19,7 +18,7 @@ export function Pagination({
   count,
   offset,
   className,
-}: PaginationProps): JSX.Element {
+}: PaginationProps) {
   const router = useRouter();
   const currentPage = offset / limit;
   const pageCount = Math.ceil(count / limit);

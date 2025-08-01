@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { ButtonHTMLAttributes, forwardRef, HTMLProps } from "react";
+import { type ButtonHTMLAttributes, forwardRef, type HTMLProps } from "react";
 
 export type ButtonVariant = "primary" | "default" | "text";
 

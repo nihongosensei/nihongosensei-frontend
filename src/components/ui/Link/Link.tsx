@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import RouterLink, { LinkProps as RouterLinkProps } from "next/link";
-import { type AnchorHTMLAttributes, forwardRef, type JSX } from "react";
+import RouterLink, { type LinkProps as RouterLinkProps } from "next/link";
+import { type AnchorHTMLAttributes, forwardRef } from "react";
 
 const COLOR_MAP = {
   primary:
@@ -20,7 +20,7 @@ export type LinkProps = Omit<
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   { className, color = "primary", ...rest },
   ref,
-): JSX.Element {
+) {
   return (
     <RouterLink
       className={clsx(COLOR_MAP[color], className)}

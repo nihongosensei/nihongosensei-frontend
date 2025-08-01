@@ -1,6 +1,5 @@
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import Head from "next/head";
-import type { JSX } from "react";
 import { EntryContextProvider, EntryFull } from "~components/Dict";
 import { useScrollHeightPostMessage } from "~components/hooks";
 import { addCachingHeader } from "~helper";
@@ -16,7 +15,7 @@ export default function EmbedByIdPage({
   data: {
     entry: { entryJson },
   },
-}: EmbedByIdPage): JSX.Element {
+}: EmbedByIdPage) {
   useScrollHeightPostMessage();
 
   const title = `${entryJson.form.orth[0]?.value} - ${SITE_NAME}`;

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Fragment, HTMLProps, JSX } from "react";
+import { Fragment, type HTMLProps } from "react";
 import { Furigana } from "~components/FuriganaGenerator/Furigana";
 import type { FuriganaModel } from "~services/FuriganaService";
 
@@ -17,12 +17,7 @@ export type RubyProps = {
   onClick?: (model: FuriganaModel) => void;
 } & Omit<HTMLProps<HTMLDivElement>, "onClick">;
 
-export function Ruby({
-  furigana,
-  onClick,
-  className,
-  ...rest
-}: RubyProps): JSX.Element {
+export function Ruby({ furigana, onClick, className, ...rest }: RubyProps) {
   return (
     <div
       {...rest}

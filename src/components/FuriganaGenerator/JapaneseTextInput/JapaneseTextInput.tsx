@@ -1,4 +1,4 @@
-import { useCallback, type ChangeEvent, type JSX } from "react";
+import { type ChangeEvent, useCallback } from "react";
 import type { FuriganaModel } from "~services/FuriganaService";
 import { Ruby } from "../Ruby";
 
@@ -16,7 +16,7 @@ export function JapaneseTextInput({
   furigana,
   onChange,
   textSize = 100,
-}: JapaneseTextInputProps): JSX.Element {
+}: JapaneseTextInputProps) {
   const changeHandler = useCallback(
     (e: ChangeEvent<HTMLTextAreaElement>) => onChange?.(e.target.value),
     [onChange],

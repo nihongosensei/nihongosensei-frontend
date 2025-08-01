@@ -1,4 +1,4 @@
-import { memo, useCallback, useRef, useState, type JSX } from "react";
+import { memo, useCallback, useRef, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { useApi } from "~components/Api";
 import { useTextSize } from "~components/hooks";
@@ -6,7 +6,10 @@ import { Alert, LoadingProgress } from "~components/ui";
 import { parseError } from "~helper";
 import type { FuriganaModel } from "~services/FuriganaService";
 import { JapaneseTextControls } from "./JapaneseTextControls";
-import { JapaneseTextInput, JapaneseTextInputProps } from "./JapaneseTextInput";
+import {
+  JapaneseTextInput,
+  type JapaneseTextInputProps,
+} from "./JapaneseTextInput";
 
 type JapaneseTextContainerProps = {
   defaultError: string | null;
@@ -22,7 +25,7 @@ export const JapaneseTextContainer = memo(function JapaneseTextContainer({
   defaultFurigana,
   defaultValue,
   defaultError,
-}: JapaneseTextContainerProps): JSX.Element {
+}: JapaneseTextContainerProps) {
   const api = useApi();
   const [textSize, setTextSize] = useTextSize();
   const [loading, setLoading] = useState(false);

@@ -1,4 +1,3 @@
-import type { JSX } from "react";
 import { MinorText } from "~components/ui";
 import type { OrthModel, OrthTypes } from "~services/VocabularyService";
 import { PreferredText } from "./PreferredText";
@@ -14,9 +13,7 @@ const READING_MAP: Record<OrthTypes, string | null> = {
   MISTAKE: "fehlerhaft",
 };
 
-export function OtherReadings({
-  orth,
-}: OtherReadingsProps): JSX.Element | null {
+export function OtherReadings({ orth }: OtherReadingsProps) {
   const hasMidashigo = orth.some((orthEntry) => orthEntry.midashigo);
   if (!hasMidashigo && orth.length === 1) {
     return null;

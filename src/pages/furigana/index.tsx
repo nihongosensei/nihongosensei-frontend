@@ -1,6 +1,6 @@
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import Head from "next/head";
-import { useCallback, useState, type JSX } from "react";
+import { useCallback, useState } from "react";
 import { ApiClientProvider } from "~components/Api";
 import {
   JapaneseTextContainer,
@@ -8,7 +8,7 @@ import {
 } from "~components/FuriganaGenerator";
 import { Grid, Link, Logo } from "~components/ui";
 import { SITE_NAME } from "~services/constants";
-import { FuriganaModel } from "~services/FuriganaService";
+import type { FuriganaModel } from "~services/FuriganaService";
 import { furiganaService } from "~services/FuriganaService/instance";
 
 type FuriganaIndexProps = {
@@ -23,7 +23,7 @@ export default function FuriganaIndex({
   text,
   furigana,
   error,
-}: FuriganaIndexProps): JSX.Element {
+}: FuriganaIndexProps) {
   const [vocabulary, setVocabulary] = useState<string>("");
   const handleRubyClick = useCallback((model: FuriganaModel) => {
     setVocabulary(model.basicForm ?? model.text);

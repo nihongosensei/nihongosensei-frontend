@@ -1,6 +1,6 @@
 import ExternalIcon from "@heroicons/react/24/solid/ArrowTopRightOnSquareIcon";
 import clsx from "clsx";
-import { useCallback, useEffect, useRef, useState, type JSX } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useApi } from "~components/Api";
 import { EntryFull } from "~components/Dict";
 import { Alert, Button, Link, LoadingProgress } from "~components/ui";
@@ -13,10 +13,7 @@ type VocabularyProps = {
 
 const ENTRY_LIMIT = 3;
 
-export function VocabularyProvider({
-  text,
-  className = "",
-}: VocabularyProps): JSX.Element {
+export function VocabularyProvider({ text, className = "" }: VocabularyProps) {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<ByTextResponseModel | null>(null);
   const [error, setError] = useState<string | null>(null);

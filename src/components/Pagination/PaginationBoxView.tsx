@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import type { UrlObject } from "node:url";
-import { Component, JSX, ReactNode } from "react";
+import { Component, type JSX, type ReactNode } from "react";
 import { Link } from "~components/ui";
 import { BreakView } from "./BreakView";
 import { PageView } from "./PageView";

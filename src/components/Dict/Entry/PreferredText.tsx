@@ -1,5 +1,5 @@
-import { cloneElement, JSX, ReactNode } from "react";
-import { MinorText, MinorTextProps } from "~components/ui";
+import { cloneElement, type JSX, type ReactNode } from "react";
+import { MinorText, type MinorTextProps } from "~components/ui";
 
 const PreferredTextSign = (props: MinorTextProps) => (
   <MinorText className="select-none" {...props} />
@@ -33,7 +33,7 @@ const PIECE_MAP: Record<string, JSX.Element> = {
   "〉": <PreferredTextSign>〉</PreferredTextSign>,
 };
 
-export function PreferredText({ text }: PreferredTextProps): JSX.Element {
+export function PreferredText({ text }: PreferredTextProps) {
   return <>{mapPieces(text)}</>;
 }
 

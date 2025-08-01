@@ -1,4 +1,3 @@
-import type { JSX } from "react";
 import { MinorText } from "~components/ui";
 import type { EtymModel } from "~services/VocabularyService";
 import { Abbrev } from "./Abbrev";
@@ -8,11 +7,7 @@ type EtymProps = EtymModel & {
   className?: string;
 };
 
-export function Etym({
-  abbrev,
-  textAndRefAndLiteral,
-  className,
-}: EtymProps): JSX.Element {
+export function Etym({ abbrev, textAndRefAndLiteral, className }: EtymProps) {
   return (
     <MinorText className={className}>
       {abbrev && <Abbrev {...abbrev} />}

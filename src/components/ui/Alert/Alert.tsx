@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import type { HTMLProps, JSX } from "react";
+import type { HTMLProps } from "react";
 
 type AlertType = "warning" | "error" | "info";
 
@@ -18,7 +18,7 @@ export function Alert({
   children,
   className,
   ...rest
-}: AlertProps): JSX.Element {
+}: AlertProps) {
   return (
     <div
       className={clsx("text-sm p-3", TYPE_STYLE_MAP[type], className)}

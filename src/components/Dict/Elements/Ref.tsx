@@ -1,4 +1,3 @@
-import type { JSX } from "react";
 import { Link } from "~components/ui";
 import type { RefModel, RefTypeEnum } from "~services/VocabularyService";
 import { useEntryContext } from "../Context";
@@ -17,13 +16,7 @@ type RefProps = RefModel & {
   className?: string;
 };
 
-export function Ref({
-  id,
-  jap,
-  transcr,
-  type,
-  className,
-}: RefProps): JSX.Element {
+export function Ref({ id, jap, transcr, type, className }: RefProps) {
   const { detailBasePath } = useEntryContext();
 
   return (

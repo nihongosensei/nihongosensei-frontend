@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import type { JSX } from "react";
 import type { SenseModel } from "~services/VocabularyService";
 import { SenseEntry } from "./SenseEntry";
 
@@ -8,10 +7,7 @@ type SenseGroupProps = {
   display?: "block" | "inline";
 };
 
-export function SenseGroup({
-  senses,
-  display = "block",
-}: SenseGroupProps): JSX.Element {
+export function SenseGroup({ senses, display = "block" }: SenseGroupProps) {
   return (
     <li
       className={clsx(

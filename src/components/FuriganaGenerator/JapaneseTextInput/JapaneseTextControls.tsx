@@ -1,6 +1,5 @@
 import MinusIcon from "@heroicons/react/24/solid/MinusIcon";
 import PlusIcon from "@heroicons/react/24/solid/PlusIcon";
-import type { JSX } from "react";
 
 export type JapaneseTextControlsProps = {
   textSize?: number;
@@ -16,7 +15,7 @@ export function JapaneseTextControls({
   maxTextSize = 150,
   textSizeStep = 10,
   onTextSizeChange,
-}: JapaneseTextControlsProps): JSX.Element {
+}: JapaneseTextControlsProps) {
   const decreaseTextSizeHandler = () =>
     onTextSizeChange?.(textSize - textSizeStep);
   const increaseTextSizeHandler = () =>

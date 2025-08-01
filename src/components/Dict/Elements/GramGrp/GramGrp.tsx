@@ -1,4 +1,3 @@
-import type { JSX } from "react";
 import { joinBy, setKeyProperty } from "~components/helper";
 import type { GramGrpModel } from "~services/VocabularyService";
 import { isDefined } from "../helper/guards";
@@ -31,7 +30,7 @@ export function GramGrp({
   specialcharacter,
   kanji,
   rengo,
-}: GramGrpModel): JSX.Element {
+}: GramGrpModel) {
   const parts = [
     prefix && <>Präfix</>,
     suffix && <>Suffix</>,

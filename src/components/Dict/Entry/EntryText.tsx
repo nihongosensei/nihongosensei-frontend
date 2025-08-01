@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import type { JSX } from "react";
 import type { OrthModel } from "~services/VocabularyService";
 import { PreferredText } from "./PreferredText";
 
@@ -8,7 +7,7 @@ type EntryTextProps = {
   className?: string;
 };
 
-export function EntryText({ orth, className }: EntryTextProps): JSX.Element {
+export function EntryText({ orth, className }: EntryTextProps) {
   const preferredReadings = orth.filter((orth) => orth.midashigo);
   if (!preferredReadings.length) {
     return (

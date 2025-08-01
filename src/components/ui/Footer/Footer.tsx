@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import type { JSX } from "react";
 import { Link } from "../Link";
 import { MinorText } from "../Typography";
 
@@ -7,7 +6,7 @@ type FooterProps = {
   className?: string;
 };
 
-export function Footer({ className }: FooterProps): JSX.Element {
+export function Footer({ className }: FooterProps) {
   return (
     <MinorText component="footer" className={clsx("text-sm", className)}>
       Diese Seite bietet eine Aufbereitung des{" "}

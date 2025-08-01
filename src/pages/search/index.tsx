@@ -1,10 +1,9 @@
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
-import type { JSX } from "react";
 import {
   ContentWrapper,
   EntriesContainer,
-  EntriesContainerProps,
+  type EntriesContainerProps,
 } from "~components/Dict";
 import { addCachingHeader, parseError } from "~helper";
 import { SITE_NAME } from "~services/constants";
@@ -15,10 +14,7 @@ type SearchPageProps = {
   query: string;
 } & EntriesContainerProps;
 
-export default function SearchPage({
-  query,
-  ...rest
-}: SearchPageProps): JSX.Element {
+export default function SearchPage({ query, ...rest }: SearchPageProps) {
   return (
     <>
       <Head>

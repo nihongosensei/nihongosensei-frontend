@@ -1,4 +1,4 @@
-import { Fragment, HTMLProps, JSX } from "react";
+import { Fragment, type HTMLProps, type JSX } from "react";
 import { Heading } from "~components/ui";
 import type {
   EntryModel,
@@ -17,7 +17,7 @@ const ENHANCED_SUBTYPE_MAP: Partial<Record<EnhancedTypeEnum, string>> = {
 function SubTypeHeading({
   children,
   ...rest
-}: Omit<HTMLProps<HTMLDivElement>, "className">): JSX.Element {
+}: Omit<HTMLProps<HTMLDivElement>, "className">) {
   return (
     <Heading level={4} className="my-2" {...rest}>
       {children}
@@ -39,10 +39,7 @@ type RelatedEntryGroupProps = {
   entries: ReadonlyArray<ResolvedEntryRefModel>;
 };
 
-export function RelatedEntryGroup({
-  type,
-  entries,
-}: RelatedEntryGroupProps): JSX.Element {
+export function RelatedEntryGroup({ type, entries }: RelatedEntryGroupProps) {
   const sortedEntries = [...entries].sort(
     ({ subentrytype: first }, { subentrytype: second }) => {
       if (!first) {

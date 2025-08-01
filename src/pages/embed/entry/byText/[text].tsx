@@ -1,6 +1,5 @@
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
-import type { JSX } from "react";
 import { EntryContextProvider, EntryFull } from "~components/Dict";
 import { useScrollHeightPostMessage } from "~components/hooks";
 import { addCachingHeader } from "~helper";
@@ -14,7 +13,7 @@ type EmbedByTextPage = {
 
 export default function EmbedByTextPage({
   entry: { entryJson },
-}: EmbedByTextPage): JSX.Element {
+}: EmbedByTextPage) {
   useScrollHeightPostMessage();
 
   return (

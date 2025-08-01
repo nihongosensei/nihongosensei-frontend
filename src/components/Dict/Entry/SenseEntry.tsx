@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import type { JSX } from "react";
 import type { SenseModel } from "~services/VocabularyService";
 import { createElements, Descr, Etym, Refs, SeasonWord } from "../Elements";
 import { SenseEntries } from "./SenseEntries";
@@ -9,7 +8,7 @@ type SenseEntryProps = {
   senseEntry: SenseModel;
 };
 
-export function SenseEntry({ senseEntry }: SenseEntryProps): JSX.Element {
+export function SenseEntry({ senseEntry }: SenseEntryProps) {
   const {
     sense,
     etym,

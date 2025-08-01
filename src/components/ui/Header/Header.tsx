@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import type { JSX } from "react";
 import { Link } from "../Link";
 import { Logo } from "../Logo";
 import { Search } from "../Search";
@@ -8,7 +7,7 @@ type HeaderProps = {
   className?: string;
 };
 
-export function Header({ className }: HeaderProps): JSX.Element {
+export function Header({ className }: HeaderProps) {
   return (
     <header className={clsx("relative flex", className)}>
       <Link href="/" color="plain" className="flex items-center mr-8">

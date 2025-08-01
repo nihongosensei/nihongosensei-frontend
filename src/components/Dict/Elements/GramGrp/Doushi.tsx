@@ -118,11 +118,7 @@ const LEVEL_CONJUNCTION_MAP: Partial<Record<LevelEnum, JSX.Element | null>> = {
 /**
  * Verb/動詞
  */
-export function Doushi({
-  godanrow,
-  level,
-  transitivity,
-}: DoushiModel): JSX.Element | null {
+export function Doushi({ godanrow, level, transitivity }: DoushiModel) {
   const pieces = [
     <>Verb, </>,
     level === "kuru" ? <>unregelm.</> : null,

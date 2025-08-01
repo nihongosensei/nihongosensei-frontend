@@ -1,4 +1,3 @@
-import type { JSX } from "react";
 import type {
   ResolvedEntryRefModel,
   SubentryTypeEnum,
@@ -83,10 +82,7 @@ function sortGroups<T, TEntry extends [key: string, value: T]>(
   return first[0].localeCompare(second[0]);
 }
 
-export function RelatedEntries({
-  entries,
-  className,
-}: RelatedEntriesProps): JSX.Element | null {
+export function RelatedEntries({ entries, className }: RelatedEntriesProps) {
   if (!entries.length) {
     return null;
   }

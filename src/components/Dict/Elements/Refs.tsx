@@ -1,4 +1,4 @@
-import { createElement, JSX } from "react";
+import { createElement } from "react";
 import type { RefModel, RefTypeEnum } from "~services/VocabularyService";
 import { Ref } from "./Ref";
 
@@ -10,11 +10,7 @@ type RefsProps = {
 
 const IGNORED_TYPES: RefTypeEnum[] = ["MAIN"];
 
-export function Refs({
-  refs,
-  className,
-  component = "div",
-}: RefsProps): JSX.Element | null {
+export function Refs({ refs, className, component = "div" }: RefsProps) {
   const relevantRefs = refs.filter(({ type }) => !IGNORED_TYPES.includes(type));
 
   if (!relevantRefs.length) {

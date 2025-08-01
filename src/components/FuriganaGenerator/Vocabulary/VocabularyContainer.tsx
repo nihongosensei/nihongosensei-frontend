@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { ChangeEvent, useEffect, useState, type JSX } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { VocabularyProvider } from "./VocabularyProvider";
 
@@ -13,7 +13,7 @@ export function VocabularyContainer({
   className,
   vocabulary,
   onChange,
-}: VocabularyContainerProps): JSX.Element {
+}: VocabularyContainerProps) {
   const [inputValue, setInputValue] = useState(vocabulary);
   const changeHandler = useDebouncedCallback((value: string) => {
     onChange?.(value);

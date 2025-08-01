@@ -1,4 +1,3 @@
-import type { JSX } from "react";
 import { RelatedEntry } from "~components/Dict/Entry/RelatedEntry";
 import { Heading } from "~components/ui";
 import type { EntryModel } from "~services/VocabularyService";
@@ -8,10 +7,7 @@ type SynonymsProps = {
   className?: string;
 };
 
-export function Synonyms({
-  entries,
-  className,
-}: SynonymsProps): JSX.Element | null {
+export function Synonyms({ entries, className }: SynonymsProps) {
   if (!entries.length) {
     return null;
   }

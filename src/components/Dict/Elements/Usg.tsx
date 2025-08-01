@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import type { CSSProperties, JSX } from "react";
+import type { CSSProperties } from "react";
 import type { UsgModel, UsgTypeEnum } from "~services/VocabularyService";
 
 const USG_MAP: Record<string, string> = {
@@ -18,11 +18,7 @@ const STYLE_MAP: Partial<Record<UsgTypeEnum, CSSProperties>> = {
 };
 const DEFAULT_STYLE: CSSProperties = { fontVariant: "small-caps" };
 
-export function Usg({
-  reg,
-  type = "UNKNOWN",
-  content,
-}: UsgModel): JSX.Element | null {
+export function Usg({ reg, type = "UNKNOWN", content }: UsgModel) {
   if (reg) {
     return (
       <span className="text-violet-700 dark:text-violet-300 italic">

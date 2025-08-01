@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
-import type { JSX } from "react";
-import { Link, LinkProps } from "~components/ui";
+import { Link, type LinkProps } from "~components/ui";
 import type { EntryModel } from "~services/VocabularyService";
 import { useEntryContext } from "../Context";
 import { EntryText } from "./EntryText";
@@ -10,11 +9,7 @@ type EntryLinkProps = {
   className?: string;
 } & Pick<LinkProps, "color">;
 
-export function EntryLink({
-  entry,
-  className,
-  color,
-}: EntryLinkProps): JSX.Element {
+export function EntryLink({ entry, className, color }: EntryLinkProps) {
   const {
     form: { orth },
   } = entry;

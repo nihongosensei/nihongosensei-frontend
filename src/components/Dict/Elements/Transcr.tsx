@@ -1,6 +1,5 @@
-import type { JSX } from "react";
 import type { TranscrModel } from "~services/VocabularyService";
 
-export function Transcr({ content }: TranscrModel): JSX.Element {
+export function Transcr({ content }: TranscrModel) {
   return <i>{content.join(" ")}</i>;
 }

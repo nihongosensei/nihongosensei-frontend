@@ -1,10 +1,10 @@
 import clsx from "clsx";
 import { useRouter } from "next/router";
-import { memo, type JSX } from "react";
+import { memo } from "react";
 import { Link, MinorText } from "~components/ui";
 import type { EntryModel } from "~services/VocabularyService";
 import { useEntryContext } from "../Context";
-import { Refs, createElements } from "../Elements";
+import { createElements, Refs } from "../Elements";
 import { EntryText } from "./EntryText";
 import { Reading } from "./Reading";
 import { SenseEntries } from "./SenseEntries";
@@ -17,7 +17,7 @@ type EntryListItemProps = {
 export const EntryListItem = memo(function EntryListItem({
   entry,
   className,
-}: EntryListItemProps): JSX.Element {
+}: EntryListItemProps) {
   const {
     form: { orth, reading },
     sense,

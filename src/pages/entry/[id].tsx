@@ -1,6 +1,5 @@
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import Head from "next/head";
-import type { JSX } from "react";
 import {
   ContentWrapper,
   EntryFull,
@@ -11,7 +10,7 @@ import {
 import { EntryKanjis } from "~components/Dict/EntryKanjis/EntryKanjis";
 import { addCachingHeader } from "~helper";
 import { SITE_NAME } from "~services/constants";
-import {
+import type {
   EntryWrapperModel,
   KanjiModel,
   ResolvedEntryRefModel,
@@ -30,7 +29,7 @@ export default function EntryDetailPage({
   synonyms = [],
   relatedEntries = [],
   kanjis = [],
-}: EntryDetailPageProps): JSX.Element {
+}: EntryDetailPageProps) {
   const title = `${entryJson.form.orth[0]?.value} - ${SITE_NAME}`;
 
   return (

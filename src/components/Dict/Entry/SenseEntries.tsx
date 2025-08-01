@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import type { JSX } from "react";
 import type { SenseModel } from "~services/VocabularyService";
 import { SenseGroup } from "./SenseGroup";
 
@@ -46,7 +45,7 @@ export function SenseEntries({
   className,
   listType = "decimal",
   display = "block",
-}: SenseEntriesProps): JSX.Element {
+}: SenseEntriesProps) {
   const groupedByRelated = groupByRelated(sense);
   const hasMultipleSenses = sense.some((entry) => entry.sense);
   if (hasMultipleSenses) {

@@ -1,13 +1,12 @@
 import clsx from "clsx";
 import Link from "next/link";
-import type { JSX } from "react";
 
 type JlptBadgeProps = {
   level: number;
   className?: string;
 };
 
-export function JlptBadge({ level, className }: JlptBadgeProps): JSX.Element {
+export function JlptBadge({ level, className }: JlptBadgeProps) {
   return (
     <Link
       href={`/jlpt/${level}`}

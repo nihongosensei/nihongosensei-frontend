@@ -1,17 +1,16 @@
 import { useRouter } from "next/router";
 import {
-  FormEvent,
-  HTMLProps,
+  type FormEvent,
+  type HTMLProps,
   useCallback,
   useEffect,
   useState,
-  type JSX,
 } from "react";
 
 type SearchProps = Pick<HTMLProps<HTMLFormElement>, "className" | "style"> &
   Pick<HTMLProps<HTMLInputElement>, "autoFocus">;
 
-export function Search({ autoFocus, ...formProps }: SearchProps): JSX.Element {
+export function Search({ autoFocus, ...formProps }: SearchProps) {
   const router = useRouter();
   const defaultValue = router.query.q ?? "";
   const [value, setValue] = useState(defaultValue ?? "");

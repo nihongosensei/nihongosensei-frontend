@@ -1,4 +1,4 @@
-import { cloneElement, type JSX } from "react";
+import { cloneElement, type JSX, type ReactElement } from "react";
 
 type KeyRetriever = (index: number) => string;
 
@@ -11,7 +11,7 @@ const DEFAULT_KET_RETRIEVER: KeyRetriever = (index) => index.toString();
  */
 export function setKeyProperty(
   keyRetriever: KeyRetriever = DEFAULT_KET_RETRIEVER,
-): (element: JSX.Element, index: number) => JSX.Element {
+): (element: ReactElement, index: number) => JSX.Element {
   return (element, index) =>
     cloneElement(element, {
       key: keyRetriever(index),

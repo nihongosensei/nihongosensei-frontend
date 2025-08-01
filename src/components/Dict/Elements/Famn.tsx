@@ -1,6 +1,5 @@
-import type { JSX } from "react";
 import type { FamnModel } from "~services/VocabularyService";
 
-export function Famn({ value }: FamnModel): JSX.Element {
+export function Famn({ value }: FamnModel) {
   return <b>{value}</b>;
 }

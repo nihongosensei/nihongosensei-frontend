@@ -1,6 +1,5 @@
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
-import type { JSX } from "react";
 import { ContentWrapper } from "~components/Dict";
 import { RelatedEntry } from "~components/Dict/Entry/RelatedEntry";
 import { KanjiFull } from "~components/Dict/EntryKanjis/KanjiFull";
@@ -21,7 +20,7 @@ type KanjiDetailPageProps = {
 export default function KanjiDetailPage({
   kanji,
   entries,
-}: KanjiDetailPageProps): JSX.Element {
+}: KanjiDetailPageProps) {
   return (
     <>
       <Head>

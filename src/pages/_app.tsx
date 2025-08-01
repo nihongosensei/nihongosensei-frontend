@@ -1,7 +1,7 @@
 import { init } from "@socialgouv/matomo-next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { useEffect, type JSX } from "react";
+import { useEffect } from "react";
 // organize-imports-ignore
 import "./style.css";
 import { AbsoluteLoadingProgress } from "~components/ui";
@@ -10,7 +10,7 @@ import { SEO_DESCRIPTION, SITE_NAME } from "~services/constants";
 const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL;
 const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (MATOMO_URL && MATOMO_SITE_ID) {
       init({

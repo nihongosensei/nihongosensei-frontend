@@ -1,4 +1,4 @@
-import { createContext, JSX, ReactNode, useContext } from "react";
+import { createContext, type ReactNode, useContext } from "react";
 
 type EntryContextProps = {
   detailBasePath: string;
@@ -14,7 +14,7 @@ export const useEntryContext = (): EntryContextProps =>
 export function EntryContextProvider({
   children,
   ...props
-}: EntryContextProps & { children: ReactNode }): JSX.Element {
+}: EntryContextProps & { children: ReactNode }) {
   return (
     <EntryContext.Provider value={props}>{children}</EntryContext.Provider>
   );

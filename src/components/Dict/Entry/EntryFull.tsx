@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { memo, ReactNode, type JSX } from "react";
+import { memo, type ReactNode } from "react";
 import { MinorText } from "~components/ui";
 import type { EntryModel } from "~services/VocabularyService";
 import { createElements, GramGrp, Refs } from "../Elements";
@@ -19,7 +19,7 @@ export const EntryFull = memo(function EntryFull({
   entry,
   className,
   children,
-}: EntryFullProps): JSX.Element {
+}: EntryFullProps) {
   const {
     form: { orth, reading },
     sense,

@@ -1,4 +1,3 @@
-import type { JSX } from "react";
 import { joinBy } from "~components/helper";
 import type { UsgModel } from "~services/VocabularyService";
 import { Usg } from "../Elements";
@@ -7,7 +6,7 @@ type UsgEntriesProps = {
   usg: UsgModel[];
 };
 
-export function UsgEntries({ usg }: UsgEntriesProps): JSX.Element | null {
+export function UsgEntries({ usg }: UsgEntriesProps) {
   return (
     <>
       {usg

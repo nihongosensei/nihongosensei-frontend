@@ -1,4 +1,4 @@
-import { ReactNode, useRef } from "react";
+import { type ReactNode, useRef } from "react";
 import { ApiContext } from "./ApiContext";
 import { DefaultApiClient } from "./DefaultApiClient";
 
