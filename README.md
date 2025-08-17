@@ -1,18 +1,19 @@
-# 日本語先生 (Nihongosensei)
+# 日本語先生 (Nihongosensei) Frontend
 
-This project provides a collection of useful tools for learning japanese.
+This project provides a collection of useful tools for learning Japanese.
 
 ## Furigana
 
 Link [nihongosensei.app/furigana](https://nihongosensei.app/furigana)
 
-A simple generator for adding furigana to japanese text.
+A simple generator for adding furigana to a Japanese text.
 
 ## Dictionary
 
 Link: [nihongosensei.app](https://nihongosensei.app)
 
-A german-japanese dictionary based on [wadoku.de](https://wadoku.de) xml [export](https://www.wadoku.de/downloads/xml-export/) data.
+A German-Japanese dictionary based on [wadoku.de](https://wadoku.de)
+XML [export](https://www.wadoku.de/downloads/xml-export/) data.
 
 Wadoku data is licensed under https://www.wadoku.de/wiki/display/WAD/Wadoku.de-Daten+Lizenz
 
@@ -20,7 +21,7 @@ JLPT levels are imported from wikipedia: https://en.wiktionary.org/wiki/Appendix
 
 ### Examples
 
-A list of example - primarily for testing purposed.
+A list of examples - primarily for testing purposes.
 
 | Description                           | Link                                                 |
 | ------------------------------------- | ---------------------------------------------------- |
