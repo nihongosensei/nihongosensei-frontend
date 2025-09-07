@@ -8,10 +8,7 @@ export default function Home() {
       <Head>
         <meta key="robots" name="robots" content="index, nofollow" />
       </Head>
-      <div
-        className="h-screen flex flex-col mx-auto text-center p-3"
-        style={{ maxWidth: 400 }}
-      >
+      <div className="h-screen flex flex-col mx-auto text-center p-3 max-w-[400px]">
         <div className="w-full flex flex-col grow justify-center items-center">
           <Logo className="mb-8" size="big" />
           <Search className="w-full mb-8" autoFocus={true} />

@@ -71,10 +71,7 @@ export const JapaneseTextContainer = memo(function JapaneseTextContainer({
     );
 
   return (
-    <div
-      className="border border-b-0 border-neutral-300 dark:border-neutral-700 rounded-sm grid overflow-hidden"
-      style={{ gridTemplateRows: "auto auto 1fr" }}
-    >
+    <div className="border border-b-0 border-neutral-300 dark:border-neutral-700 rounded-sm grid overflow-hidden grid-rows-[auto_auto_1fr]">
       {loading && <LoadingProgress />}
       <JapaneseTextControls
         onTextSizeChange={setTextSize}

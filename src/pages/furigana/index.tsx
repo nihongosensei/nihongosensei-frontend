@@ -10,6 +10,7 @@ import { Grid, Link, Logo } from "~components/ui";
 import { SITE_NAME } from "~services/constants";
 import type { FuriganaModel } from "~services/FuriganaService";
 import { furiganaService } from "~services/FuriganaService/instance";
+import styles from "./index.module.css";
 
 type FuriganaIndexProps = {
   text: string | null;
@@ -37,7 +38,7 @@ export default function FuriganaIndex({
       </Head>
       <Grid>
         <ApiClientProvider>
-          <Link href="/" color="plain" style={{ gridArea: "header" }}>
+          <Link href="/" color="plain" className={styles.header}>
             <Logo text="Furigana Generator" />
           </Link>
           <JapaneseTextContainer

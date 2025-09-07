@@ -25,8 +25,7 @@ export function Furigana({ onClick, ...furiganaModel }: FuriganaProps) {
         {text}
       </span>
       <span
-        className="absolute top-[-65%] left-1/2 whitespace-nowrap text-center block select-none text-[50%]"
-        style={{ transform: "translate(-50%, 0)" }}
+        className="absolute top-[-65%] left-1/2 whitespace-nowrap text-center block select-none text-[50%] translate-x-[-50%] translate-y-[0]"
         data-testid="furigana-reading"
       >
         {reading}

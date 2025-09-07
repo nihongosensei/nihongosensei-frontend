@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { type ChangeEvent, useCallback } from "react";
 import type { FuriganaModel } from "~services/FuriganaService";
 import { Ruby } from "../Ruby";
@@ -8,6 +9,18 @@ export type JapaneseTextInputProps = {
   furigana?: ReadonlyArray<FuriganaModel | string> | null;
   onChange?: (value: string) => void;
   textSize?: number;
+};
+
+const TEXT_SIZE_MAP: Record<number, string> = {
+  70: "text-[70%]",
+  80: "text-[80%]",
+  90: "text-[90%]",
+  100: "text-[100%]",
+  110: "text-[110%]",
+  120: "text-[120%]",
+  130: "text-[130%]",
+  140: "text-[140%]",
+  150: "text-[150%]",
 };
 
 export function JapaneseTextInput({
@@ -24,8 +37,10 @@ export function JapaneseTextInput({
 
   return (
     <div
-      className="relative min-h-full"
-      style={{ fontSize: `${textSize}%`, lineHeight: 2 }}
+      className={clsx(
+        "relative min-h-full leading-[2]",
+        TEXT_SIZE_MAP[textSize],
+      )}
     >
       <textarea
         value={value ?? ""}

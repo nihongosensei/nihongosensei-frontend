@@ -6,12 +6,7 @@ const PreferredTextSign = (props: MinorTextProps) => (
 );
 
 const ReadingSign = ({ children }: { children: ReactNode }) => (
-  <PreferredTextSign
-    style={{
-      fontSize: "60%",
-      verticalAlign: "40%",
-    }}
-  >
+  <PreferredTextSign className="text-[60%] align-[40%]">
     {children}
   </PreferredTextSign>
 );

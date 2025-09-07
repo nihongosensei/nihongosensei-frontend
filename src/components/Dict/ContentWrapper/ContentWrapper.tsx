@@ -7,10 +7,7 @@ type ContentWrapperProps = {
 
 export function ContentWrapper({ children }: ContentWrapperProps) {
   return (
-    <div
-      className="h-screen flex flex-col mx-auto px-3"
-      style={{ maxWidth: 680 }}
-    >
+    <div className="h-screen flex flex-col mx-auto px-3 max-w-[680px]">
       <Header className="mt-4 mb-8" />
       <main className="grow pb-8 border-b border-neutral-300 dark:border-neutral-700">
         {children}
