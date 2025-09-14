@@ -5,7 +5,7 @@ import "./style.css";
 import { AbsoluteLoadingProgress } from "~components/ui";
 import { SEO_DESCRIPTION, SITE_NAME } from "~services/constants";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function NihongosenseiApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
@@ -31,4 +31,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp;
+export default NihongosenseiApp;
