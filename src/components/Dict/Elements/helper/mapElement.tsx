@@ -1,6 +1,7 @@
 import { Fragment, isValidElement } from "react";
 import { BirthDeath } from "../BirthDeath";
 import { Bracket } from "../Bracket";
+import { DateDisplay } from "../DateDisplay";
 import { Def } from "../Def";
 import { Emph } from "../Emph";
 import { Expl } from "../Expl";
@@ -22,6 +23,7 @@ import { Transl } from "../Transl";
 import {
   isBirthDeath,
   isBracket,
+  isDate,
   isDef,
   isEmph,
   isExpl,
@@ -123,9 +125,14 @@ export function mapElement(element: unknown) {
     return <JapType {...element} />;
   }
 
+  if (isDate(element)) {
+    return <DateDisplay {...element} />;
+  }
+
   if (typeof element === "string") {
     return <Fragment>{element}</Fragment>;
   }
+
   if (typeof element === "object" && isValidElement(element)) {
     return element;
   }
