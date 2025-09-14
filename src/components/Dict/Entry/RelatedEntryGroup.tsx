@@ -1,5 +1,5 @@
 import { Fragment, type HTMLProps, type JSX } from "react";
-import { Heading } from "~components/ui";
+import { Heading } from "~components/ui/Typography/Heading";
 import type {
   EntryModel,
   ResolvedEntryRefModel,

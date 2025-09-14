@@ -1,10 +1,13 @@
 import ExternalIcon from "@heroicons/react/24/solid/ArrowTopRightOnSquareIcon";
+import { actions } from "astro:actions";
 import clsx from "clsx";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useApi } from "~components/Api";
-import { EntryFull } from "~components/Dict";
-import { Alert, Button, Link, LoadingProgress } from "~components/ui";
-import type { ByTextResponseModel } from "../../../pages/api/entry/byText";
+import { EntryFull } from "~components/Dict/Entry/EntryFull";
+import { Alert } from "~components/ui/Alert";
+import { Button } from "~components/ui/Button";
+import { Link } from "~components/ui/Link";
+import { LoadingProgress } from "~components/ui/LoadingProgress";
+import type { FindByResponseModel } from "~services/VocabularyService";
 
 type VocabularyProps = {
   text: string;
@@ -15,11 +18,10 @@ const ENTRY_LIMIT = 3;
 
 export function VocabularyProvider({ text, className = "" }: VocabularyProps) {
   const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState<ByTextResponseModel | null>(null);
+  const [response, setResponse] = useState<FindByResponseModel | null>(null);
   const [error, setError] = useState<string | null>(null);
   const offsetRef = useRef(0);
   const textRef = useRef(text);
-  const api = useApi();
 
   useEffect(() => {
     if (!text) {
@@ -28,7 +30,7 @@ export function VocabularyProvider({ text, className = "" }: VocabularyProps) {
 
     const perform = async () => {
       setResponse(
-        await api.getByText({
+        await actions.vocabularyByText.orThrow({
           text,
           limit: ENTRY_LIMIT,
           offset: 0,
@@ -45,7 +47,7 @@ export function VocabularyProvider({ text, className = "" }: VocabularyProps) {
         setError("Failed to fetch vocabulary information");
       })
       .finally(() => setLoading(false));
-  }, [text, api]);
+  }, [text]);
 
   const loadMoreHandler = useCallback(() => {
     if (!textRef.current) {
@@ -60,7 +62,7 @@ export function VocabularyProvider({ text, className = "" }: VocabularyProps) {
       params.set("limit", ENTRY_LIMIT.toString());
       params.set("offset", offsetRef.current.toString());
 
-      const data = await api.getByText({
+      const data = await actions.vocabularyByText.orThrow({
         text: textRef.current,
         limit: ENTRY_LIMIT,
         offset: offsetRef.current,
@@ -81,7 +83,7 @@ export function VocabularyProvider({ text, className = "" }: VocabularyProps) {
         setError("Failed to fetch more vocabulary information");
       })
       .finally(() => setLoading(false));
-  }, [api]);
+  }, []);
 
   const hasMoreEntries =
     response != null && response.entries.length < response.count;

@@ -1,4 +1,4 @@
-import { MinorText } from "~components/ui";
+import { MinorText } from "~components/ui/Typography/MinorText";
 import type { EtymModel } from "~services/VocabularyService";
 import { Abbrev } from "./Abbrev";
 import { createElements } from "./helper/createElements";

@@ -1,0 +1,31 @@
+---
+import clsx from "clsx";
+import { Link } from "~components/ui/Link";
+import { MinorText } from "~components/ui/Typography/MinorText";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<footer
+  class:list={["text-neutral-700 dark:text-neutral-300 text-sm", className]}
+>
+  Diese Seite bietet eine Aufbereitung des <Link
+    href="https://www.wadoku.de/downloads/xml-export/"
+    target="_blank"
+    rel="noreferrer">Exports</Link
+  > von <Link href="https://wadoku.de" target="_blank" rel="noreferrer"
+    >wadoku.de</Link
+  >. Die Einträge unterliegen den existierenden <Link
+    href="https://www.wadoku.de/wiki/display/WAD/Wadoku.de-Daten+Lizenz"
+    target="_blank"
+    rel="noreferrer">Lizenzbedingungen</Link
+  >. Quelltext: <Link
+    href="https://github.com/ThorbenSchiller/nihongosensei"
+    target="_blank"
+    rel="noreferrer">github.com</Link
+  >
+</footer>

@@ -11,7 +11,7 @@ type RelatedEntryProps = {
 export function RelatedEntry({ entry, className }: RelatedEntryProps) {
   return (
     <li className={clsx("font-serif", className)}>
-      <EntryLink entry={entry} color="primary" />
+      <EntryLink entry={entry} />
       {": "}
       <SenseEntries sense={entry.sense} display="inline" />
     </li>

@@ -1,0 +1,41 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ContentWrapper from "../../components/Dict/ContentWrapper/ContentWrapper.astro";
+import { Heading } from "~components/ui/Typography/Heading";
+import { RelatedEntry } from "~components/Dict/Entry/RelatedEntry";
+import { KanjiFull } from "~components/Dict/EntryKanjis/KanjiFull";
+import { vocabularyService } from "../../services/VocabularyService/instance";
+
+const { kanji } = Astro.params;
+
+const kanjiModel = await vocabularyService().findKanji(kanji);
+
+if (!kanjiModel) {
+  Astro.response.status = 404;
+  Astro.response.statusText = "Not found";
+
+  return;
+}
+
+const { entries } = await vocabularyService().findBy({
+  limit: 15,
+  offset: 0,
+  kanjis: [kanjiModel.kanji],
+});
+---
+
+<Layout title={kanjiModel.kanji}>
+  <ContentWrapper>
+    <KanjiFull kanji={kanjiModel} />
+    <div class="mt-4">
+      <Heading level={2} className="mb-3"> Beispiele </Heading>
+      <ol class="list-decimal list-inside">
+        {
+          entries.map(({ entryJson }) => (
+            <RelatedEntry key={entryJson.id} entry={entryJson} />
+          ))
+        }
+      </ol>
+    </div>
+  </ContentWrapper>
+</Layout>

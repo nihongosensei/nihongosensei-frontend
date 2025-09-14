@@ -1,6 +1,5 @@
-import type { UrlObject } from "node:url";
 import type { AriaAttributes } from "react";
-import { Link } from "~components/ui";
+import { Link } from "~components/ui/Link";
 
 export type PageViewProps = {
   selected: boolean;
@@ -8,7 +7,7 @@ export type PageViewProps = {
   pageLinkClassName?: string;
   activeClassName?: string;
   activeLinkClassName?: string;
-  href: string | UrlObject;
+  href: string;
   ariaLabel?: string;
   page: number;
   pageLabelBuilder: (page: number) => string;

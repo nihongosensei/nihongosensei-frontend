@@ -1,10 +1,11 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { JapaneseTextControls } from "./JapaneseTextControls";
 
 describe("JapaneseTextContainer", () => {
   it("should call the onTextSizeChange callback upon increase correctly", () => {
-    const handleTextSizeChangeMock = jest.fn();
+    const handleTextSizeChangeMock = vi.fn();
     const textSize = 100;
     const minTextSize = 80;
     const maxTextSize = 120;
@@ -27,7 +28,7 @@ describe("JapaneseTextContainer", () => {
   });
 
   it("should call the onTextSizeChange callback upon decrease correctly", () => {
-    const handleTextSizeChangeMock = jest.fn();
+    const handleTextSizeChangeMock = vi.fn();
     const textSize = 100;
     const minTextSize = 80;
     const maxTextSize = 120;
@@ -50,7 +51,7 @@ describe("JapaneseTextContainer", () => {
   });
 
   it("should disable the in- and decrease button if the min and max size is reached", () => {
-    const handleTextSizeChangeMock = jest.fn();
+    const handleTextSizeChangeMock = vi.fn();
     const textSize = 100;
     const minTextSize = 100;
     const maxTextSize = 100;

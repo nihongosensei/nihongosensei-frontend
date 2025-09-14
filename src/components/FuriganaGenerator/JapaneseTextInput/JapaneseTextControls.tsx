@@ -23,7 +23,7 @@ export function JapaneseTextControls({
 
   return (
     <div
-      className="sticky border-b border-neutral-300 dark:border-neutral-700 p-3 flex"
+      className="border-b border-neutral-300 dark:border-neutral-700 p-3 flex"
       data-testid="text-controls"
     >
       <div className="border border-neutral-300 dark:border-neutral-700 rounded-sm flex items-center">

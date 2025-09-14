@@ -1,4 +1,4 @@
-import { Heading } from "~components/ui";
+import { Heading } from "~components/ui/Typography/Heading";
 import type { KanjiModel } from "~services/VocabularyService";
 import { EntryKanji } from "./EntryKanji";
 

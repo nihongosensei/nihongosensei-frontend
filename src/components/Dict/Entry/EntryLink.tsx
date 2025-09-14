@@ -1,32 +1,19 @@
-import { useRouter } from "next/router";
-import { Link, type LinkProps } from "~components/ui";
+import { Link } from "~components/ui/Link";
 import type { EntryModel } from "~services/VocabularyService";
-import { useEntryContext } from "../Context";
 import { EntryText } from "./EntryText";
 
 type EntryLinkProps = {
   entry: EntryModel;
   className?: string;
-} & Pick<LinkProps, "color">;
+};
 
-export function EntryLink({ entry, className, color }: EntryLinkProps) {
+export function EntryLink({ entry, className }: EntryLinkProps) {
   const {
     form: { orth },
   } = entry;
-  const { query } = useRouter();
-  const { detailBasePath } = useEntryContext();
 
   return (
-    <Link
-      href={{
-        pathname: `${detailBasePath}/${entry.id}`,
-        query: {
-          q: query.q,
-        },
-      }}
-      className={className}
-      color={color}
-    >
+    <Link href={`/entry/${entry.id}`} className={className} color="primary">
       <EntryText orth={orth} />
     </Link>
   );

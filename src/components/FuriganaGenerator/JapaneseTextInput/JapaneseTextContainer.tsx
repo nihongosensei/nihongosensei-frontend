@@ -1,8 +1,10 @@
+import { actions } from "astro:actions";
 import { memo, useCallback, useRef, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
-import { useApi } from "~components/Api";
+import { activeVocabulary } from "~components/FuriganaGenerator/store";
 import { useTextSize } from "~components/hooks";
-import { Alert, LoadingProgress } from "~components/ui";
+import { Alert } from "~components/ui/Alert";
+import { LoadingProgress } from "~components/ui/LoadingProgress";
 import { parseError } from "~helper";
 import type { FuriganaModel } from "~services/FuriganaService";
 import { JapaneseTextControls } from "./JapaneseTextControls";
@@ -13,20 +15,17 @@ import {
 
 type JapaneseTextContainerProps = {
   defaultError: string | null;
-  onRubyClick: (model: FuriganaModel) => void;
   defaultValue: string | null;
   defaultFurigana: ReadonlyArray<FuriganaModel | string> | null;
   debounceDelayInMs?: number;
 };
 
 export const JapaneseTextContainer = memo(function JapaneseTextContainer({
-  onRubyClick,
   debounceDelayInMs = 300,
   defaultFurigana,
   defaultValue,
   defaultError,
 }: JapaneseTextContainerProps) {
-  const api = useApi();
   const [textSize, setTextSize] = useTextSize();
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState(defaultValue);
@@ -44,8 +43,9 @@ export const JapaneseTextContainer = memo(function JapaneseTextContainer({
     }
 
     setLoading(true);
-    api
-      .getFurigana(value)
+
+    actions.furigana
+      .orThrow({ text: value })
       .then((furiganaResponse) => {
         setFurigana(furiganaResponse.furigana);
         setError(null);
@@ -69,6 +69,12 @@ export const JapaneseTextContainer = memo(function JapaneseTextContainer({
       },
       [convertHandler],
     );
+
+  const onRubyClick = useCallback(
+    (model: FuriganaModel) =>
+      activeVocabulary.set(model.basicForm ?? model.text),
+    [],
+  );
 
   return (
     <div className="border border-b-0 border-neutral-300 dark:border-neutral-700 rounded-sm grid overflow-hidden grid-rows-[auto_auto_1fr]">

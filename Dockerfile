@@ -1,20 +1,18 @@
-FROM node:22-alpine
+FROM node:24-alpine
 
 WORKDIR /usr/app
 
-COPY --chown=node:node public ./public
-COPY --chown=node:node package.json ./package.json
+COPY --chown=node:node package.json package-lock.json ./
+COPY --chown=node:node ./dist .
 
-COPY --chown=node:node build/standalone ./
-COPY --chown=node:node build/static ./build/static
+ENV NODE_ENV="production"
+ENV HOST="0.0.0.0"
+ENV PORT="3000"
 
-ARG NODE_ENV="production"
-ENV NODE_ENV=${NODE_ENV}
-
-ENV HOSTNAME "0.0.0.0"
-
-EXPOSE 3000
+RUN npm ci --omit=dev
 
 USER node
 
-CMD ["node", "server.js"]
+EXPOSE 3000
+
+CMD ["node", "--import=@opentelemetry/instrumentation/hook.mjs", "--import=./instrumentation.ts", "./server/entry.mjs"]

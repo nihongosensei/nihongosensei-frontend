@@ -1,4 +1,4 @@
-@reference "../../../pages/style.css";
+@reference "../../../styles/global.css";
 
 .desc + span {
   @apply ml-1;

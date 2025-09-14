@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import { memo, type ReactNode } from "react";
-import { MinorText } from "~components/ui";
+import { memo } from "react";
+import { MinorText } from "~components/ui/Typography/MinorText";
 import type { EntryModel } from "~services/VocabularyService";
 import { createElements, GramGrp, Refs } from "../Elements";
 import { EntryText } from "./EntryText";

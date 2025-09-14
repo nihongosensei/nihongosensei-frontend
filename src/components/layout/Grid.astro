@@ -1,0 +1,31 @@
+---
+
+---
+
+<div class="furigana-grid h-screen m-auto gap-4 sm:p-6">
+  <slot />
+</div>
+
+<style>
+  @import "tailwindcss/theme" layer(theme);
+
+  .furigana-grid {
+    display: grid;
+    max-width: 1210px;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "header"
+      "content"
+      "right";
+  }
+
+  @media (width >= theme(--breakpoint-sm)) {
+    .furigana-grid {
+      grid-template-columns: 1fr minmax(200px, 30%);
+      grid-template-rows: auto 1fr;
+      grid-template-areas:
+        "header header"
+        "content right";
+    }
+  }
+</style>

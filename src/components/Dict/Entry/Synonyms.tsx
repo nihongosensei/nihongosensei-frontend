@@ -1,5 +1,5 @@
 import { RelatedEntry } from "~components/Dict/Entry/RelatedEntry";
-import { Heading } from "~components/ui";
+import { Heading } from "~components/ui/Typography/Heading";
 import type { EntryModel } from "~services/VocabularyService";
 
 type SynonymsProps = {

@@ -1,14 +1,14 @@
-import { EntryListItem } from "~components/Dict";
+import { EntryListItem } from "~components/Dict/Entry/EntryListItem";
 import { Pagination } from "~components/Pagination";
-import { Alert, MinorText } from "~components/ui";
-import type {
-  EntryWrapperModel,
-  FindOptions,
-} from "~services/VocabularyService";
+import { Alert } from "~components/ui/Alert";
+import { MinorText } from "~components/ui/Typography/MinorText";
+import type { EntryWrapperModel } from "~services/VocabularyService";
 
 export type EntriesContainerProps = {
-  options: FindOptions;
+  currentPage: number;
+  pageCount: number;
   results: EntryWrapperModel[] | null;
+  query?: string | null;
   count: number | null;
   error: string | null;
 };
@@ -16,7 +16,9 @@ export type EntriesContainerProps = {
 export function EntriesContainer({
   results,
   count,
-  options: { offset, limit },
+  currentPage,
+  pageCount,
+  query,
   error,
 }: EntriesContainerProps) {
   return (
@@ -43,9 +45,9 @@ export function EntriesContainer({
             ))}
           </div>
           <Pagination
-            offset={offset}
-            limit={limit}
-            count={count}
+            currentPage={currentPage}
+            pageCount={pageCount}
+            query={query}
             className="pt-4"
           />
         </>

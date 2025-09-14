@@ -1,4 +1,4 @@
-import { Fragment, isValidElement, type JSX } from "react";
+import { Fragment, isValidElement } from "react";
 import { BirthDeath } from "../BirthDeath";
 import { Bracket } from "../Bracket";
 import { Def } from "../Def";
@@ -42,7 +42,7 @@ import {
   isTranslModel,
 } from "./guards";
 
-export function mapElement(element: unknown): JSX.Element | null {
+export function mapElement(element: unknown) {
   if (isTrans(element)) {
     return <Trans {...element} />;
   }

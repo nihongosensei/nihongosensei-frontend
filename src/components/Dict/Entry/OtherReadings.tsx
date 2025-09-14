@@ -1,4 +1,4 @@
-import { MinorText } from "~components/ui";
+import { MinorText } from "~components/ui/Typography/MinorText";
 import type { OrthModel, OrthTypes } from "~services/VocabularyService";
 import { PreferredText } from "./PreferredText";
 

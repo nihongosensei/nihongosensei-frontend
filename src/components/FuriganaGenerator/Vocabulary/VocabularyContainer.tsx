@@ -1,33 +1,27 @@
+import { useStore } from "@nanostores/react";
 import clsx from "clsx";
-import { useEffect, useState, type ChangeEvent } from "react";
+import { type ChangeEvent, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
+import { activeVocabulary } from "~components/FuriganaGenerator/store";
 import { VocabularyProvider } from "./VocabularyProvider";
 
 type VocabularyContainerProps = {
   className?: string;
-  vocabulary?: string;
-  onChange?: (vocabulary: string) => void;
 };
 
-export function VocabularyContainer({
-  className,
-  vocabulary,
-  onChange,
-}: VocabularyContainerProps) {
-  const [inputValue, setInputValue] = useState(vocabulary);
-  const changeHandler = useDebouncedCallback((value: string) => {
-    onChange?.(value);
-  }, 500);
+export function VocabularyContainer({ className }: VocabularyContainerProps) {
+  const [inputValue, setInputValue] = useState("");
+  const changeHandler = useDebouncedCallback(
+    (value: string) => activeVocabulary.set(value),
+    500,
+  );
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
     setInputValue(value);
     changeHandler(value);
   };
-
-  useEffect(() => {
-    setInputValue(vocabulary);
-  }, [vocabulary]);
+  const vocabulary = useStore(activeVocabulary);
 
   return (
     <div className={clsx(className, "flex flex-col overflow-hidden")}>
@@ -37,7 +31,7 @@ export function VocabularyContainer({
         className="w-full p-3 py-4 bg-transparent border-t border-b md:border border-neutral-300 dark:border-neutral-700 md:rounded-sm"
         placeholder="Einträge suchen..."
       />
-      {vocabulary && (
+      {vocabulary != null && (
         <VocabularyProvider text={vocabulary} className="md:mt-4 w-full" />
       )}
     </div>

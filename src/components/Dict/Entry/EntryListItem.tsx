@@ -1,9 +1,8 @@
 import clsx from "clsx";
-import { useRouter } from "next/router";
 import { memo } from "react";
-import { Link, MinorText } from "~components/ui";
+import { Link } from "~components/ui/Link";
+import { MinorText } from "~components/ui/Typography/MinorText";
 import type { EntryModel } from "~services/VocabularyService";
-import { useEntryContext } from "../Context";
 import { createElements, Refs } from "../Elements";
 import { EntryText } from "./EntryText";
 import { Reading } from "./Reading";
@@ -23,8 +22,6 @@ export const EntryListItem = memo(function EntryListItem({
     sense,
     ref,
   } = entry;
-  const { query } = useRouter();
-  const { detailBasePath } = useEntryContext();
 
   return (
     <div
@@ -35,12 +32,7 @@ export const EntryListItem = memo(function EntryListItem({
     >
       <div className="mb-1">
         <Link
-          href={{
-            pathname: `${detailBasePath}/${entry.id}`,
-            query: {
-              q: query.q,
-            },
-          }}
+          href={`/entry/${entry.id}`}
           lang="ja"
           color="primary"
           className="text-xl"
