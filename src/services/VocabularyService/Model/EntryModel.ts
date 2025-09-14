@@ -79,6 +79,11 @@ export type AbbrevModel = {
   _element: "AbbrevType";
 };
 
+export type DateModel = {
+  _element: "DateType";
+  value: string;
+};
+
 export type DescrModel = {
   textAndJapAndTranscr: (TextModel | ForeignModel | string)[];
   _element: "DescrType";

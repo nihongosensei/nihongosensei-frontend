@@ -1,6 +1,7 @@
 import type {
   BirthDeathModel,
   BracketModel,
+  DateModel,
   DefModel,
   ElementProvider,
   EmphModel,
@@ -108,4 +109,8 @@ export function isBirthDeath(input: unknown): input is BirthDeathModel {
 
 export function isJapType(input: unknown): input is JapTypeModel {
   return isElementProvider(input) && input._element === "JapType";
+}
+
+export function isDate(input: unknown): input is DateModel {
+  return isElementProvider(input) && input._element === "DateType";
 }

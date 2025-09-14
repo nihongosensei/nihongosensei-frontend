@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 import { MinorText } from "~components/ui";
 import { setKeyProperty } from "../../../helper";
-import { isBirthDeath, isDef, isExpl, isTrans } from "./guards";
+import { isBirthDeath, isDate, isDef, isExpl, isTrans } from "./guards";
 import { mapElement } from "./mapElement";
 
 type ElementType<T> = T | null | JSX.Element;
@@ -9,7 +9,7 @@ type ElementType<T> = T | null | JSX.Element;
 const WHITESPACE = <> </>;
 
 function isExplOrDefOrBirthDeath(input: unknown) {
-  return isExpl(input) || isDef(input) || isBirthDeath(input);
+  return isExpl(input) || isDef(input) || isBirthDeath(input) || isDate(input);
 }
 
 export function createElements<T>(
@@ -25,15 +25,12 @@ export function createElements<T>(
 
   for (let index = 0; index < elements.length; index++) {
     const element = elements[index];
-    const currentElementIsExplOrDef = isExplOrDefOrBirthDeath(element);
+    const requiresSemicolon = isExplOrDefOrBirthDeath(element);
 
     if (isTrans(element) && isTrans(elements[index - 1])) {
       created.push(<MinorText>;</MinorText>);
     }
-    if (
-      currentElementIsExplOrDef &&
-      isExplOrDefOrBirthDeath(elements[index - 1])
-    ) {
+    if (requiresSemicolon && isExplOrDefOrBirthDeath(elements[index - 1])) {
       (carry ?? created).push(<>;</>);
     }
 
@@ -45,9 +42,9 @@ export function createElements<T>(
       }
     }
 
-    if (currentElementIsExplOrDef && !carry) {
+    if (requiresSemicolon && !carry) {
       carry = [];
-    } else if (!currentElementIsExplOrDef && carry) {
+    } else if (!requiresSemicolon && carry) {
       created.push(<MinorText>({carry.map(setKeyProperty())})</MinorText>);
       carry = undefined;
     }
