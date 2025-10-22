@@ -11,7 +11,7 @@ describe("setKeyProperty", () => {
     const elementWithKey = setKeyFunction(element, index);
 
     expect(elementWithKey.key).toEqual(index.toString());
-    expect(keyRetriever).toBeCalledTimes(1);
-    expect(keyRetriever).toBeCalledWith(index);
+    expect(keyRetriever).toHaveBeenCalledTimes(1);
+    expect(keyRetriever).toHaveBeenCalledWith(index);
   });
 });

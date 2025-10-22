@@ -31,9 +31,9 @@ describe("DefaultApiClient", () => {
     const response = await api.getFurigana(text);
 
     expect(response).toEqual(responseJson);
-    expect(fetchMock).toBeCalled();
-    expect(fetchMock).toBeCalledTimes(1);
-    expect(fetchMock).toBeCalledWith("/api/furigana", {
+    expect(fetchMock).toHaveBeenCalled();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledWith("/api/furigana", {
       method: "POST",
       body: "すべての人間は",
     });
@@ -66,8 +66,8 @@ describe("DefaultApiClient", () => {
     await api.getFurigana(text);
 
     expect(response).toEqual(responseJson);
-    expect(fetchMock).toBeCalled();
-    expect(fetchMock).toBeCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalled();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(cache.hasEntry('/api/furigana:"すべての人間は"')).toEqual(true);
   });
 });

@@ -1,4 +1,4 @@
-import { type ReactNode, useRef } from "react";
+import { type ReactNode, useMemo } from "react";
 import { ApiContext } from "./ApiContext";
 import { DefaultApiClient } from "./DefaultApiClient";
 
@@ -7,11 +7,9 @@ export function ApiClientProvider({
 }: {
   children?: ReactNode | ReactNode[];
 }) {
-  const apiClient = useRef(new DefaultApiClient());
+  const apiClient = useMemo(() => new DefaultApiClient(), []);
 
   return (
-    <ApiContext.Provider value={apiClient.current}>
-      {children}
-    </ApiContext.Provider>
+    <ApiContext.Provider value={apiClient}>{children}</ApiContext.Provider>
   );
 }

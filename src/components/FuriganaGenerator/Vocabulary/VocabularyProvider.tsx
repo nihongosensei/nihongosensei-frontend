@@ -27,24 +27,26 @@ export function VocabularyProvider({ text, className = "" }: VocabularyProps) {
     }
 
     const perform = async () => {
-      setResponse(
-        await api.getByText({
-          text,
-          limit: ENTRY_LIMIT,
-          offset: 0,
-        }),
-      );
-      setError(null);
-      offsetRef.current = 0;
-    };
-
-    setLoading(true);
-    perform()
-      .catch((err) => {
+      setLoading(true);
+      try {
+        setResponse(
+          await api.getByText({
+            text,
+            limit: ENTRY_LIMIT,
+            offset: 0,
+          }),
+        );
+        setError(null);
+        offsetRef.current = 0;
+      } catch (err) {
         console.error(err);
         setError("Failed to fetch vocabulary information");
-      })
-      .finally(() => setLoading(false));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    perform();
   }, [text, api]);
 
   const loadMoreHandler = useCallback(() => {

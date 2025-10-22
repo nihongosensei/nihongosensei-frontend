@@ -28,6 +28,7 @@ export function useTextSize(): [number, (textSize: number) => void] {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTextSize(getInitialValue());
   }, []);
 

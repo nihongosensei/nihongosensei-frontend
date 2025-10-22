@@ -22,8 +22,10 @@ describe("JapaneseTextContainer", () => {
 
     fireEvent.click(screen.getByTestId("text-controls-increase-text-size"));
 
-    expect(handleTextSizeChangeMock).toBeCalledTimes(1);
-    expect(handleTextSizeChangeMock).toBeCalledWith(textSize + textSizeStep);
+    expect(handleTextSizeChangeMock).toHaveBeenCalledTimes(1);
+    expect(handleTextSizeChangeMock).toHaveBeenCalledWith(
+      textSize + textSizeStep,
+    );
   });
 
   it("should call the onTextSizeChange callback upon decrease correctly", () => {
@@ -45,8 +47,10 @@ describe("JapaneseTextContainer", () => {
 
     fireEvent.click(screen.getByTestId("text-controls-decrease-text-size"));
 
-    expect(handleTextSizeChangeMock).toBeCalledTimes(1);
-    expect(handleTextSizeChangeMock).toBeCalledWith(textSize - textSizeStep);
+    expect(handleTextSizeChangeMock).toHaveBeenCalledTimes(1);
+    expect(handleTextSizeChangeMock).toHaveBeenCalledWith(
+      textSize - textSizeStep,
+    );
   });
 
   it("should disable the in- and decrease button if the min and max size is reached", () => {
