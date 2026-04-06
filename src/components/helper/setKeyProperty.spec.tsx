@@ -1,10 +1,11 @@
+import { describe, expect, it, vi } from "vitest";
 import { setKeyProperty } from "./setKeyProperty";
 
 describe("setKeyProperty", () => {
   it("should set the key correctly on the given element", () => {
     const element = <div />;
     const index = 8;
-    const keyRetriever = jest.fn();
+    const keyRetriever = vi.fn();
     keyRetriever.mockImplementation((index: number) => index.toString());
     const setKeyFunction = setKeyProperty(keyRetriever);
 

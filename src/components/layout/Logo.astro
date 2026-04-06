@@ -1,0 +1,19 @@
+---
+interface Props {
+  text?: string | null;
+  size?: keyof typeof SIZE_MAP;
+  class?: string;
+}
+
+const SIZE_MAP = {
+  normal: "text-xl",
+  big: "text-4xl",
+};
+
+const { text = null, size = "normal", class: className } = Astro.props;
+---
+
+<span class:list={[SIZE_MAP[size], className]}>
+  <span lang="ja" class="font-serif"> 日本語先生 </span>
+  {text != null && ` ${text}`}
+</span>

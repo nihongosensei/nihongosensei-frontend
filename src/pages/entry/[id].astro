@@ -1,0 +1,53 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ContentWrapper from "../../components/Dict/ContentWrapper/ContentWrapper.astro";
+import { EntryFull } from "~components/Dict/Entry/EntryFull";
+import { Synonyms } from "~components/Dict/Entry/Synonyms";
+import { RelatedEntries } from "~components/Dict/Entry/RelatedEntries";
+import { JlptBadge } from "~components/Dict/Entry/JlptBadge";
+import { EntryKanjis } from "~components/Dict/EntryKanjis/EntryKanjis";
+import { vocabularyService } from "../../services/VocabularyService/instance";
+
+const { id } = Astro.params;
+
+const entry = await vocabularyService().findById(String(id));
+
+if (!entry) {
+  Astro.response.status = 404;
+  Astro.response.statusText = "Not found";
+
+  return;
+}
+
+const {
+  entry: { jlpt, entryJson },
+  synonyms,
+  kanjis,
+  relatedEntries,
+} = entry;
+---
+
+<Layout title={entryJson.form.orth[0]?.value}>
+  <ContentWrapper>
+    <EntryFull entry={entryJson} />
+    {
+      jlpt && (
+        <div class="my-2">
+          <JlptBadge level={jlpt} />
+        </div>
+      )
+    }
+    <Synonyms
+      className="pt-4 mt-4 border-t border-neutral-300 dark:border-neutral-700"
+      entries={synonyms?.map((entry) => entry.entryJson) ?? []}
+    />
+    <EntryKanjis
+      className="mt-4 pt-4 border-t border-neutral-300 dark:border-neutral-700"
+      kanjis={kanjis ?? []}
+    />
+    <RelatedEntries
+      className="pt-4 mt-4 border-t border-neutral-300 dark:border-neutral-700"
+      entries={relatedEntries ?? []}
+    />
+  </ContentWrapper>
+</Layout>

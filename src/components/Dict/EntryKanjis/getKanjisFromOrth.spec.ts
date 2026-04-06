@@ -1,4 +1,5 @@
-import { getKanjisFromOrth } from "~components/Dict/EntryKanjis/getKanjisFromOrth";
+import { describe, expect, it } from "vitest";
+import { getKanjisFromOrth } from "./getKanjisFromOrth";
 
 describe("getKanjisFromOrth", () => {
   it("should return all kanjis correctly", () => {

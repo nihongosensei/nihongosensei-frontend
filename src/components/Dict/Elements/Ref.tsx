@@ -1,6 +1,5 @@
-import { Link } from "~components/ui";
+import { Link } from "~components/ui/Link";
 import type { RefModel, RefTypeEnum } from "~services/VocabularyService";
-import { useEntryContext } from "../Context";
 import { JapType } from "./JapType";
 
 const TYPE_MAP: Record<RefTypeEnum, string> = {
@@ -17,10 +16,8 @@ type RefProps = RefModel & {
 };
 
 export function Ref({ id, jap, transcr, type, className }: RefProps) {
-  const { detailBasePath } = useEntryContext();
-
   return (
-    <Link href={`${detailBasePath}/${id}`} className={className}>
+    <Link href={`/entry/${id}`} className={className}>
       {TYPE_MAP[type]} {transcr && <i>{transcr.content.join(", ")}</i>}{" "}
       {jap && <JapType {...jap} />}
     </Link>

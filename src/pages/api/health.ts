@@ -1,8 +1,15 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { APIRoute } from "astro";
 
-export default function healthCheck(
-  _: NextApiRequest,
-  res: NextApiResponse,
-): void {
-  res.status(200).json({ status: "ok" });
-}
+export const GET: APIRoute = () => {
+  return new Response(
+    JSON.stringify({
+      status: "ok",
+    }),
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
+};

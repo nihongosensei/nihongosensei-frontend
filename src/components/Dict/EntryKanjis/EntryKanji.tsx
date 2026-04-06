@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Link } from "~components/ui";
+import { Link } from "~components/ui/Link";
 import type { KanjiModel } from "~services/VocabularyService";
 
 type EntryKanjiProps = {

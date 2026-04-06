@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { MinorText } from "~components/ui";
+import { MinorText } from "~components/ui/Typography/MinorText";
 import type { KanjiModel } from "~services/VocabularyService";
 
 type KanjiFullProps = {

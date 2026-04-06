@@ -1,67 +1,121 @@
 import clsx from "clsx";
-import { useRouter } from "next/router";
-import type { UrlObject } from "node:url";
-import { useCallback } from "react";
-import PaginationBoxView, {
-  type PaginationBoxViewProps,
-} from "~components/Pagination/PaginationBoxView";
+import { Link } from "~components/ui/Link";
+import { createPaginationModel } from "./createPaginationModel";
 
 type PaginationProps = {
-  offset: number;
-  limit: number;
-  count: number;
+  currentPage: number;
+  pageCount: number;
+  query?: string | null;
   className?: string;
 };
 
 export function Pagination({
-  limit,
-  count,
-  offset,
+  currentPage,
+  pageCount,
+  query,
   className,
 }: PaginationProps) {
-  const router = useRouter();
-  const currentPage = offset / limit;
-  const pageCount = Math.ceil(count / limit);
-  const hrefBuilder: PaginationBoxViewProps["hrefBuilder"] = useCallback(
-    (page: number): UrlObject => ({
-      query: {
-        ...router.query,
-        offset: (page - 1) * limit,
-        limit,
-      },
-    }),
-    [limit, router.query],
-  );
-  const ariaLabelBuilder: PaginationBoxViewProps["ariaLabelBuilder"] =
-    useCallback((page: number, selected: boolean) => {
-      if (selected) {
-        return `Seite ${page} ist die aktuelle Seite`;
-      }
-
-      return `Seite ${page}`;
-    }, []);
+  const pagination = createPaginationModel({
+    currentPage,
+    boundaryPagesRange: 3,
+    siblingPagesRange: 0,
+    hideEllipsis: false,
+    hidePreviousAndNextPageLinks: false,
+    hideFirstAndLastPageLinks: true,
+    totalPages: pageCount,
+  });
 
   return (
-    <PaginationBoxView
-      hrefBuilder={hrefBuilder}
-      previousLabel="«"
-      nextLabel="»"
-      breakLabel="..."
-      pageCount={pageCount}
-      initialPage={currentPage}
-      marginPagesDisplayed={3}
-      pageRangeDisplayed={3}
-      activeLinkClassName="font-semibold"
-      className={clsx("flex justify-center items-center", className)}
-      pageClassName="inline-flex"
-      pageLinkClassName="px-3 py-1"
-      previousLinkClassName="px-3 py-1"
-      nextLinkClassName="px-3 py-1"
-      disabledClassName="inline-flex px-3 py-1 text-neutral-300 dark:text-neutral-700"
-      breakClassName="px-1 py-1 text-neutral-300 dark:text-neutral-700"
-      ariaLabelBuilder={ariaLabelBuilder}
-      nextAriaLabel="Nächste Seite"
-      previousAriaLabel="Vorherige Seite"
-    />
+    <div className={clsx("flex justify-center items-center", className)}>
+      {pagination.map((page) => {
+        switch (page.type) {
+          case "PAGE":
+            return (
+              <PaginationPage
+                key={page.key}
+                isActive={page.isActive}
+                page={page.value}
+                query={query}
+              />
+            );
+          case "ELLIPSIS":
+            return (
+              <li
+                key={page.key}
+                className="inline-flex px-1 py-1 text-neutral-300 dark:text-neutral-700"
+              >
+                <span tabIndex={-1}>...</span>
+              </li>
+            );
+          case "PREVIOUS_PAGE_LINK":
+            return (
+              <PaginationPage
+                key={page.key}
+                page={page.value}
+                text="«"
+                query={query}
+                isDisabled={page.isActive}
+              />
+            );
+          case "NEXT_PAGE_LINK":
+            return (
+              <PaginationPage
+                key={page.key}
+                page={page.value}
+                text="»"
+                query={query}
+                isDisabled={page.isActive}
+              />
+            );
+        }
+      })}
+    </div>
+  );
+}
+
+function PaginationPage({
+  isActive,
+  isDisabled,
+  page,
+  text = page.toString(),
+  query,
+}: {
+  isActive?: boolean;
+  isDisabled?: boolean;
+  page: number;
+  text?: string;
+  query?: string | null;
+}) {
+  const params = new URLSearchParams();
+  params.set("page", page.toString());
+  if (query) {
+    params.set("q", query);
+  }
+
+  return (
+    <li className="inline-flex">
+      {isDisabled ? (
+        <span
+          className="text-neutral-300 dark:text-neutral-700"
+          tabIndex={-1}
+          role="button"
+          aria-disabled="true"
+          aria-label="Vorherige Seite"
+          rel="prev"
+        >
+          «
+        </span>
+      ) : (
+        <Link
+          href={`?${params.toString()}`}
+          className={clsx("px-3 py-1", isActive && "font-semibold")}
+          tabIndex={isActive ? -1 : 0}
+          aria-label={isActive ? "Aktuelle Seite" : `Seite ${page}`}
+          aria-current={isActive ? "page" : undefined}
+        >
+          {text}
+        </Link>
+      )}
+    </li>
   );
 }

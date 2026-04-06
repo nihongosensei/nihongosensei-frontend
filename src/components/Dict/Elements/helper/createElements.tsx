@@ -1,5 +1,5 @@
 import type { JSX } from "react";
-import { MinorText } from "~components/ui";
+import { MinorText } from "~components/ui/Typography/MinorText";
 import { setKeyProperty } from "../../../helper";
 import { isBirthDeath, isDate, isDef, isExpl, isTrans } from "./guards";
 import { mapElement } from "./mapElement";

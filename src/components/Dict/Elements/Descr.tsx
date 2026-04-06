@@ -1,4 +1,4 @@
-import { MinorText } from "~components/ui";
+import { MinorText } from "~components/ui/Typography/MinorText";
 import type { DescrModel } from "~services/VocabularyService";
 import styles from "./Descr.module.css";
 import { createElements } from "./helper/createElements";

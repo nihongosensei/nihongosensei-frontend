@@ -1,0 +1,12 @@
+---
+import Footer from "../../layout/Footer.astro";
+import Header from "../../layout/Header.astro";
+---
+
+<div class="h-screen flex flex-col mx-auto px-3 max-w-[680px]">
+  <Header class="mt-4 mb-8" />
+  <main class="grow pb-8 border-b border-neutral-300 dark:border-neutral-700">
+    <slot />
+  </main>
+  <Footer class="py-4 text-center" />
+</div>
