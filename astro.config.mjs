@@ -19,6 +19,9 @@ export default defineConfig({
     plugins: [tailwindcss(), tsconfigPaths()],
   },
   integrations: [react()],
+  security: {
+    csp: true,
+  },
   env: {
     schema: {
       BACKEND_URL: envField.string({
