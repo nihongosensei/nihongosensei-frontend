@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { memo } from "react";
 import { Link } from "~components/ui/Link";
 import { MinorText } from "~components/ui/Typography/MinorText";
 import type { EntryModel } from "~services/VocabularyService";
@@ -13,10 +12,7 @@ type EntryListItemProps = {
   className?: string;
 };
 
-export const EntryListItem = memo(function EntryListItem({
-  entry,
-  className,
-}: EntryListItemProps) {
+export function EntryListItem({ entry, className }: EntryListItemProps) {
   const {
     form: { orth, reading },
     sense,
@@ -50,4 +46,4 @@ export const EntryListItem = memo(function EntryListItem({
       <Refs className="mt-2" refs={ref ?? []} />
     </div>
   );
-});
+}

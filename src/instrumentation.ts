@@ -20,7 +20,7 @@ function init() {
         console.log("Tracing terminated");
       })
       .catch((error: unknown) => {
-        console.log("Error terminating tracing", error);
+        console.error("Error terminating tracing", error);
       })
       .finally(() => process.exit(0));
   });

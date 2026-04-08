@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { memo } from "react";
+import type { ComponentChildren } from "preact";
 import { MinorText } from "~components/ui/Typography/MinorText";
 import type { EntryModel } from "~services/VocabularyService";
 import { createElements, GramGrp, Refs } from "../Elements";
@@ -12,14 +12,10 @@ import { UsgEntries } from "./UsgEntries";
 type EntryFullProps = {
   entry: EntryModel;
   className?: string;
-  children?: ReactNode | ReactNode[];
+  children?: ComponentChildren;
 };
 
-export const EntryFull = memo(function EntryFull({
-  entry,
-  className,
-  children,
-}: EntryFullProps) {
+export function EntryFull({ entry, className, children }: EntryFullProps) {
   const {
     form: { orth, reading },
     sense,
@@ -54,4 +50,4 @@ export const EntryFull = memo(function EntryFull({
       {children}
     </div>
   );
-});
+}

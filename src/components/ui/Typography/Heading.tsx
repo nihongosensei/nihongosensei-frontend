@@ -1,12 +1,12 @@
 import clsx from "clsx";
-import type { ElementType, ReactNode } from "react";
+import type { ComponentChildren, JSX } from "preact";
 
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 export type HeadingProps = {
   level?: HeadingLevel;
   className?: string;
-  children: ReactNode | ReactNode[];
+  children: ComponentChildren;
 };
 
 const LEVEL_CLASS_MAP: Record<HeadingLevel, string | undefined> = {
@@ -18,7 +18,7 @@ const LEVEL_CLASS_MAP: Record<HeadingLevel, string | undefined> = {
   "6": undefined,
 };
 
-const LEVEL_COMPONENT_MAP: Record<HeadingLevel, ElementType> = {
+const LEVEL_COMPONENT_MAP: Record<HeadingLevel, JSX.ElementType> = {
   "1": "h1",
   "2": "h2",
   "3": "h3",

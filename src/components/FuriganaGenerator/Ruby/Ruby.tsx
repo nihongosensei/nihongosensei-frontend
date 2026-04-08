@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Fragment, type HTMLProps } from "react";
+import { Fragment, type HTMLAttributes } from "preact";
 import { Furigana } from "~components/FuriganaGenerator/Furigana";
 import type { FuriganaModel } from "~services/FuriganaService";
 
@@ -15,7 +15,7 @@ export type RubyProps = {
    * @param text The Japanese text which was clicked.
    */
   onClick?: (model: FuriganaModel) => void;
-} & Omit<HTMLProps<HTMLDivElement>, "onClick">;
+} & Omit<HTMLAttributes<HTMLDivElement>, "onClick">;
 
 export function Ruby({ furigana, onClick, className, ...rest }: RubyProps) {
   return (

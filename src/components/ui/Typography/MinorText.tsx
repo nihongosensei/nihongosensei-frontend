@@ -1,9 +1,14 @@
 import clsx from "clsx";
-import { createElement, type HTMLProps, type JSX, type ReactNode } from "react";
+import {
+  createElement,
+  type ComponentChildren,
+  type HTMLAttributes,
+  type JSX,
+} from "preact";
 
-export type MinorTextProps = HTMLProps<HTMLSpanElement> & {
+export type MinorTextProps = HTMLAttributes<HTMLSpanElement> & {
   component?: keyof JSX.IntrinsicElements;
-  children?: ReactNode | ReactNode[];
+  children?: ComponentChildren;
 };
 
 export function MinorText({

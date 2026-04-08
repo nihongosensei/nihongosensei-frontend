@@ -1,4 +1,4 @@
-import { cloneElement, type JSX } from "react";
+import { cloneElement, type JSX } from "preact";
 
 type KeyRetriever = (index: number) => string;
 

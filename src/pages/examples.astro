@@ -38,7 +38,7 @@ const { entries } = await vocabularyService().findBy({
   <ContentWrapper>
     {
       entries.map(({ entryJson }) => (
-        <EntryFull key={entryJson.id} entry={entryJson} className="mb-4" />
+        <EntryFull entry={entryJson} className="mb-4" />
       ))
     }
   </ContentWrapper>

@@ -1,4 +1,4 @@
-import { Fragment, type HTMLProps, type JSX } from "react";
+import { Fragment, type HTMLProps, type JSX } from "preact";
 import { Heading } from "~components/ui/Typography/Heading";
 import type {
   EntryModel,

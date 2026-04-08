@@ -1,4 +1,4 @@
-import { createElement } from "react";
+import { createElement } from "preact";
 import type { RefModel, RefTypeEnum } from "~services/VocabularyService";
 import { Ref } from "./Ref";
 

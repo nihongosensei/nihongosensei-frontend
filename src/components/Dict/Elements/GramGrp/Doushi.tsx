@@ -1,4 +1,4 @@
-import type { JSX } from "react";
+import type { JSX } from "preact";
 import { joinBy, setKeyProperty } from "~components/helper";
 import type {
   DoushiModel,

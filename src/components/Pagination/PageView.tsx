@@ -1,4 +1,4 @@
-import type { AriaAttributes } from "react";
+import type { AriaAttributes } from "preact";
 import { Link } from "~components/ui/Link";
 
 export type PageViewProps = {

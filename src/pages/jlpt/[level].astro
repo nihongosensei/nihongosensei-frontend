@@ -16,7 +16,7 @@ if (isNaN(levelNumber) || levelNumber < 1 || levelNumber > 5) {
   return;
 }
 
-const query = Astro.url.searchParams.get("q");
+const query = Astro.url.searchParams.get("q") ?? "";
 const pageString = Astro.url.searchParams.get("page");
 let page = 1;
 if (pageString != null) {
@@ -44,7 +44,7 @@ try {
   results = response.entries;
   count = response.count;
 } catch (e) {
-  console.log(e);
+  console.error(e);
   error = parseError(e);
 }
 ---

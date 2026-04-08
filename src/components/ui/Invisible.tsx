@@ -1,7 +1,7 @@
 import clsx from "clsx";
-import type { HTMLProps } from "react";
+import type { HTMLAttributes } from "preact";
 
-export type InvisibleProps = HTMLProps<HTMLSpanElement>;
+export type InvisibleProps = HTMLAttributes<HTMLSpanElement>;
 
 export function Invisible({
   children,

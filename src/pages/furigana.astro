@@ -10,6 +10,8 @@ import { furiganaService } from "../services/FuriganaService/instance";
 const furigana = await furiganaService().getFurigana(
   DEFAULT_FURIGANA_INPUT_VALUE,
 );
+
+const defaultInput = `${DEFAULT_FURIGANA_INPUT_VALUE}`;
 ---
 
 <Layout title="Furigana Generator">
@@ -18,8 +20,8 @@ const furigana = await furiganaService().getFurigana(
       <Logo text="Furigana Generator" />
     </Link>
     <FuriganaGenerator
-      client:load
-      text={DEFAULT_FURIGANA_INPUT_VALUE}
+      client:only="preact"
+      text={defaultInput}
       furigana={furigana}
       error={null}
     />

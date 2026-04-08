@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/preact";
 import { describe, expect, it } from "vitest";
 import { Furigana } from "./Furigana";
 
@@ -8,7 +8,7 @@ describe("Furigana", () => {
     const reading = "にほん";
     const text = "日本語";
 
-    render(<Furigana reading={reading} text={text} />);
+    const screen = render(<Furigana reading={reading} text={text} />);
 
     expect(screen.getByTestId("furigana-reading")).toHaveTextContent(reading);
     expect(screen.getByTestId("furigana-text")).toHaveTextContent(text);

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { type AnchorHTMLAttributes, forwardRef } from "react";
+import { type AnchorHTMLAttributes } from "preact";
 
 const COLOR_MAP = {
   primary:
@@ -12,11 +12,6 @@ export type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   color?: keyof typeof COLOR_MAP;
 };
 
-export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
-  { className, color = "primary", ...rest },
-  ref,
-) {
-  return (
-    <a className={clsx(COLOR_MAP[color], className)} ref={ref} {...rest} />
-  );
-});
+export function Link({ className, color = "primary", ...rest }: LinkProps) {
+  return <a className={clsx(COLOR_MAP[color], className)} {...rest} />;
+}

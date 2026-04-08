@@ -1,4 +1,4 @@
-import { cloneElement, type JSX, type ReactNode } from "react";
+import { cloneElement, type ComponentChildren, type JSX } from "preact";
 import {
   MinorText,
   type MinorTextProps,
@@ -8,7 +8,7 @@ const PreferredTextSign = (props: MinorTextProps) => (
   <MinorText className="select-none" {...props} />
 );
 
-const ReadingSign = ({ children }: { children: ReactNode }) => (
+const ReadingSign = ({ children }: { children: ComponentChildren }) => (
   <PreferredTextSign className="text-[60%] align-[40%]">
     {children}
   </PreferredTextSign>

@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment } from "preact";
 import type { AbbrevModel } from "~services/VocabularyService";
 import { Ref } from "./Ref";
 

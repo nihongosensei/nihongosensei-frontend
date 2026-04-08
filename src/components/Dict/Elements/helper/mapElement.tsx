@@ -1,4 +1,4 @@
-import { Fragment, isValidElement } from "react";
+import { Fragment, isValidElement } from "preact";
 import { BirthDeath } from "../BirthDeath";
 import { Bracket } from "../Bracket";
 import { DateDisplay } from "../DateDisplay";

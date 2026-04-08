@@ -1,11 +1,11 @@
 import clsx from "clsx";
-import type { HTMLProps } from "react";
+import type { HTMLAttributes } from "preact";
 
 type AlertType = "warning" | "error" | "info";
 
 export type AlertProps = {
   type?: AlertType;
-} & HTMLProps<HTMLDivElement>;
+} & HTMLAttributes<HTMLDivElement>;
 
 const TYPE_STYLE_MAP: Record<AlertType, string> = {
   error: "bg-red-500/10 text-red-700 dark:text-red-300",

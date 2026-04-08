@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
 // @ts-check
 import node from "@astrojs/node";
-import react from "@astrojs/react";
+import preact from "@astrojs/preact";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, envField } from "astro/config";
 import process from "node:process";
@@ -18,7 +18,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss(), tsconfigPaths()],
   },
-  integrations: [react()],
+  integrations: [preact()],
   security: {
     csp: true,
   },

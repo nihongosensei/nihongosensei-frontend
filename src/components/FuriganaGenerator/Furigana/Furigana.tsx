@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { useCallback } from "react";
 import type { FuriganaModel } from "~services/FuriganaService";
 
 export type FuriganaProps = {
@@ -7,9 +6,6 @@ export type FuriganaProps = {
 } & FuriganaModel;
 
 export function Furigana({ onClick, ...furiganaModel }: FuriganaProps) {
-  const clickHandler = useCallback(() => {
-    onClick?.(furiganaModel);
-  }, [onClick, furiganaModel]);
   const { reading, text } = furiganaModel;
 
   return (
@@ -18,7 +14,7 @@ export function Furigana({ onClick, ...furiganaModel }: FuriganaProps) {
         "text-black dark:text-white relative",
         onClick && "cursor-pointer pointer-events-auto",
       )}
-      onClick={clickHandler}
+      onClick={() => onClick?.(furiganaModel)}
       data-testid="furigana"
     >
       <span className="opacity-0" data-testid="furigana-text">

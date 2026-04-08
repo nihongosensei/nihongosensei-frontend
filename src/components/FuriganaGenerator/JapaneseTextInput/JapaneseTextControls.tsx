@@ -1,25 +1,10 @@
-import MinusIcon from "@heroicons/react/24/solid/MinusIcon";
-import PlusIcon from "@heroicons/react/24/solid/PlusIcon";
+import clsx from "clsx";
+import { useTextSize } from "~components/FuriganaGenerator/textSizeStore";
+import { MinusIcon } from "~components/ui/Icons/MinusIcon";
+import { PlusIcon } from "~components/ui/Icons/PlusIcon";
 
-export type JapaneseTextControlsProps = {
-  textSize?: number;
-  minTextSize?: number;
-  maxTextSize?: number;
-  textSizeStep?: number;
-  onTextSizeChange?: (textSize: number) => void;
-};
-
-export function JapaneseTextControls({
-  textSize = 100,
-  minTextSize = 70,
-  maxTextSize = 150,
-  textSizeStep = 10,
-  onTextSizeChange,
-}: JapaneseTextControlsProps) {
-  const decreaseTextSizeHandler = () =>
-    onTextSizeChange?.(textSize - textSizeStep);
-  const increaseTextSizeHandler = () =>
-    onTextSizeChange?.(textSize + textSizeStep);
+export function JapaneseTextControls() {
+  const store = useTextSize();
 
   return (
     <div
@@ -28,19 +13,27 @@ export function JapaneseTextControls({
     >
       <div className="border border-neutral-300 dark:border-neutral-700 rounded-sm flex items-center">
         <button
-          onClick={decreaseTextSizeHandler}
-          disabled={textSize - textSizeStep < minTextSize}
-          className="py-2 px-3"
+          onClick={store.decreaseTextSize}
+          disabled={store.isDecreaseDisabled.value}
+          className={clsx(
+            "py-2 px-3",
+            !store.isDecreaseDisabled.value && "cursor-pointer",
+            store.isIncreaseDisabled.value && "opacity-70",
+          )}
           aria-label="Schriftgröße verkleinern"
           data-testid="text-controls-decrease-text-size"
         >
           <MinusIcon className="w-4 h-4" />
         </button>
-        <button disabled={true}>{textSize}%</button>
+        <button disabled={true}>{store.textSize}%</button>
         <button
-          onClick={increaseTextSizeHandler}
-          disabled={textSize + textSizeStep > maxTextSize}
-          className="py-2 px-3"
+          onClick={store.increaseTextSize}
+          disabled={store.isIncreaseDisabled.value}
+          className={clsx(
+            "py-2 px-3",
+            !store.isIncreaseDisabled.value && "cursor-pointer",
+            store.isIncreaseDisabled.value && "opacity-70",
+          )}
           aria-label="Schriftgröße vergrößern"
           data-testid="text-controls-increase-text-size"
         >
