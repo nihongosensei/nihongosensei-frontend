@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && cp src/instrumentation.ts dist/",
-    "preview": "node --experimental-loader=@opentelemetry/instrumentation/hook.mjs --experimental-strip-types --env-file .env.local --import ./dist/instrumentation.ts ./dist/server/entry.mjs",
+    "build": "astro build",
+    "preview": "node --env-file .env.local ./dist/server/entry.mjs",
     "astro": "astro",
     "test": "vitest",
     "pre-commit": "pretty-quick --staged"
@@ -13,11 +13,13 @@
   "dependencies": {
     "@astrojs/node": "^10.1.4",
     "@astrojs/preact": "^5.1.5",
+    "@hono/otel": "^1.1.2",
     "@opentelemetry/api": "^1.9.1",
-    "@opentelemetry/instrumentation-undici": "0.24.0",
-    "@opentelemetry/sdk-node": "0.214.0",
+    "@opentelemetry/instrumentation-undici": "0.29.0",
+    "@opentelemetry/sdk-node": "0.219.0",
     "astro": "^6.4.6",
     "clsx": "^2.1.1",
+    "hono": "^4.12.25",
     "preact": "^10.29.2",
     "zod": "^4.4.3"
   },

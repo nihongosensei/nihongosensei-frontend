@@ -15,4 +15,4 @@ USER node
 
 EXPOSE 3000
 
-CMD ["node", "--import=@opentelemetry/instrumentation/hook.mjs", "--import=./instrumentation.ts", "./server/entry.mjs"]
+CMD ["node", "./server/entry.mjs"]

@@ -4,19 +4,14 @@ import node from "@astrojs/node";
 import preact from "@astrojs/preact";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, envField } from "astro/config";
-import process from "node:process";
 import tsconfigPaths from "vite-tsconfig-paths";
-
-// instrumentation for local development
-if (process.env.NODE_ENV === "development") {
-  process.loadEnvFile(".env.local");
-
-  await import("./src/instrumentation.ts");
-}
 
 export default defineConfig({
   vite: {
     plugins: [tailwindcss(), tsconfigPaths()],
+  },
+  experimental: {
+    advancedRouting: true,
   },
   integrations: [preact()],
   security: {
