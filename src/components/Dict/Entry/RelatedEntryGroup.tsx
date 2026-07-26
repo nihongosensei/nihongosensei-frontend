@@ -1,4 +1,4 @@
-import { Fragment, type HTMLProps, type JSX } from "preact";
+import { Fragment, type HTMLAttributes, type JSX } from "preact";
 import { Heading } from "~components/ui/Typography/Heading";
 import type {
   EntryModel,
@@ -17,7 +17,7 @@ const ENHANCED_SUBTYPE_MAP: Partial<Record<EnhancedTypeEnum, string>> = {
 function SubTypeHeading({
   children,
   ...rest
-}: Omit<HTMLProps<HTMLDivElement>, "className">) {
+}: Omit<HTMLAttributes<HTMLDivElement>, "className">) {
   return (
     <Heading level={4} className="my-2" {...rest}>
       {children}

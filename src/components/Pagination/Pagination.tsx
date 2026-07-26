@@ -101,7 +101,6 @@ function PaginationPage({
           role="button"
           aria-disabled="true"
           aria-label="Vorherige Seite"
-          rel="prev"
         >
           «
         </span>

@@ -4,9 +4,16 @@ import ContentWrapper from "../../components/Dict/ContentWrapper/ContentWrapper.
 import { Heading } from "~components/ui/Typography/Heading";
 import { RelatedEntry } from "~components/Dict/Entry/RelatedEntry";
 import { KanjiFull } from "~components/Dict/EntryKanjis/KanjiFull";
-import { vocabularyService } from "../../services/VocabularyService/instance";
+import { vocabularyService } from "~services/VocabularyService/instance";
 
 const { kanji } = Astro.params;
+
+if (!kanji) {
+  Astro.response.status = 404;
+  Astro.response.statusText = "Not found";
+
+  return;
+}
 
 const kanjiModel = await vocabularyService().findKanji(kanji);
 
@@ -30,11 +37,7 @@ const { entries } = await vocabularyService().findBy({
     <div class="mt-4">
       <Heading level={2} className="mb-3"> Beispiele </Heading>
       <ol class="list-decimal list-inside">
-        {
-          entries.map(({ entryJson }) => (
-            <RelatedEntry key={entryJson.id} entry={entryJson} />
-          ))
-        }
+        {entries.map(({ entryJson }) => <RelatedEntry entry={entryJson} />)}
       </ol>
     </div>
   </ContentWrapper>

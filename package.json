@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro check && astro build",
     "preview": "node --env-file .env.local ./dist/server/entry.mjs",
     "astro": "astro",
     "test": "vitest",
@@ -21,9 +21,11 @@
     "clsx": "^2.1.1",
     "hono": "^4.12.25",
     "preact": "^10.29.7",
+    "typescript": "^6.0.3",
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
     "@tailwindcss/vite": "^4.3.3",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/preact": "^3.2.4",
