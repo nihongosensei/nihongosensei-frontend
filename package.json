@@ -11,29 +11,28 @@
     "pre-commit": "pretty-quick --staged"
   },
   "dependencies": {
-    "@astrojs/node": "^10.1.4",
-    "@astrojs/preact": "^5.1.5",
+    "@astrojs/node": "^11.0.2",
+    "@astrojs/preact": "^6.0.1",
     "@hono/otel": "^1.1.2",
     "@opentelemetry/api": "^1.9.1",
     "@opentelemetry/instrumentation-undici": "0.29.0",
     "@opentelemetry/sdk-node": "0.219.0",
-    "astro": "^6.4.6",
+    "astro": "^7.1.1",
     "clsx": "^2.1.1",
     "hono": "^4.12.25",
-    "preact": "^10.29.2",
+    "preact": "^10.29.7",
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.3.1",
+    "@tailwindcss/vite": "^4.3.3",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/preact": "^3.2.4",
     "jsdom": "^29.0.1",
-    "prettier": "^3.8.4",
+    "prettier": "^3.9.0",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-organize-imports": "^4.3.0",
     "pretty-quick": "^4.2.2",
-    "tailwindcss": "^4.3.1",
-    "vite-tsconfig-paths": "^6.1.1",
+    "tailwindcss": "^4.3.3",
     "vitest": "^4.1.8"
   }
 }
