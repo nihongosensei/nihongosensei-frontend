@@ -12,6 +12,13 @@ const sdk = new NodeSDK({
 
 sdk.start();
 
+process.on("SIGTERM", () => {
+  sdk
+    .shutdown()
+    .catch((error) => console.error("Error shutting down telemetry", error))
+    .finally(() => process.exit(0));
+});
+
 const app = new Hono();
 
 app.use(httpInstrumentationMiddleware());
