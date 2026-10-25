@@ -1,0 +1,5 @@
+# Only dist/, package.json and package-lock.json are needed by the Dockerfile.
+*
+!dist
+!package.json
+!package-lock.json
