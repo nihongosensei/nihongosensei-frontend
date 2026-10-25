@@ -3,19 +3,12 @@ import Layout from "../layouts/Layout.astro";
 import ContentWrapper from "../components/Dict/ContentWrapper/ContentWrapper.astro";
 import { EntriesContainer } from "~components/Dict/Entries/EntriesContainer";
 import { vocabularyService } from "../services/VocabularyService/instance";
-import { parseError } from "../helper";
+import { parseError, parsePage } from "../helper";
+import { Alert } from "~components/ui/Alert";
 import { DEFAULT_LIMIT } from "../services/constants";
 
-// XXX: prevent request with empty query and show info message instead
-const query = Astro.url.searchParams.get("q") ?? "";
-const pageString = Astro.url.searchParams.get("page");
-let page = 1;
-if (pageString != null) {
-  const pageNumber = parseInt(pageString, 10);
-  if (!isNaN(pageNumber)) {
-    page = pageNumber;
-  }
-}
+const query = (Astro.url.searchParams.get("q") ?? "").trim();
+const page = parsePage(Astro.url.searchParams.get("page"));
 const limit = DEFAULT_LIMIT;
 const offset = (page - 1) * limit;
 
@@ -24,23 +17,26 @@ let count = null;
 let error = null;
 let pageCount = 0;
 
-try {
-  const response = await vocabularyService().findBy({
-    limit,
-    offset,
-    query,
-  });
-  pageCount = Math.ceil(response.count / limit);
-  results = response.entries;
-  count = response.count;
-} catch (e) {
-  console.error(e);
-  error = parseError(e);
+if (query) {
+  try {
+    const response = await vocabularyService().findBy({
+      limit,
+      offset,
+      query,
+    });
+    pageCount = Math.ceil(response.count / limit);
+    results = response.entries;
+    count = response.count;
+  } catch (e) {
+    console.error(e);
+    error = parseError(e);
+  }
 }
 ---
 
 <Layout title={`Suche nach ${query}`}>
   <ContentWrapper>
+    {!query && <Alert type="info">Bitte einen Suchbegriff eingeben.</Alert>}
     <EntriesContainer
       pageCount={pageCount}
       currentPage={page}

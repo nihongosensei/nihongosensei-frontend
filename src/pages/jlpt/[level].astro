@@ -3,28 +3,18 @@ import Layout from "../../layouts/Layout.astro";
 import ContentWrapper from "../../components/Dict/ContentWrapper/ContentWrapper.astro";
 import { EntriesContainer } from "~components/Dict/Entries/EntriesContainer";
 import { vocabularyService } from "~services/VocabularyService/instance";
-import { parseError } from "~helper";
+import { parseError, parsePage } from "~helper";
 import { DEFAULT_LIMIT } from "~services/constants";
 
 const { level } = Astro.params;
 
 const levelNumber = Number(level);
-if (isNaN(levelNumber) || levelNumber < 1 || levelNumber > 5) {
-  Astro.response.status = 404;
-  Astro.response.statusText = "Not found";
-
-  return;
+if (!Number.isInteger(levelNumber) || levelNumber < 1 || levelNumber > 5) {
+  return Astro.rewrite("/404");
 }
 
 const query = Astro.url.searchParams.get("q") ?? "";
-const pageString = Astro.url.searchParams.get("page");
-let page = 1;
-if (pageString != null) {
-  const pageNumber = parseInt(pageString, 10);
-  if (!isNaN(pageNumber)) {
-    page = pageNumber;
-  }
-}
+const page = parsePage(Astro.url.searchParams.get("page"));
 const limit = DEFAULT_LIMIT;
 const offset = (page - 1) * limit;
 

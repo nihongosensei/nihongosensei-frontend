@@ -4,41 +4,65 @@ import ContentWrapper from "../../components/Dict/ContentWrapper/ContentWrapper.
 import { Heading } from "~components/ui/Typography/Heading";
 import { RelatedEntry } from "~components/Dict/Entry/RelatedEntry";
 import { KanjiFull } from "~components/Dict/EntryKanjis/KanjiFull";
+import { Alert } from "~components/ui/Alert";
+import { parseError } from "~helper";
 import { vocabularyService } from "~services/VocabularyService/instance";
+import type { EntryWrapperModel } from "~services/VocabularyService";
 
 const { kanji } = Astro.params;
 
 if (!kanji) {
-  Astro.response.status = 404;
-  Astro.response.statusText = "Not found";
-
-  return;
+  return Astro.rewrite("/404");
 }
 
-const kanjiModel = await vocabularyService().findKanji(kanji);
+let kanjiModel = null;
+let entries: EntryWrapperModel[] = [];
+let error: string | null = null;
 
-if (!kanjiModel) {
-  Astro.response.status = 404;
-  Astro.response.statusText = "Not found";
+try {
+  kanjiModel = await vocabularyService().findKanji(kanji);
 
-  return;
+  if (kanjiModel) {
+    ({ entries } = await vocabularyService().findBy({
+      limit: 15,
+      offset: 0,
+      kanjis: [kanjiModel.kanji],
+    }));
+  }
+} catch (e) {
+  console.error(e);
+  error = parseError(e);
+  Astro.response.status = 502;
 }
 
-const { entries } = await vocabularyService().findBy({
-  limit: 15,
-  offset: 0,
-  kanjis: [kanjiModel.kanji],
-});
+if (!error && !kanjiModel) {
+  return Astro.rewrite("/404");
+}
 ---
 
-<Layout title={kanjiModel.kanji}>
+<Layout title={kanjiModel?.kanji ?? kanji}>
   <ContentWrapper>
-    <KanjiFull kanji={kanjiModel} />
-    <div class="mt-4">
-      <Heading level={2} className="mb-3"> Beispiele </Heading>
-      <ol class="list-decimal list-inside">
-        {entries.map(({ entryJson }) => <RelatedEntry entry={entryJson} />)}
-      </ol>
-    </div>
+    {
+      error || !kanjiModel ? (
+        <Alert type="error">
+          <p>Ein Fehler ist aufgetreten:</p>
+          <code>{error}</code>
+        </Alert>
+      ) : (
+        <>
+          <KanjiFull kanji={kanjiModel} />
+          <div class="mt-4">
+            <Heading level={2} className="mb-3">
+              Beispiele
+            </Heading>
+            <ol class="list-decimal list-inside">
+              {entries.map(({ entryJson }) => (
+                <RelatedEntry entry={entryJson} />
+              ))}
+            </ol>
+          </div>
+        </>
+      )
+    }
   </ContentWrapper>
 </Layout>
