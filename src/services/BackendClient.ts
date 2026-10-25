@@ -1,5 +1,3 @@
-import { context, propagation } from "@opentelemetry/api";
-
 const DEFAULT_TIMEOUT_MS = 10_000;
 
 export class HttpError extends Error {
@@ -11,16 +9,9 @@ export class HttpError extends Error {
   }
 }
 
-function getTraceHeaders(): Record<string, string> {
-  const carrier: Record<string, string> = {};
-  propagation.inject(context.active(), carrier);
-
-  return carrier;
-}
-
 /**
- * Minimal JSON client for the backend api. Propagates the active trace
- * context and aborts requests that take longer than the given timeout.
+ * Minimal JSON client for the backend api. Trace context is propagated
+ * by the undici instrumentation. Aborts requests that take longer than the given timeout.
  */
 export class BackendClient {
   public constructor(
@@ -29,7 +20,7 @@ export class BackendClient {
   ) {}
 
   public async request<T>(resource: string, data?: unknown): Promise<T> {
-    const headers: Record<string, string> = getTraceHeaders();
+    const headers: Record<string, string> = {};
     if (data !== undefined) {
       headers["content-type"] = "application/json";
     }
