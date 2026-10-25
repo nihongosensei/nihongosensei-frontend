@@ -280,15 +280,7 @@ export type TranscrModel = {
 export type TransitivityEnum = "TRANS" | "INTRANS" | "BOTH";
 
 export type LevelEnum =
-  | "1i"
-  | "1e"
-  | "2i"
-  | "2e"
-  | "4"
-  | "5"
-  | "suru"
-  | "kuru"
-  | "ra";
+  "1i" | "1e" | "2i" | "2e" | "4" | "5" | "suru" | "kuru" | "ra";
 
 export type GodanrowEnum =
   | "wa"

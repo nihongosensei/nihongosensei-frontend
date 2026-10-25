@@ -1,22 +1,13 @@
+import type { BackendClient } from "../BackendClient";
 import type { FuriganaService } from "./FuriganaService";
 import type { FuriganaModel } from "./Model";
 
 export class ExternalFuriganaService implements FuriganaService {
-  public constructor(private readonly endpoint: string) {}
+  public constructor(private readonly client: BackendClient) {}
 
-  public async getFurigana(text: string): Promise<(FuriganaModel | string)[]> {
-    const response = await fetch(`${this.endpoint}/api/furigana`, {
-      method: "POST",
-      body: JSON.stringify({
-        text,
-      }),
+  public getFurigana(text: string): Promise<(FuriganaModel | string)[]> {
+    return this.client.request<(FuriganaModel | string)[]>("furigana", {
+      text,
     });
-    if (!response.ok) {
-      throw new Error(
-        `got invalid response from furigana service: ${response.status}`,
-      );
-    }
-
-    return response.json() as Promise<(FuriganaModel | string)[]>;
   }
 }
