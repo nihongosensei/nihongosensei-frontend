@@ -11,13 +11,13 @@
     "pre-commit": "pretty-quick --staged"
   },
   "dependencies": {
-    "@astrojs/node": "^11.0.2",
-    "@astrojs/preact": "^6.0.1",
+    "@astrojs/node": "^11.1.8",
+    "@astrojs/preact": "^6.1.0",
     "@hono/otel": "^1.1.2",
     "@opentelemetry/api": "^1.9.1",
     "@opentelemetry/instrumentation-undici": "0.29.0",
     "@opentelemetry/sdk-node": "0.219.0",
-    "astro": "^7.1.1",
+    "astro": "^7.4.0",
     "clsx": "^2.1.1",
     "hono": "^4.12.25",
     "preact": "^10.29.7",
@@ -25,7 +25,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.9",
+    "@astrojs/check": "^0.9.10",
     "@tailwindcss/vite": "^4.3.3",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/preact": "^3.2.4",
