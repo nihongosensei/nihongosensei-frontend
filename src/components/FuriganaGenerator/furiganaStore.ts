@@ -29,53 +29,60 @@ export const FuriganaStore = createModel(
     );
     const error = signal<string | null>(defaultError);
 
-    function performRequest(value: string) {
-      if (!value) {
-        return;
-      }
+    // Incremented for every text change. Responses of outdated requests are
+    // ignored so a slow response can't overwrite a newer one.
+    let latestRequestId = 0;
+    let timeout: number | null = null;
 
-      if (!value.trim()) {
-        furigana.value = null;
-
-        return;
-      }
-
+    function performRequest(value: string, requestId: number) {
       loading.value = true;
 
       actions.furigana
         .orThrow({ text: value })
         .then((furiganaResponse) => {
+          if (requestId !== latestRequestId) {
+            return;
+          }
+
           furigana.value = furiganaResponse.furigana;
           error.value = null;
         })
         .catch((e) => {
+          if (requestId !== latestRequestId) {
+            return;
+          }
+
           error.value = parseError(e);
         })
         .finally(() => {
-          loading.value = false;
+          if (requestId === latestRequestId) {
+            loading.value = false;
+          }
         });
-    }
-
-    let timeout: number | null = null;
-
-    function debouncedPerformRequest() {
-      if (timeout) {
-        window.clearTimeout(timeout);
-      }
-
-      const value = text.value;
-
-      timeout = window.setTimeout(() => performRequest(value), 300);
     }
 
     function setText(newText: string) {
       text.value = newText.trim();
 
-      if (text.value.length === 0) {
-        furigana.value = [];
-      } else {
-        debouncedPerformRequest();
+      const requestId = ++latestRequestId;
+
+      if (timeout) {
+        window.clearTimeout(timeout);
+        timeout = null;
       }
+
+      if (text.value.length === 0) {
+        // invalidates in-flight requests
+        loading.value = false;
+        furigana.value = [];
+        error.value = null;
+
+        return;
+      }
+
+      const value = text.value;
+
+      timeout = window.setTimeout(() => performRequest(value, requestId), 300);
     }
 
     return {
