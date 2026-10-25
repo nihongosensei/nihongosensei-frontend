@@ -10,10 +10,7 @@ type RelatedEntriesProps = {
 };
 
 export type EnhancedTypeEnum =
-  | SubentryTypeEnum
-  | "DERIVATION"
-  | "COMPOSITION"
-  | "USAGE_EXAMPLE";
+  SubentryTypeEnum | "DERIVATION" | "COMPOSITION" | "USAGE_EXAMPLE";
 
 type GroupBySubTypeMap = Partial<
   Record<EnhancedTypeEnum, ResolvedEntryRefModel[]>

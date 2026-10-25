@@ -1,9 +1,9 @@
-import { Hono } from "hono";
 import { httpInstrumentationMiddleware } from "@hono/otel";
-import { astro } from "astro/hono";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
-import { NodeSDK } from "@opentelemetry/sdk-node";
 import { UndiciInstrumentation } from "@opentelemetry/instrumentation-undici";
+import { NodeSDK } from "@opentelemetry/sdk-node";
+import { astro } from "astro/hono";
+import { Hono } from "hono";
 
 const sdk = new NodeSDK({
   traceExporter: new OTLPTraceExporter(),
